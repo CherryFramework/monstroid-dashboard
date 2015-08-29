@@ -1,0 +1,182 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: blank\n"
+"POT-Creation-Date: 2015-08-27 11:09+0200\n"
+"PO-Revision-Date: 2015-08-27 11:13+0200\n"
+"Last-Translator: \n"
+"Language-Team: Cherry Team <support@cherryframework.com>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.6\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n;_x;esc_html_e;esc_html__;esc_attr_e;"
+"esc_attr__;_x:1,2c;_n:1,2\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../admin/includes/class-monstroid-dashboard-interface.php:127
+#: ../admin/includes/class-monstroid-dashboard-interface.php:211
+#: ../admin/includes/class-monstroid-dashboard-interface.php:218
+msgid "Monstroid Dashboard"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-interface.php:128
+#: ../admin/includes/class-monstroid-dashboard-ui-elements.php:82
+msgid "Monstroid"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-interface.php:212
+msgid "Dashboard"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-interface.php:219
+msgid "Updater"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-interface.php:222
+msgid "Monstroid Themes"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-interface.php:223
+msgid "Themes"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-notices.php:109
+msgid "New Monstroid version avaliable."
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-notices.php:113
+msgid "Upadte"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-notices.php:118
+msgid "Skip"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-notices.php:123
+msgid "Please, set up filesystem credentials to allow automatic updates."
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-notices.php:128
+msgid "Dismiss"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-tips.php:41
+msgid "Start customize"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-tips.php:42
+msgid "Go to Theme options manager"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-tips.php:44
+#: ../admin/includes/class-monstroid-dashboard-tips.php:52
+msgid "Start"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-tips.php:49
+#: ../admin/includes/class-monstroid-dashboard-tips.php:50
+msgid "Write your first post"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-tips.php:67
+msgid "Strat"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-ui-elements.php:31
+msgid "Check Update"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-ui-elements.php:53
+msgid "Disable automatic updates"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-ui-elements.php:68
+msgid "Enable automatic updates"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-updater.php:127
+msgid "Every minute"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-updater.php:427
+msgid "Update Monstroid theme"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-updater.php:439
+msgid "Your Monstroid succesfully updated"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-updater.php:450
+#, php-format
+msgid "Update failed. %s"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-updater.php:460
+msgid ""
+"Update failed. <a href=\"#\" class=\"show-update-log\">Show update log</a>"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-updater.php:470
+msgid "Unknown error, please try again later or contact our support"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-updater.php:487
+msgid "New Monstroid version avaliable"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-updater.php:494
+msgid "Your Monstroid is up to date"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-updater.php:519
+msgid ""
+"Can't create current theme backup. <a href='#' class='force-run-theme-"
+"update'>Update anyway</a>"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-upgrader-skin.php:11
+msgid "Doing it wrong"
+msgstr ""
+
+#: ../admin/views/main-theme-item.php:28
+msgid "Update"
+msgstr ""
+
+#: ../admin/views/main-theme-item.php:34
+msgid "Please, set up filesystem credentials to allow automatic update"
+msgstr ""
+
+#: ../admin/views/monstroid-dashboard.php:18
+msgid "Welcome to Monstroid Dashboard"
+msgstr ""
+
+#: ../admin/views/monstroid-dashboard.php:25
+#, php-format
+msgid "Monstroid Version: %1$s %2$s"
+msgstr ""
+
+#: ../admin/views/monstroid-dashboard.php:34
+#, php-format
+msgid "By %s"
+msgstr ""
+
+#: ../admin/views/monstroid-dashboard.php:41
+msgid ""
+"Monstroid is powered by the latest Cherry Framework 4 that ensures easy and "
+"worry-free installation and customization. With over 30 inbuilt premium "
+"extensions, you can get any kind of functionality required for a specific "
+"project. Thanks to the brand new backup options, you can restore the theme "
+"any time you need."
+msgstr ""
+
+#: ../admin/views/monstroid-updater.php:28
+msgid "Monstroid Updater"
+msgstr ""
+
+#: ../admin/views/single-tip.php:29
+msgid "Tutorial"
+msgstr ""
