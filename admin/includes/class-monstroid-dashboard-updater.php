@@ -32,7 +32,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		 * @since 1.0.0
 		 * @var   string
 		 */
-		public $api = 'http://192.168.9.40/local-cloud-live/';
+		public $api = 'https://cloud.cherryframework.com/';
 
 		/**
 		 * Current theme version
@@ -96,7 +96,9 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		public function get_current_version() {
 			if ( null == $this->current_version ) {
 				$theme = wp_get_theme( 'monstroid' );
-				$this->current_version = $theme->get( 'Version' );
+				$this->current_version = ( false !== $theme->get( 'Version' ) && '' !== $theme->get( 'Version' ) )
+											? $theme->get( 'Version' )
+											: '1.0.0';
 			}
 
 			return $this->current_version;
@@ -130,10 +132,17 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		 * @param array $schedules registered inervals
 		 */
 		public function add_shedules( $schedules ) {
+
 			$schedules['minute'] = array(
 				'interval' => 60,
 				'display'  => __( 'Every minute' ),
 			);
+
+			$schedules['weekly'] = array(
+				'interval' => 604800,
+				'display'  => __( 'Every week' ),
+			);
+
 			return $schedules;
 		}
 
@@ -151,7 +160,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 			}
 
 			if ( ! wp_next_scheduled( 'monstroid_scheduled_update' ) ) {
-				wp_schedule_event( time(), 'minute', 'monstroid_scheduled_update' );
+				wp_schedule_event( time(), 'weekly', 'monstroid_scheduled_update' );
 			}
 		}
 

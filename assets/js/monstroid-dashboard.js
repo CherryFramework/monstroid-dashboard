@@ -104,6 +104,7 @@
 
 			$this.addClass('in-progress');
 			md_spinner( $this, 'default' );
+			$('.md-download-message').remove();
 
 			$.ajax({
 				url: ajaxurl,

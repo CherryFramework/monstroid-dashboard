@@ -84,7 +84,7 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 
 			$this->includes();
 			$this->local_includes();
-			$this->plugin_updater()
+			$this->plugin_updater();
 
 			$this->filesystem = Monstroid_Dashboard_Filesystem::get_instance();
 

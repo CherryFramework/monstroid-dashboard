@@ -65,18 +65,6 @@ $border:  #dfdfdf;
 	}
 }
 
-.md-form-message {
-	font-size: 14px;
-	line-height: 20px;
-	padding: 10px 0 0 0;
-	&.md-error {
-		color: $warning;
-	}
-	&.md-success {
-		color: $success;
-	}
-}
-
 .md-hidden {
 	display: none !important;
 }
@@ -171,6 +159,18 @@ button.md-button {
 	font-size: 14px;
 	line-height: 20px;
 	padding: 0 0 10px 0;
+}
+.md-form-message,
+.md-download-message {
+	font-size: 14px;
+	line-height: 20px;
+	padding: 10px 0 0 0;
+	&.md-error {
+		color: $warning;
+	}
+	&.md-success {
+		color: $success;
+	}
 }
 
 .md-description {
