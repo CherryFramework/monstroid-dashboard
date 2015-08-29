@@ -8,7 +8,7 @@
  * Plugin Name:       Monstroid Dashboard
  * Plugin URI:        http://www.templatemonster.com/
  * Description:       Dashboard for Monstroid theme
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            TemplateMonster
  * Author URI:        http://www.templatemonster.com/
  * Text Domain:       monstroid-dashboard
@@ -46,7 +46,7 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 		 * @since 1.0.0
 		 * @var string
 		 */
-		public $version = '1.0.0';
+		public $version = '1.0.1';
 
 		/**
 		 * Plugin folder URL
