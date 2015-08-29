@@ -452,6 +452,9 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 
 			$upgrader = new Theme_Upgrader( new Monstroid_Dashboard_Upgrader_Skin( compact('title', 'theme') ) );
 
+			ini_set( 'max_execution_time', -1 );
+			set_time_limit( 0 );
+
 			$update = $upgrader->upgrade( $theme );
 			$log    = $upgrader->skin->get_install_log();
 

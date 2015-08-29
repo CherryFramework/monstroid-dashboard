@@ -53,6 +53,9 @@ class Monstroid_Dashboard_Backup_Manager {
 			return false;
 		}
 
+		ini_set( 'max_execution_time', -1 );
+		set_time_limit( 0 );
+
 		$zip_name    = $this->path . '/monstroid-' . monstroid_dashboard_updater()->get_current_version() . '.zip';
 		$files       = $this->get_files();
 		$files       = implode( ',', $files );
