@@ -89,6 +89,7 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 			$this->filesystem = Monstroid_Dashboard_Filesystem::get_instance();
 
 			add_action( 'admin_enqueue_scripts', array( $this, 'assets' ) );
+			add_filter( 'cherry_data_manager_exclude_folder_from_export', array( $this, 'do_not_export_backups' ) );
 
 		}
 
@@ -233,6 +234,18 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 				$this->plugin_url( 'assets/css/monstroid-dashboard.css' ), array(), $this->version
 			);
 
+		}
+
+		/**
+		 * Add update backups folder to excluded from export directories
+		 *
+		 * @since  1.0.0
+		 * @param  array  $dirs  excluded directories list
+		 * @return array
+		 */
+		public function do_not_export_backups( $dirs ) {
+			$dirs[] = 'update-backups';
+			return $dirs;
 		}
 
 		/**

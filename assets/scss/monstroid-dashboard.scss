@@ -30,6 +30,13 @@ $border:  #dfdfdf;
 		font-size: 24px;
 		line-height: 30px;
 	}
+	h4 {
+		margin: 0 0 20px 0;
+		padding: 0;
+		font-weight: normal;
+		font-size: 20px;
+		line-height: 24px;
+	}
 	a {
 		color: $primary;
 	}
@@ -325,6 +332,38 @@ button.md-button {
 	}
 }
 
+.md-updates-list {
+	&_item {
+		border-top: 1px solid $border;
+		&.heading_item {
+			border-top: none;
+			font-size: 14px;
+		}
+		&:after {
+			clear: both;
+			content: "";
+			width: 100%;
+			display: block;
+		}
+		&_name,
+		&_date,
+		&_download {
+			float: left;
+			width: 33.33333%;
+			padding: 5px 0;
+			box-sizing: border-box;
+		}
+	}
+	&_download_link {
+		box-shadow: none !important;
+		text-decoration: none;
+		&:hover {
+			color: darken( $primary, 10% );
+		}
+	}
+
+}
+
 .md-updater-footer {
 	padding: 35px 0 0 0;
 	border-top: 1px solid $border;
@@ -349,6 +388,45 @@ input[type="url"].md-input {
 	}
 	&:focus {
 		border-color: $primary;
+	}
+}
+
+.md-row {
+	&:after {
+		clear: both;
+		content: "";
+		width: 100%;
+		display: block;
+	}
+}
+
+.md-col {
+	&_1, &_2, &_3, &_4, &_5, &_6, &_7, &_8 {
+		float: left;
+	}
+	&_1 {
+		width: 12.5%;
+	}
+	&_2 {
+		width: 25%;
+	}
+	&_3 {
+		width: 37.5%;
+	}
+	&_4 {
+		width: 50%;
+	}
+	&_5 {
+		width: 62.5%;
+	}
+	&_6 {
+		width: 75%;
+	}
+	&_7 {
+		width: 87.5%;
+	}
+	&_8 {
+		width: 100%;
 	}
 }
 

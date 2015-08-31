@@ -44,7 +44,14 @@ if ( ! defined( 'WPINC' ) ) {
 			</div>
 		</div>
 	</div>
-	<div class="md-tips">
-		<?php $monstroid_dashboard_tips->get_links(); ?>
+	<div class="md-row">
+		<div class="md-col_3">
+			<div class="md-tips">
+				<?php $monstroid_dashboard_tips->get_links(); ?>
+			</div>
+		</div>
+		<div class="md-col_5">
+			<?php echo Monstroid_Dashboard_UI::backups_list(); ?>
+		</div>
 	</div>
 </div>

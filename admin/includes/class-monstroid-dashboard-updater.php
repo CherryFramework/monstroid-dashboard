@@ -544,7 +544,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 
 			include_once( monstroid_dashboard()->plugin_dir( 'admin/includes/class-monstroid-dashboard-backup-manager.php' ) );
 
-			$backup_manager = new Monstroid_Dashboard_Backup_Manager;
+			$backup_manager = Monstroid_Dashboard_Backup_Manager::get_instance();
 			$backup_done    = $backup_manager->make_backup();
 
 			if ( false === $backup_done ) {

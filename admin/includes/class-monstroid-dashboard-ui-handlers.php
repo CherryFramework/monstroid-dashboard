@@ -28,6 +28,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_UI_Handlers' ) ) {
 		function __construct() {
 			add_action( 'wp_ajax_monstroid_dashboard_download_latest', array( $this, 'download_latest' ) );
 			add_action( 'wp_ajax_monstroid_dashboard_save_key', array( $this, 'save_key' ) );
+			add_action( 'wp_ajax_monstroid_dashboard_get_backup', array( $this, 'get_backup' ) );
 		}
 
 		/**
@@ -58,6 +59,35 @@ if ( ! class_exists( 'Monstroid_Dashboard_UI_Handlers' ) ) {
 					'url' => $url
 				)
 			);
+
+		}
+
+		/**
+		 * Get saved backup from uploads
+		 *
+		 * @since 1.0.0
+		 */
+		public function get_backup() {
+
+			if ( ! isset( $_REQUEST['nonce'] ) ) {
+				die();
+			}
+
+			if ( ! wp_verify_nonce( esc_attr( $_REQUEST['nonce'] ), 'monstroid-dashboard' ) ) {
+				die();
+			}
+
+			if ( ! current_user_can( 'manage_options' ) ) {
+				die();
+			}
+
+			$key = isset( $_REQUEST['key'] ) ? esc_attr( $_REQUEST['key'] ) : '';
+
+			if ( ! $key ) {
+				wp_send_json_error( array(
+					'message' => __( 'Backup file not provided', 'monstroid-dashboard' )
+				) );
+			}
 
 		}
 

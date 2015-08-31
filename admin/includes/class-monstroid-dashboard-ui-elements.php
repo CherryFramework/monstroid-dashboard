@@ -28,7 +28,7 @@ class Monstroid_Dashboard_UI {
 		$url = esc_url( add_query_arg( array( 'md_force_check_update' => 1 ) ) );
 
 		if ( ! $label ) {
-			$label = __( 'Check Update', 'monstroid-dashboard' );
+			$label = __( 'Check if updates are available', 'monstroid-dashboard' );
 		}
 
 		if ( $class ) {
@@ -120,6 +120,50 @@ class Monstroid_Dashboard_UI {
 
 		ob_start();
 		include monstroid_dashboard()->plugin_dir( 'admin/views/enter-key-form.php' );
+		return ob_get_clean();
+
+	}
+
+	/**
+	 * Show avaliable backups list
+	 *
+	 * @since 1.0.0
+	 */
+	public static function backups_list() {
+
+		include_once( monstroid_dashboard()->plugin_dir( 'admin/includes/class-monstroid-dashboard-backup-manager.php' ) );
+
+		$backup_manager = Monstroid_Dashboard_Backup_Manager::get_instance();
+		$backups        = $backup_manager->get_backups();
+
+		if ( empty( $backups ) ) {
+			return;
+		}
+
+		ob_start();
+		?>
+		<div class="md-updates-list">
+			<h4 class="md-updates-list_title"><?php _e( 'Monstroid theme backups', 'monstroid-dashboard' ); ?></h4>
+			<div class="md-updates-list_items">
+				<div class="md-updates-list_item heading_item">
+					<div class="md-updates-list_item_name">
+						<?php _e( 'File name', 'monstroid-dashboard' ); ?>
+					</div>
+					<div class="md-updates-list_item_date">
+						<?php _e( 'Created', 'monstroid-dashboard' ); ?>
+					</div>
+					<div class="md-updates-list_item_download">
+						<?php _e( 'Download backup' ); ?>
+					</div>
+				</div>
+				<?php
+				foreach ( $backups as $file => $data ) {
+					include monstroid_dashboard()->plugin_dir( 'admin/views/backup-list-item.php' );
+				}
+				?>
+			</div>
+		</div>
+		<?php
 		return ob_get_clean();
 
 	}

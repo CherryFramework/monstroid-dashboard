@@ -21,6 +21,14 @@ class Monstroid_Dashboard_Backup_Manager {
 	 */
 	public $files = array();
 
+	/**
+	 * A reference to an instance of this class.
+	 *
+	 * @since 1.0.0
+	 * @var   object
+	 */
+	private static $instance = null;
+
 	function __construct() {
 
 		// connect filesystem
@@ -52,6 +60,11 @@ class Monstroid_Dashboard_Backup_Manager {
 		if ( ! $this->check_path() ) {
 			return false;
 		}
+
+		$this->protect_path();
+
+		var_dump('expression');
+		return false;
 
 		ini_set( 'max_execution_time', -1 );
 		set_time_limit( 0 );
@@ -119,6 +132,27 @@ class Monstroid_Dashboard_Backup_Manager {
 	}
 
 	/**
+	 * Create .htaccess file in updates backup dir to protect it from direct access
+	 *
+	 * @since  1.0.0
+	 * @return void
+	 */
+	public function protect_path() {
+
+		global $wp_filesystem;
+		$path = $this->prepare_path( $this->path );
+
+		$file = $path . '/.htaccess';
+
+		if ( $wp_filesystem->exists( $file ) ) {
+			return true;
+		}
+
+		$wp_filesystem->put_contents( $file, 'deny from all' );
+
+	}
+
+	/**
 	 * Prepeare path for using with filesystem API
 	 *
 	 * @since  1.0.0
@@ -129,6 +163,55 @@ class Monstroid_Dashboard_Backup_Manager {
 		global $wp_filesystem;
 		return str_replace( ABSPATH, $wp_filesystem->abspath(), $path );
 	}
+
+	/**
+	 * Get avaliable backups list
+	 *
+	 * @since  1.0.0
+	 * @return array
+	 */
+	public function get_backups() {
+
+		global $wp_filesystem;
+		$path  = $this->prepare_path( $this->path );
+		$files = $wp_filesystem->dirlist( $path );
+
+		if ( isset( $files['.htaccess'] ) ) {
+			unset( $files['.htaccess'] );
+		}
+
+		$result = array();
+
+		foreach ( $files as $file => $data ) {
+			if ( 'zip' !== pathinfo( $file, PATHINFO_EXTENSION ) ) {
+				continue;
+			}
+
+			$result[] = array(
+				'name' => $file,
+				'date' => date( 'M d Y, H:i', $data['lastmodunix'] )
+			);
+		}
+
+		usort( $result, array( $this, 'date_compare' ) );
+
+		return $result;
+
+	}
+
+	/**
+	 * Compare backups by date
+	 *
+	 * @param  array $a 1st value
+	 * @param  array $b 2nd value
+	 * @return bool
+	 */
+	public function date_compare( $a, $b ) {
+		$t1 = strtotime( $a['date'] );
+		$t2 = strtotime( $b['date'] );
+		return $t2 - $t1;
+	}
+
 
 	/**
 	 * Connect to the filesystem.
@@ -198,6 +281,19 @@ class Monstroid_Dashboard_Backup_Manager {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Returns the instance.
+	 *
+	 * @since  1.0.0
+	 * @return object
+	 */
+	public static function get_instance() {
+		// If the single instance hasn't been set, set it now.
+		if ( null == self::$instance )
+			self::$instance = new self;
+		return self::$instance;
 	}
 
 }

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: blank\n"
-"POT-Creation-Date: 2015-08-27 11:09+0200\n"
-"PO-Revision-Date: 2015-08-27 11:13+0200\n"
+"POT-Creation-Date: 2015-08-31 15:24+0200\n"
+"PO-Revision-Date: 2015-08-31 15:24+0200\n"
 "Last-Translator: \n"
 "Language-Team: Cherry Team <support@cherryframework.com>\n"
 "Language: en\n"
@@ -18,49 +18,46 @@ msgstr ""
 "X-Poedit-SearchPath-0: ..\n"
 
 #: ../admin/includes/class-monstroid-dashboard-interface.php:127
-#: ../admin/includes/class-monstroid-dashboard-interface.php:211
-#: ../admin/includes/class-monstroid-dashboard-interface.php:218
+#: ../admin/includes/class-monstroid-dashboard-interface.php:212
 msgid "Monstroid Dashboard"
 msgstr ""
 
 #: ../admin/includes/class-monstroid-dashboard-interface.php:128
-#: ../admin/includes/class-monstroid-dashboard-ui-elements.php:82
+#: ../admin/includes/class-monstroid-dashboard-ui-elements.php:100
 msgid "Monstroid"
 msgstr ""
 
-#: ../admin/includes/class-monstroid-dashboard-interface.php:212
+#: ../admin/includes/class-monstroid-dashboard-interface.php:213
 msgid "Dashboard"
 msgstr ""
 
 #: ../admin/includes/class-monstroid-dashboard-interface.php:219
-msgid "Updater"
+msgid "Data manager"
 msgstr ""
 
-#: ../admin/includes/class-monstroid-dashboard-interface.php:222
-msgid "Monstroid Themes"
+#: ../admin/includes/class-monstroid-dashboard-interface.php:220
+#, php-format
+msgid "Data manager %s"
 msgstr ""
 
-#: ../admin/includes/class-monstroid-dashboard-interface.php:223
-msgid "Themes"
-msgstr ""
-
-#: ../admin/includes/class-monstroid-dashboard-notices.php:109
+#: ../admin/includes/class-monstroid-dashboard-notices.php:132
 msgid "New Monstroid version avaliable."
 msgstr ""
 
-#: ../admin/includes/class-monstroid-dashboard-notices.php:113
-msgid "Upadte"
+#: ../admin/includes/class-monstroid-dashboard-notices.php:136
+#: ../admin/views/main-theme-item.php:28
+msgid "Update"
 msgstr ""
 
-#: ../admin/includes/class-monstroid-dashboard-notices.php:118
+#: ../admin/includes/class-monstroid-dashboard-notices.php:141
 msgid "Skip"
 msgstr ""
 
-#: ../admin/includes/class-monstroid-dashboard-notices.php:123
+#: ../admin/includes/class-monstroid-dashboard-notices.php:146
 msgid "Please, set up filesystem credentials to allow automatic updates."
 msgstr ""
 
-#: ../admin/includes/class-monstroid-dashboard-notices.php:128
+#: ../admin/includes/class-monstroid-dashboard-notices.php:151
 msgid "Dismiss"
 msgstr ""
 
@@ -82,57 +79,147 @@ msgstr ""
 msgid "Write your first post"
 msgstr ""
 
-#: ../admin/includes/class-monstroid-dashboard-tips.php:67
+#: ../admin/includes/class-monstroid-dashboard-tips.php:70
+msgid "Monstroid documentation"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-tips.php:74
+msgid "Quick Start Guide"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-tips.php:78
+msgid "Monstroid Video Tutorials"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-tips.php:93
 msgid "Strat"
 msgstr ""
 
 #: ../admin/includes/class-monstroid-dashboard-ui-elements.php:31
-msgid "Check Update"
+msgid "Check if updates are available"
 msgstr ""
 
-#: ../admin/includes/class-monstroid-dashboard-ui-elements.php:53
+#: ../admin/includes/class-monstroid-dashboard-ui-elements.php:56
 msgid "Disable automatic updates"
 msgstr ""
 
-#: ../admin/includes/class-monstroid-dashboard-ui-elements.php:68
+#: ../admin/includes/class-monstroid-dashboard-ui-elements.php:71
 msgid "Enable automatic updates"
 msgstr ""
 
-#: ../admin/includes/class-monstroid-dashboard-updater.php:127
+#: ../admin/includes/class-monstroid-dashboard-ui-elements.php:87
+msgid "Download latest Monstroid version"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-ui-elements.php:146
+msgid "Monstroid theme backups"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-ui-handlers.php:87
+msgid "Please, enter valid key"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-ui-handlers.php:109
+msgid "Can not send activation request. "
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-ui-handlers.php:115
+msgid "Activation request error. "
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-ui-handlers.php:124
+msgid "Bad request."
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-ui-handlers.php:131
+msgid "Wrong license key. Make sure activation key is correct."
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-ui-handlers.php:138
+#: ../admin/includes/class-monstroid-dashboard-ui-handlers.php:143
+msgid ""
+"Sorry, the license key you are trying to use exceeded the maximum amount of "
+"activations was applied for 3 domains"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-ui-handlers.php:157
+msgid ""
+"License key is invalid or evaluation expired. Please, contact Support Live "
+"Chat: <a href=\"http://chat.template-help.com/\">http://chat.template-help."
+"com/</a>"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-ui-handlers.php:164
+msgid "Theme is not available yet. Please try again in 10 minutes."
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-ui-handlers.php:171
+msgid "Theme is not available. Please contact support team for help."
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-ui-handlers.php:186
+msgid "Key succesfully activated and saved"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-ui-handlers.php:204
+msgid "Monstroid key not provided"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-ui-handlers.php:208
+msgid "Can't send download request. Please, try again later"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-ui-handlers.php:212
+msgid "Empty result returned. Please, try again later"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-ui-handlers.php:216
+msgid "Your license key are invalid. Please, contact our support team."
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-updater.php:138
 msgid "Every minute"
 msgstr ""
 
-#: ../admin/includes/class-monstroid-dashboard-updater.php:427
-msgid "Update Monstroid theme"
-msgstr ""
-
-#: ../admin/includes/class-monstroid-dashboard-updater.php:439
-msgid "Your Monstroid succesfully updated"
+#: ../admin/includes/class-monstroid-dashboard-updater.php:143
+msgid "Every week"
 msgstr ""
 
 #: ../admin/includes/class-monstroid-dashboard-updater.php:450
+msgid "Update Monstroid theme"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-updater.php:462
+#, php-format
+msgid ""
+"Great news! Monstroid Dashboard successfully updated your theme to the "
+"latest available version. Also, we backed up your previous data and you can "
+"find it <a href=\"%s\">here</a>"
+msgstr ""
+
+#: ../admin/includes/class-monstroid-dashboard-updater.php:482
 #, php-format
 msgid "Update failed. %s"
 msgstr ""
 
-#: ../admin/includes/class-monstroid-dashboard-updater.php:460
+#: ../admin/includes/class-monstroid-dashboard-updater.php:492
 msgid ""
 "Update failed. <a href=\"#\" class=\"show-update-log\">Show update log</a>"
 msgstr ""
 
-#: ../admin/includes/class-monstroid-dashboard-updater.php:470
+#: ../admin/includes/class-monstroid-dashboard-updater.php:502
 msgid "Unknown error, please try again later or contact our support"
 msgstr ""
 
-#: ../admin/includes/class-monstroid-dashboard-updater.php:487
+#: ../admin/includes/class-monstroid-dashboard-updater.php:519
 msgid "New Monstroid version avaliable"
 msgstr ""
 
-#: ../admin/includes/class-monstroid-dashboard-updater.php:494
+#: ../admin/includes/class-monstroid-dashboard-updater.php:526
 msgid "Your Monstroid is up to date"
 msgstr ""
 
-#: ../admin/includes/class-monstroid-dashboard-updater.php:519
+#: ../admin/includes/class-monstroid-dashboard-updater.php:552
 msgid ""
 "Can't create current theme backup. <a href='#' class='force-run-theme-"
 "update'>Update anyway</a>"
@@ -142,8 +229,22 @@ msgstr ""
 msgid "Doing it wrong"
 msgstr ""
 
-#: ../admin/views/main-theme-item.php:28
-msgid "Update"
+#: ../admin/views/backup-list-item.php:24
+msgid "Download"
+msgstr ""
+
+#: ../admin/views/enter-key-form.php:17
+msgid ""
+"Please enter your license key. We suggest to visit your Monstroid deliver "
+"page in order to locate the license key and paste it here."
+msgstr ""
+
+#: ../admin/views/enter-key-form.php:19
+msgid "Enter theme activation key"
+msgstr ""
+
+#: ../admin/views/enter-key-form.php:20
+msgid "Save"
 msgstr ""
 
 #: ../admin/views/main-theme-item.php:34
@@ -179,4 +280,12 @@ msgstr ""
 
 #: ../admin/views/single-tip.php:29
 msgid "Tutorial"
+msgstr ""
+
+#: ../monstroid-dashboard.php:225
+msgid "Please, provide license key"
+msgstr ""
+
+#: ../monstroid-dashboard.php:226
+msgid "Internal error. Please, contact support team"
 msgstr ""

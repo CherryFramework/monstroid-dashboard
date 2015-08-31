@@ -133,7 +133,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Notices' ) ) {
 						'type'           => 'updated',
 						'accept_action'  => array(
 							'url'   => monstroid_dashboard()->get_link( 'monstroid-updater', array( 'md_hide_notice' => 'need_update' ) ),
-							'label' => __( 'Upadte', 'monstroid-dashboard' ),
+							'label' => __( 'Update', 'monstroid-dashboard' ),
 							'class' => ''
 						),
 						'dismiss_action' => array(

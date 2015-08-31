@@ -32,6 +32,7 @@
 				error: function(response) {
 					$this.removeClass('in-progress');
 					md_remove_spinner($this);
+					md_update_message(monstroid_dashboard.internal_error);
 				}
 			}).done(function(response) {
 				$this.removeClass('in-progress');
@@ -129,6 +130,49 @@
 					$this.after('<div class="md-download-message md-error">' + response.data.message + '</div>');
 				}
 			});
+		});
+
+		var md_download_processing;
+
+		// process backup downloading
+		$(document).on('click', '.md-updates-list_download_link', function(event) {
+			event.preventDefault();
+
+			if ( md_download_processing == true ) {
+				return !1;
+			}
+
+			var $this = $(this),
+				file  = $this.data('backup');
+
+			md_download_processing = true;
+			$this.addClass('in-progress').removeClass('error');
+			md_spinner( $this, 'dark' );
+
+			$.ajax({
+				url: ajaxurl,
+				type: "post",
+				dataType: "json",
+				data: {
+					action: 'monstroid_dashboard_get_backup',
+					file: file,
+					nonce: monstroid_dashboard.nonce
+				},
+				error: function(response) {
+					md_download_processing = false;
+					$this.removeClass('in-progress');
+					md_remove_spinner($this);
+					$input.parent().append('<div class="md-form-message md-error">' + monstroid_dashboard.internal_error + '</div>');
+				}
+			}).done(function(response) {
+				md_download_processing = false;
+				$this.removeClass('in-progress');
+				md_remove_spinner($this);
+				if ( response.success !== true ) {
+					$this.addClass('error');
+				}
+			});
+
 		});
 
 		// process license key activation

@@ -216,8 +216,8 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 						)
 					),
 					'monstroid-updater' => array(
-						'page-title' => __( 'Monstroid Updater', 'monstroid-dashboard' ),
-						'menu-title' => sprintf( __( 'Updater %s', 'monstroid-dashboard' ), $this->get_menu_badge() )
+						'page-title' => __( 'Data manager', 'monstroid-dashboard' ),
+						'menu-title' => sprintf( __( 'Data manager %s', 'monstroid-dashboard' ), $this->get_menu_badge() )
 					),
 					/*'monstroid-themes' => array(
 						'page-title' => __( 'Monstroid Themes', 'monstroid-dashboard' ),
