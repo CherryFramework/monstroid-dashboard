@@ -21,10 +21,11 @@ if ( ! defined( 'WPINC' ) ) {
 			<div class="md-description_text">
 				<div class="md-description_ver">
 					<?php
+						$update_page = menu_page_url( 'monstroid-updater', false );
 						printf(
 							__( 'Monstroid Version: %1$s %2$s', 'monstroid-dashboard' ),
 							monstroid_dashboard_updater()->get_current_version(),
-							monstroid_dashboard_updater()->check_update_messages( '(<b></b>', ')' )
+							monstroid_dashboard_updater()->check_update_messages( '(<b></b>', ')', $update_page )
 						);
 					?>
 				</div>
@@ -38,7 +39,11 @@ if ( ! defined( 'WPINC' ) ) {
 				</div>
 				<div class="md-description_about">
 					<?php
-						_e( 'Monstroid is powered by the latest Cherry Framework 4 that ensures easy and worry-free installation and customization. With over 30 inbuilt premium extensions, you can get any kind of functionality required for a specific project. Thanks to the brand new backup options, you can restore the theme any time you need.', 'monstroid-dashboard' );
+						$options_url = menu_page_url( 'cherry', false );
+						printf(
+							__( 'Monstroid is powered by the latest %s that ensures easy and worry-free installation and customization. With over 30 inbuilt premium extensions, you can get any kind of functionality required for a specific project. Thanks to the brand new backup options, you can restore the theme any time you need.', 'monstroid-dashboard' ),
+							'Cherry Framework 4'
+						);
 					?>
 				</div>
 			</div>

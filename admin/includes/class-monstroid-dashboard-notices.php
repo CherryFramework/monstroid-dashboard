@@ -129,7 +129,10 @@ if ( ! class_exists( 'Monstroid_Dashboard_Notices' ) ) {
 				'monstroid_dashboard_notices',
 				array(
 					'need_update' => array(
-						'message'        => __( 'New Monstroid version avaliable.', 'monstroid-dashboard' ),
+						'message'        => sprintf(
+							__( 'New Monstroid version is avaliable - %s.', 'monstroid-dashboard' ),
+							monstroid_dashboard_updater()->get_update_data( 'new_version' )
+						),
 						'type'           => 'updated',
 						'accept_action'  => array(
 							'url'   => monstroid_dashboard()->get_link( 'monstroid-updater', array( 'md_hide_notice' => 'need_update' ) ),
@@ -231,7 +234,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Notices' ) ) {
 				return false;
 			}
 
-			if ( ! isset( $_GET['m_skip_update'] ) || 'yes' !== $_GET['mu_skip_update'] ) {
+			if ( ! isset( $_GET['mu_skip_update'] ) || 'yes' !== $_GET['mu_skip_update'] ) {
 				return false;
 			}
 

@@ -84,7 +84,7 @@ class Monstroid_Dashboard_UI {
 
 		return sprintf(
 			'<a href="#" class="md-button download-latest"><span class="dashicons dashicons-download"></span> %s</a>',
-			__( 'Download latest Monstroid version', 'monstroid-dashboard' )
+			__( 'Download the latest Monstroid .ZIP version', 'monstroid-dashboard' )
 		);
 
 	}
@@ -158,6 +158,18 @@ class Monstroid_Dashboard_UI {
 				</div>
 				<?php
 				foreach ( $backups as $file => $data ) {
+					// prepare download URL to use in template
+					$download_url = add_query_arg(
+						array(
+							'action' => 'monstroid_dashboard_get_backup',
+							'file'   => $data['name']
+						),
+						admin_url( 'admin-ajax.php' )
+					);
+					$download_url = wp_nonce_url(
+						$download_url, 'monstroid-dashboard', 'nonce'
+					);
+
 					include monstroid_dashboard()->plugin_dir( 'admin/views/backup-list-item.php' );
 				}
 				?>

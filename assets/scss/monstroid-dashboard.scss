@@ -127,6 +127,8 @@ button.md-button {
 		padding: 0;
 		color: $primary;
 		box-shadow: none;
+		font-size: 16px;
+		font-weight: normal;
 		&:hover {
 			color: darken( $primary, 5% );
 		}
@@ -161,16 +163,22 @@ button.md-button {
 		font-size: 14px;
 		line-height: 20px;
 	}
+	a {
+		color: inherit;
+		text-decoration: none;
+		box-shadow: none;
+	}
 }
-.md-update-messages {
+.md-update-messages,
+.md-misc-messages,
+.md-form-message,
+.md-download-message {
 	font-size: 14px;
 	line-height: 20px;
 	padding: 0 0 10px 0;
 }
 .md-form-message,
 .md-download-message {
-	font-size: 14px;
-	line-height: 20px;
 	padding: 10px 0 0 0;
 	&.md-error {
 		color: $warning;
@@ -338,6 +346,7 @@ button.md-button {
 		&.heading_item {
 			border-top: none;
 			font-size: 14px;
+			color: lighten( $text, 10% );
 		}
 		&:after {
 			clear: both;
@@ -357,6 +366,11 @@ button.md-button {
 	&_download_link {
 		box-shadow: none !important;
 		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		.dashicons {
+			vertical-align: middle;
+		}
 		&:hover {
 			color: darken( $primary, 10% );
 		}
@@ -368,6 +382,7 @@ button.md-button {
 	padding: 35px 0 0 0;
 	border-top: 1px solid $border;
 	margin: 30px 0 0 0;
+	text-align: right;
 }
 
 input[type="text"].md-input,

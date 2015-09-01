@@ -17,6 +17,7 @@
 
 			$this.addClass('in-progress');
 			md_spinner( $this, 'success' );
+			$('.md-misc-messages').addClass('md-hidden');
 
 			md_clear_update_message();
 			if ( ignore_backup == true ) {
@@ -45,7 +46,7 @@
 					if ( $force_notice.length > 0 ) {
 						$force_notice.addClass('md-hidden');
 					}
-					md_update_message(response.data.message);
+					md_update_message(response.data.message, 'success');
 					md_update_log(response.data.update_log);
 					$('.md-badge').remove();
 					return 1;
@@ -61,8 +62,9 @@
 			});
 		}
 
-		function md_update_message( message ) {
-			$('.md-update-messages').html(message);
+		function md_update_message( message, type ) {
+			type = typeof type !== 'undefined' ? type : 'default';
+			$('.md-update-messages').addClass('md-'+type).html(message);
 		}
 
 		function md_update_log( log ) {
@@ -70,7 +72,7 @@
 		}
 
 		function md_clear_update_message() {
-			$('.md-update-messages').empty();
+			$('.md-update-messages').attr('class', 'md-update-messages').empty();
 			$('.md-update-log').empty().addClass('md-hidden');
 		}
 
@@ -130,49 +132,6 @@
 					$this.after('<div class="md-download-message md-error">' + response.data.message + '</div>');
 				}
 			});
-		});
-
-		var md_download_processing;
-
-		// process backup downloading
-		$(document).on('click', '.md-updates-list_download_link', function(event) {
-			event.preventDefault();
-
-			if ( md_download_processing == true ) {
-				return !1;
-			}
-
-			var $this = $(this),
-				file  = $this.data('backup');
-
-			md_download_processing = true;
-			$this.addClass('in-progress').removeClass('error');
-			md_spinner( $this, 'dark' );
-
-			$.ajax({
-				url: ajaxurl,
-				type: "post",
-				dataType: "json",
-				data: {
-					action: 'monstroid_dashboard_get_backup',
-					file: file,
-					nonce: monstroid_dashboard.nonce
-				},
-				error: function(response) {
-					md_download_processing = false;
-					$this.removeClass('in-progress');
-					md_remove_spinner($this);
-					$input.parent().append('<div class="md-form-message md-error">' + monstroid_dashboard.internal_error + '</div>');
-				}
-			}).done(function(response) {
-				md_download_processing = false;
-				$this.removeClass('in-progress');
-				md_remove_spinner($this);
-				if ( response.success !== true ) {
-					$this.addClass('error');
-				}
-			});
-
 		});
 
 		// process license key activation

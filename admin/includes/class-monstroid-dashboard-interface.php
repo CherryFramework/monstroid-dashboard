@@ -79,10 +79,10 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 		 * @return string
 		 */
 		function replace_yit( $position ) {
-			$this->iter++;
-			$position = $this->start_position + $this->iter;
+			//$this->iter++;
+			//$position = $this->start_position + $this->iter;
 			remove_menu_page( 'yit_plugin_panel' );
-			return (string) $position . '.32';
+			return $position;
 		}
 
 		/**
@@ -125,7 +125,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 			// Register main menu item
 			add_menu_page(
 				__( 'Monstroid Dashboard', 'monstroid-dashboard' ),
-				__( 'Monstroid', 'monstroid-dashboard' ),
+				sprintf( __( 'Monstroid %s', 'monstroid-dashboard' ), $this->get_menu_badge() ),
 				'manage_options',
 				'monstroid-dashboard',
 				array( $this, 'build_page' ),
@@ -339,6 +339,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 				'monstroid_dashboard_replace_by_slug',
 				array(
 					'woocommerce',
+					'yit_plugin_panel',
 					'wpcf7',
 					'mailchimp-for-wp'
 				)

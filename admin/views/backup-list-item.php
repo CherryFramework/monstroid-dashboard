@@ -20,7 +20,8 @@ if ( ! defined( 'WPINC' ) ) {
 		<?php echo $data['date']; ?>
 	</div>
 	<div class="md-updates-list_item_download">
-		<a href="#" data-backup="<?php echo $data['name']; ?>" class="md-updates-list_download_link">
+		<a href="<?php echo $download_url; ?>" class="md-updates-list_download_link">
+			<span class="dashicons dashicons-download"></span>
 			<?php _e( 'Download', 'monstroid-dashboard' ); ?>
 		</a>
 	</div>

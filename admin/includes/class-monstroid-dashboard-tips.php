@@ -106,7 +106,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Tips' ) ) {
 		 */
 		public function get_links() {
 
-			$link_tmpl = '<li class="md-links_item"><a href="%2$s">%1$s</a></li>';
+			$link_tmpl = '<li class="md-links_item"><a href="%2$s" target="_blank">%1$s</a></li>';
 			$list      = '';
 
 			foreach ( $this->get_links_list() as $link ) {

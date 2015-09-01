@@ -83,7 +83,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 			$this->shedule_updates();
 
 			add_action( 'monstroid_scheduled_update', array( $this, 'scheduled_update' ) );
-			add_action( 'admin_init', array( $this, 'force_check_updates' ) );
+			add_action( 'plugins_loaded', array( $this, 'force_check_updates' ) );
 
 			add_action( 'wp_ajax_monstroid_dashboard_do_theme_update', array( $this, 'do_theme_update' ) );
 		}
@@ -330,12 +330,17 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		 * Get update data
 		 *
 		 * @since  1.0.0
-		 * @return array|bool
+		 * @return array|bool|string
 		 */
-		public function get_update_data() {
+		public function get_update_data( $key = false ) {
 			if ( ! $this->update_data ) {
 				$this->update_data = get_option( 'monstroid_dahboard_update_data' );
 			}
+
+			if ( false !== $key && is_array( $this->update_data ) && isset( $this->update_data[$key] ) ) {
+				return $this->update_data[$key];
+			}
+
 			return $this->update_data;
 		}
 
@@ -458,9 +463,9 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 			$update = $upgrader->upgrade( $theme );
 			$log    = $upgrader->skin->get_install_log();
 
-			$success = sprintf(
-				__( 'Great news! Monstroid Dashboard successfully updated your theme to the latest available version. Also, we backed up your previous data and you can find it <a href="%s">here</a>', 'monstroid-dashboard'),
-				$backup_link
+			$success = __(
+				'Great news! Monstroid Dashboard successfully updated your theme to the latest available version',
+				'monstroid-dashboard'
 			);
 
 
@@ -512,11 +517,17 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		 * @since  1.0.0
 		 * @return void
 		 */
-		public function check_update_messages( $before = '', $after = '' ) {
+		public function check_update_messages( $before = '', $after = '', $url = false ) {
+
+			if ( $url ) {
+				$before = sprintf( '<a href="%s">%s', esc_url( $url ), $before );
+				$after  = sprintf( '%s</a>', $after );
+			}
+
 			if ( $this->force_has_update() ) {
 				return sprintf(
 					'<div class="md-message md-update">%2$s%1$s%3$s</div>',
-					__( 'New Monstroid version avaliable', 'monstroid-dashboard' ),
+					__( 'New Monstroid version is avaliable', 'monstroid-dashboard' ),
 					$before,
 					$after
 				);

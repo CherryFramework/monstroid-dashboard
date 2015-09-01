@@ -22,6 +22,12 @@ class Monstroid_Dashboard_Backup_Manager {
 	public $files = array();
 
 	/**
+	 * Messages holder
+	 * @var string
+	 */
+	public $message = null;
+
+	/**
 	 * A reference to an instance of this class.
 	 *
 	 * @since 1.0.0
@@ -62,9 +68,6 @@ class Monstroid_Dashboard_Backup_Manager {
 		}
 
 		$this->protect_path();
-
-		var_dump('expression');
-		return false;
 
 		ini_set( 'max_execution_time', -1 );
 		set_time_limit( 0 );
@@ -210,6 +213,100 @@ class Monstroid_Dashboard_Backup_Manager {
 		$t1 = strtotime( $a['date'] );
 		$t2 = strtotime( $b['date'] );
 		return $t2 - $t1;
+	}
+
+	/**
+	 * Download backup by filename
+	 *
+	 * @since  1.0.0
+	 * @param  string $file backup filename
+	 * @return void
+	 */
+	public function download_backup( $file ) {
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			$this->message = __( 'Permission denied', 'monstroid-dashboard' );
+			return false;
+		}
+
+		global $wp_filesystem;
+
+		$path     = $this->prepare_path( $this->path );
+		$filepath = $path . '/' . $file;
+
+		if ( ! $wp_filesystem->exists( $filepath ) ) {
+			$this->message = __( 'File not exists', 'monstroid-dashboard' );
+			return false;
+		}
+
+		session_write_close();
+
+		header( "Pragma: public" );
+		header( "Expires: 0" );
+		header( "Cache-Control: must-revalidate, post-check=0, pre-check=0" );
+		header( "Cache-Control: public" );
+		header( "Content-Description: File Transfer" );
+		header( "Content-type: application/octet-stream" );
+		header( "Content-Disposition: attachment; filename=\"" . $file . "\"" );
+		header( "Content-Transfer-Encoding: binary" );
+		header( "Content-Length: " . @filesize( $filepath ) );
+
+		$this->readfile_chunked( $filepath ) or header( 'Location: ' . $filepath );
+
+		exit();
+
+	}
+
+	/**
+	 * Chunked file reading
+	 *
+	 * @since  1.0.0
+	 * @param  string  $file     fileptah
+	 * @param  boolean $retbytes return bytes number or not
+	 * @return bool|int
+	 */
+	function readfile_chunked( $file, $retbytes = true ) {
+
+		$chunksize = 1024 * 1024;
+		$buffer    = '';
+		$cnt       = 0;
+		$handle    = @fopen( $file, 'r' );
+
+		if ( $size = @filesize( $file ) ) {
+			header("Content-Length: " . $size );
+		}
+
+		if ( false === $handle ) {
+			return false;
+		}
+
+		while ( ! @feof( $handle ) ) {
+			$buffer = @fread( $handle, $chunksize );
+			echo $buffer;
+			ob_flush();
+			flush();
+			if ( $retbytes ) {
+				$cnt += strlen( $buffer );
+			}
+		}
+
+		$status = @fclose( $handle );
+
+		if ( $retbytes && $status ) {
+			return $cnt;
+		}
+
+		return $status;
+	}
+
+	/**
+	 * Check if backup manager returned any messages during processing
+	 *
+	 * @since  1.0.0
+	 * @return string
+	 */
+	public function get_message() {
+		return (string) $this->message;
 	}
 
 

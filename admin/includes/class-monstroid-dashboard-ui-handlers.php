@@ -70,23 +70,45 @@ if ( ! class_exists( 'Monstroid_Dashboard_UI_Handlers' ) ) {
 		public function get_backup() {
 
 			if ( ! isset( $_REQUEST['nonce'] ) ) {
-				die();
+				wp_die(
+					__( 'Nonce key not provided', 'monstroid-dashboard' ),
+					__( 'Downloading Error', 'monstroid-dashboard' )
+				);
 			}
 
 			if ( ! wp_verify_nonce( esc_attr( $_REQUEST['nonce'] ), 'monstroid-dashboard' ) ) {
-				die();
+				wp_die(
+					__( 'Incorrect nonce key', 'monstroid-dashboard' ),
+					__( 'Downloading Error', 'monstroid-dashboard' )
+				);
 			}
 
 			if ( ! current_user_can( 'manage_options' ) ) {
-				die();
+				wp_die(
+					__( 'Permission denied', 'monstroid-dashboard' ),
+					__( 'Downloading Error', 'monstroid-dashboard' )
+				);
 			}
 
-			$key = isset( $_REQUEST['key'] ) ? esc_attr( $_REQUEST['key'] ) : '';
+			$file = isset( $_REQUEST['file'] ) ? esc_attr( $_REQUEST['file'] ) : '';
 
-			if ( ! $key ) {
-				wp_send_json_error( array(
-					'message' => __( 'Backup file not provided', 'monstroid-dashboard' )
-				) );
+			if ( ! $file ) {
+				wp_die(
+					__( 'Backup file not provided', 'monstroid-dashboard' ),
+					__( 'Downloading Error', 'monstroid-dashboard' )
+				);
+			}
+
+			include_once( monstroid_dashboard()->plugin_dir( 'admin/includes/class-monstroid-dashboard-backup-manager.php' ) );
+
+			$backup_manager = Monstroid_Dashboard_Backup_Manager::get_instance();
+			$backups        = $backup_manager->download_backup( $file );
+
+			if ( false == $backups ) {
+				wp_die(
+					$backup_manager->get_message(),
+					__( 'Downloading Error', 'monstroid-dashboard' )
+				);
 			}
 
 		}
