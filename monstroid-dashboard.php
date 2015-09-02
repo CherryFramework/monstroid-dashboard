@@ -91,6 +91,7 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 			add_action( 'admin_enqueue_scripts', array( $this, 'assets' ) );
 			add_filter( 'cherry_data_manager_exclude_folder_from_export', array( $this, 'do_not_export_backups' ) );
 
+			register_deactivation_hook( __FILE__, array( __CLASS__, 'deactivation' ) );
 		}
 
 		/**
@@ -223,7 +224,8 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 				array(
 					'nonce'          => wp_create_nonce( 'monstroid-dashboard' ),
 					'empty_key'      => __( 'Please, provide license key', 'monstroid-dashboard' ),
-					'internal_error' => __( 'Internal error. Please, contact support team', 'monstroid-dashboard' )
+					'internal_error' => __( 'Internal error. Please, contact support team', 'monstroid-dashboard' ),
+					'confirm_alert'  => __( 'Are you sure?', 'monstroid-dashboard' )
 				)
 			);
 
@@ -263,6 +265,17 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 				'slug'            => 'monstroid-dashboard',
 				'repository_name' => 'monstroid-dashboard',
 			));
+		}
+
+		/**
+		 * Do actions on plugin deactivation
+		 *
+		 * @since  1.0.0
+		 * @return void
+		 */
+		public static function deactivation() {
+			monstroid_dashboard_updater()->remove_shedules();
+			monstroid_dashboard_updater()->clear_update_data();
 		}
 
 		/**

@@ -48,6 +48,7 @@
 					}
 					md_update_message(response.data.message, 'success');
 					md_update_log(response.data.update_log);
+					$('.md-new-version').text(response.data.new_version);
 					$('.md-badge').remove();
 					return 1;
 				}
@@ -185,6 +186,14 @@
 			});
 
 		});
+
+		// confirm backup delete
+		$(document).on('click', '.md-updates-list_delete_link', function(event) {
+			if ( ! confirm( monstroid_dashboard.confirm_alert ) ) {
+				event.preventDefault();
+			}
+		});
+
 
 	})
 

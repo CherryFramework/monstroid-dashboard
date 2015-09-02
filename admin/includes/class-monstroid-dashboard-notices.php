@@ -110,7 +110,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Notices' ) ) {
 
 			$css = apply_filters(
 				'monstroid_dashboard_notices_css',
-				'.wp-admin .monstroid-notice{display:block;background:#fff;box-shadow:none;padding:5px 20px;clear:both}.wp-admin .monstroid-notice p{font-size:14px;line-height:24px}.wp-admin .monstroid-notice a{box-shadow:none;color:#03a9f4;margin:0 10px 0 0;text-decoration:none}.wp-admin .monstroid-notice a.dismiss{color:#ef5350}.wp-admin .monstroid-notice.error{border-color:#ef5350}.wp-admin .monstroid-notice.updated{border-color:#03a9f4}'
+				'.wp-admin .monstroid-notice{display:block;background:#fff;box-shadow:none;padding:5px 20px;clear:both;margin-left:0;}.wp-admin .monstroid-notice p{font-size:14px;line-height:24px}.wp-admin .monstroid-notice a{box-shadow:none;color:#03a9f4;margin:0 10px 0 0;text-decoration:none}.wp-admin .monstroid-notice a.dismiss{color:#ef5350}.wp-admin .monstroid-notice.error{border-color:#ef5350}.wp-admin .monstroid-notice.updated{border-color:#03a9f4}'
 			);
 
 			printf( '<style>%s</style>', $css );

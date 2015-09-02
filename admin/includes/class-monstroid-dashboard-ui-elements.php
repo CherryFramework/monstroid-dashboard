@@ -153,12 +153,12 @@ class Monstroid_Dashboard_UI {
 						<?php _e( 'Created', 'monstroid-dashboard' ); ?>
 					</div>
 					<div class="md-updates-list_item_download">
-						<?php _e( 'Download backup' ); ?>
+						<?php _e( 'Actions' ); ?>
 					</div>
 				</div>
 				<?php
 				foreach ( $backups as $file => $data ) {
-					// prepare download URL to use in template
+					// prepare download and delete URLs to use in template
 					$download_url = add_query_arg(
 						array(
 							'action' => 'monstroid_dashboard_get_backup',
@@ -168,6 +168,17 @@ class Monstroid_Dashboard_UI {
 					);
 					$download_url = wp_nonce_url(
 						$download_url, 'monstroid-dashboard', 'nonce'
+					);
+
+					$delete_url = add_query_arg(
+						array(
+							'action' => 'monstroid_dashboard_delete_backup',
+							'file'   => $data['name']
+						),
+						admin_url( 'admin-ajax.php' )
+					);
+					$delete_url = wp_nonce_url(
+						$delete_url, 'monstroid-dashboard', 'nonce'
 					);
 
 					include monstroid_dashboard()->plugin_dir( 'admin/views/backup-list-item.php' );

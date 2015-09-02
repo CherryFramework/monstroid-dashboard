@@ -24,5 +24,9 @@ if ( ! defined( 'WPINC' ) ) {
 			<span class="dashicons dashicons-download"></span>
 			<?php _e( 'Download', 'monstroid-dashboard' ); ?>
 		</a>
+		<a href="<?php echo $delete_url; ?>" class="md-updates-list_delete_link">
+			<span class="dashicons dashicons-dismiss"></span>
+			<?php _e( 'Delete', 'monstroid-dashboard' ); ?>
+		</a>
 	</div>
 </div>

@@ -258,6 +258,40 @@ class Monstroid_Dashboard_Backup_Manager {
 	}
 
 	/**
+	 * Delete existing backup by filename
+	 *
+	 * @since  1.0.0
+	 * @param  string $file backup filename
+	 * @return void
+	 */
+	public function delete_backup( $file ) {
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			$this->message = __( 'Permission denied', 'monstroid-dashboard' );
+			return false;
+		}
+
+		global $wp_filesystem;
+
+		$path     = $this->prepare_path( $this->path );
+		$filepath = $path . '/' . $file;
+
+		if ( ! $wp_filesystem->exists( $filepath ) ) {
+			$this->message = __( 'File not exists', 'monstroid-dashboard' );
+			return false;
+		}
+
+		$delete = $wp_filesystem->delete( $filepath );
+
+		if ( false === $delete ) {
+			$this->message = __( 'Can\'t delete selected backup', 'monstroid-dashboard' );
+		}
+
+		return $delete;
+
+	}
+
+	/**
 	 * Chunked file reading
 	 *
 	 * @since  1.0.0

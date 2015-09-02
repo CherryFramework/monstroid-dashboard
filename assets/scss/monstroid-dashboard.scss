@@ -176,16 +176,16 @@ button.md-button {
 	font-size: 14px;
 	line-height: 20px;
 	padding: 0 0 10px 0;
-}
-.md-form-message,
-.md-download-message {
-	padding: 10px 0 0 0;
 	&.md-error {
 		color: $warning;
 	}
 	&.md-success {
 		color: $success;
 	}
+}
+.md-form-message,
+.md-download-message {
+	padding: 10px 0 0 0;
 }
 
 .md-description {
@@ -363,16 +363,28 @@ button.md-button {
 			box-sizing: border-box;
 		}
 	}
-	&_download_link {
+	&_download_link,
+	&_delete_link {
 		box-shadow: none !important;
 		text-decoration: none;
 		display: inline-block;
 		font-size: 16px;
+		line-height: 20px;
 		.dashicons {
 			vertical-align: middle;
+			margin: -3px 0 0 0;
 		}
 		&:hover {
 			color: darken( $primary, 10% );
+		}
+	}
+	&_delete_link {
+		.md-updates-list & {
+			margin: 0 0 0 10px;
+			color: $warning;
+			&:hover {
+				color: darken( $warning, 10% );
+			}
 		}
 	}
 

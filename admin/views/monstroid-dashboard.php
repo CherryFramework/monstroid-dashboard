@@ -42,7 +42,7 @@ if ( ! defined( 'WPINC' ) ) {
 						$options_url = menu_page_url( 'cherry', false );
 						printf(
 							__( 'Monstroid is powered by the latest %s that ensures easy and worry-free installation and customization. With over 30 inbuilt premium extensions, you can get any kind of functionality required for a specific project. Thanks to the brand new backup options, you can restore the theme any time you need.', 'monstroid-dashboard' ),
-							'Cherry Framework 4'
+							'<a href="' . $options_url . '">Cherry Framework 4</a>'
 						);
 					?>
 				</div>

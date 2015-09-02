@@ -147,6 +147,14 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		}
 
 		/**
+		 * Remove sheduled update hook
+		 * @return void
+		 */
+		public function remove_shedules() {
+			wp_clear_scheduled_hook( 'monstroid_scheduled_update' );
+		}
+
+		/**
 		 * Schedule automatic updates
 		 *
 		 * @since 1.0.0
@@ -155,7 +163,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 			$options = $this->get_options();
 
 			if ( $options['disable_auto_check'] ) {
-				wp_clear_scheduled_hook( 'monstroid_scheduled_update' );
+				$this->remove_shedules();
 				return true;
 			}
 
@@ -473,8 +481,9 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 				$this->clear_update_data();
 				wp_send_json_success(
 					array(
-						'message'    => $success,
-						'update_log' => $log
+						'message'     => $success,
+						'new_version' => $this->get_update_data( 'new_version' ),
+						'update_log'  => $log
 					)
 				);
 			}

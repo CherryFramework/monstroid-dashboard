@@ -17,7 +17,7 @@ if ( ! defined( 'WPINC' ) ) {
 		<img src="<?php echo $screen_url; ?>" alt="<?php echo $title; ?>">
 	</div>
 	<h3 class="md-items-list_title">
-		<?php echo $title; ?> v<?php echo monstroid_dashboard_updater()->get_current_version(); ?>
+		<?php echo $title; ?> v<span class="md-new-version"><?php echo monstroid_dashboard_updater()->get_current_version(); ?></span>
 	</h3>
 	<div class="md-items-list_actions">
 		<?php if ( monstroid_dashboard_updater()->force_has_update() ) { ?>

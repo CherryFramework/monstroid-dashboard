@@ -29,6 +29,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_UI_Handlers' ) ) {
 			add_action( 'wp_ajax_monstroid_dashboard_download_latest', array( $this, 'download_latest' ) );
 			add_action( 'wp_ajax_monstroid_dashboard_save_key', array( $this, 'save_key' ) );
 			add_action( 'wp_ajax_monstroid_dashboard_get_backup', array( $this, 'get_backup' ) );
+			add_action( 'wp_ajax_monstroid_dashboard_delete_backup', array( $this, 'delete_backup' ) );
 		}
 
 		/**
@@ -111,6 +112,65 @@ if ( ! class_exists( 'Monstroid_Dashboard_UI_Handlers' ) ) {
 				);
 			}
 
+		}
+
+		/**
+		 * Delete existing backup by name
+		 *
+		 * @since 1.0.0
+		 */
+		public function delete_backup() {
+			if ( ! isset( $_REQUEST['nonce'] ) ) {
+				wp_die(
+					__( 'Nonce key not provided', 'monstroid-dashboard' ),
+					__( 'Deleting Error', 'monstroid-dashboard' )
+				);
+			}
+
+			if ( ! wp_verify_nonce( esc_attr( $_REQUEST['nonce'] ), 'monstroid-dashboard' ) ) {
+				wp_die(
+					__( 'Incorrect nonce key', 'monstroid-dashboard' ),
+					__( 'Deleting Error', 'monstroid-dashboard' )
+				);
+			}
+
+			if ( ! current_user_can( 'manage_options' ) ) {
+				wp_die(
+					__( 'Permission denied', 'monstroid-dashboard' ),
+					__( 'Deleting Error', 'monstroid-dashboard' )
+				);
+			}
+
+			$file = isset( $_REQUEST['file'] ) ? esc_attr( $_REQUEST['file'] ) : '';
+
+			if ( ! $file ) {
+				wp_die(
+					__( 'Backup file not provided', 'monstroid-dashboard' ),
+					__( 'Deleting Error', 'monstroid-dashboard' )
+				);
+			}
+
+			if ( ! isset( $_SERVER['HTTP_REFERER'] ) ) {
+				wp_die(
+					__( 'This action is not allowed directly', 'monstroid-dashboard' ),
+					__( 'Deleting Error', 'monstroid-dashboard' )
+				);
+			}
+
+			include_once( monstroid_dashboard()->plugin_dir( 'admin/includes/class-monstroid-dashboard-backup-manager.php' ) );
+
+			$backup_manager = Monstroid_Dashboard_Backup_Manager::get_instance();
+			$delete         = $backup_manager->delete_backup( $file );
+
+			if ( false == $delete ) {
+				wp_die(
+					$backup_manager->get_message(),
+					__( 'Deleting Error', 'monstroid-dashboard' )
+				);
+			}
+
+			wp_safe_redirect( esc_url( $_SERVER['HTTP_REFERER'] ) );
+			die();
 		}
 
 		/**
