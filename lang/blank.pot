@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: blank\n"
-"POT-Creation-Date: 2015-09-02 14:59+0200\n"
-"PO-Revision-Date: 2015-09-02 14:59+0200\n"
+"POT-Creation-Date: 2015-09-02 16:21+0200\n"
+"PO-Revision-Date: 2015-09-02 16:21+0200\n"
 "Last-Translator: \n"
 "Language-Team: Cherry Team <support@cherryframework.com>\n"
 "Language: en\n"
@@ -317,16 +317,16 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: ../admin/views/main-theme-item.php:32
+#: ../admin/views/main-theme-item.php:35
 #, php-format
 msgid "Update to v%s"
 msgstr ""
 
-#: ../admin/views/main-theme-item.php:41
+#: ../admin/views/main-theme-item.php:44
 msgid "Please, set up filesystem credentials to allow automatic update"
 msgstr ""
 
-#: ../admin/views/main-theme-item.php:46
+#: ../admin/views/main-theme-item.php:49
 msgid "We will perform full backup prior updating your data"
 msgstr ""
 
