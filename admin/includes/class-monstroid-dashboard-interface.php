@@ -341,6 +341,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 					'woocommerce',
 					'yit_plugin_panel',
 					'wpcf7',
+					'cherry-white-label-settings',
 					'mailchimp-for-wp'
 				)
 			);
