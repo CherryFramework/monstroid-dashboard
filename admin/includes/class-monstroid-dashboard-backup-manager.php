@@ -103,6 +103,12 @@ class Monstroid_Dashboard_Backup_Manager {
 	public function parse_dir( $dir ) {
 		global $wp_filesystem;
 
+		$files = $wp_filesystem->dirlist( $dir );
+
+		if ( ! is_array( $files ) ) {
+			return false;
+		}
+
 		foreach ( $wp_filesystem->dirlist( $dir ) as $name => $data ) {
 			$current_path = trailingslashit( $dir ) . $name;
 			if ( 'd' == $data['type'] ) {
@@ -176,14 +182,17 @@ class Monstroid_Dashboard_Backup_Manager {
 	public function get_backups() {
 
 		global $wp_filesystem;
-		$path  = $this->prepare_path( $this->path );
-		$files = $wp_filesystem->dirlist( $path );
+		$path   = $this->prepare_path( $this->path );
+		$files  = $wp_filesystem->dirlist( $path );
+		$result = array();
+
+		if ( ! is_array( $files ) ) {
+			return $result;
+		}
 
 		if ( isset( $files['.htaccess'] ) ) {
 			unset( $files['.htaccess'] );
 		}
-
-		$result = array();
 
 		foreach ( $files as $file => $data ) {
 			if ( 'zip' !== pathinfo( $file, PATHINFO_EXTENSION ) ) {

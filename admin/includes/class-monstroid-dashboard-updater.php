@@ -80,7 +80,6 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 			add_filter( 'site_transient_update_themes', array( $this, 'add_monstroid_data' ) );
 
 			add_action( 'admin_init', array( $this, 'check_auto_updates' ) );
-			$this->shedule_updates();
 
 			add_action( 'monstroid_scheduled_update', array( $this, 'scheduled_update' ) );
 			add_action( 'plugins_loaded', array( $this, 'force_check_updates' ) );
@@ -218,7 +217,6 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 
 			if ( $skip_update && isset( $update['new_version'] ) && version_compare( $skip_update, $update['new_version'], "==" ) ) {
 				delete_option( 'monstroid_dahboard_need_update' );
-				delete_option( 'monstroid_dahboard_update_data' );
 				return false;
 			}
 
