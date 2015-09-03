@@ -159,6 +159,8 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		 * @since 1.0.0
 		 */
 		public function shedule_updates() {
+
+			add_filter( 'cron_schedules', array( $this, 'add_shedules' ) );
 			$options = $this->get_options();
 
 			if ( $options['disable_auto_check'] ) {

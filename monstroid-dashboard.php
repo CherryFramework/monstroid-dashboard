@@ -224,9 +224,10 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 				'monstroid_dashboard',
 				array(
 					'nonce'          => wp_create_nonce( 'monstroid-dashboard' ),
-					'empty_key'      => __( 'Please, provide license key', 'monstroid-dashboard' ),
-					'internal_error' => __( 'Internal error. Please, contact support team', 'monstroid-dashboard' ),
-					'confirm_alert'  => __( 'Are you sure?', 'monstroid-dashboard' )
+					'empty_key'      => __( "Please, provide license key", 'monstroid-dashboard' ),
+					'internal_error' => __( "Internal error. Please, contact support team", 'monstroid-dashboard' ),
+					'confirm_update' => __( "Please, note that the update process will replace changes performed within theme core files with the Monstroid ones.\n\nClick OK to proceed", 'monstroid-dashboard' ),
+					'confirm_delete' => __( "Are you sure you would like to remove a backup?\nPlease note that the available backup will be removed per your request.\n\nClick OK to proceed", 'monstroid-dashboard' )
 				)
 			);
 
@@ -249,6 +250,17 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 		public function do_not_export_backups( $dirs ) {
 			$dirs[] = 'update-backups';
 			return $dirs;
+		}
+
+		/**
+		 * Check if Monstroid theme is installed on this site
+		 *
+		 * @since  1.0.0
+		 * @return boolean
+		 */
+		public function is_monstroid_installed() {
+			$theme = wp_get_theme('monstroid');
+			return $theme->exists();
 		}
 
 		/**
@@ -277,6 +289,7 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 		public static function deactivation() {
 			monstroid_dashboard_updater()->remove_shedules();
 			monstroid_dashboard_updater()->clear_update_data();
+			delete_option( 'monstroid_dashboard_disable_auto_updates' );
 		}
 
 		/**

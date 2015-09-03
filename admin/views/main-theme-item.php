@@ -20,9 +20,6 @@ if ( ! defined( 'WPINC' ) ) {
 		<?php echo $title; ?> v<span class="md-new-version"><?php echo monstroid_dashboard_updater()->get_current_version(); ?></span>
 	</h3>
 	<div class="md-items-list_actions">
-		<p>
-			Please don’t modify core theme files to avoid changes replaing after successfull update
-		</p>
 		<?php if ( monstroid_dashboard_updater()->force_has_update() ) { ?>
 		<?php
 			$filesystem_method = monstroid_dashboard()->filesystem->check_filesystem_method();

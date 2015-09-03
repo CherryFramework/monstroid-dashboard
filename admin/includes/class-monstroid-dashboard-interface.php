@@ -269,6 +269,16 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 
 			$depends = isset( $subpages[$current]['depends'] ) ? $subpages[$current]['depends'] : false;
 
+			if ( ! monstroid_dashboard()->is_monstroid_installed() ) {
+				$this->open_page_wrap();
+				printf(
+					('<div class="md-content">%s</div>'),
+					__('Monstroid theme not installed on this site', 'monstroid-dashboard' )
+				);
+				$this->close_page_wrap();
+				return;
+			}
+
 			$this->open_page_wrap();
 			$this->load_view( $current, $depends );
 			$this->close_page_wrap();

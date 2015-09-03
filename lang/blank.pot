@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: blank\n"
-"POT-Creation-Date: 2015-09-02 16:21+0200\n"
-"PO-Revision-Date: 2015-09-02 16:21+0200\n"
+"Project-Id-Version: Monstroid Dashboard\n"
+"POT-Creation-Date: 2015-09-03 15:51+0200\n"
+"PO-Revision-Date: 2015-09-03 15:51+0200\n"
 "Last-Translator: \n"
 "Language-Team: Cherry Team <support@cherryframework.com>\n"
 "Language: en\n"
@@ -17,19 +17,19 @@ msgstr ""
 "esc_attr__;_x:1,2c;_n:1,2\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../admin/includes/class-monstroid-dashboard-backup-manager.php:228
-#: ../admin/includes/class-monstroid-dashboard-backup-manager.php:270
+#: ../admin/includes/class-monstroid-dashboard-backup-manager.php:237
+#: ../admin/includes/class-monstroid-dashboard-backup-manager.php:279
 #: ../admin/includes/class-monstroid-dashboard-ui-handlers.php:89
 #: ../admin/includes/class-monstroid-dashboard-ui-handlers.php:139
 msgid "Permission denied"
 msgstr ""
 
-#: ../admin/includes/class-monstroid-dashboard-backup-manager.php:238
-#: ../admin/includes/class-monstroid-dashboard-backup-manager.php:280
+#: ../admin/includes/class-monstroid-dashboard-backup-manager.php:247
+#: ../admin/includes/class-monstroid-dashboard-backup-manager.php:289
 msgid "File not exists"
 msgstr ""
 
-#: ../admin/includes/class-monstroid-dashboard-backup-manager.php:287
+#: ../admin/includes/class-monstroid-dashboard-backup-manager.php:296
 msgid "Can't delete selected backup"
 msgstr ""
 
@@ -245,11 +245,11 @@ msgstr ""
 msgid "Your license key are invalid. Please, contact our support team."
 msgstr ""
 
-#: ../admin/includes/class-monstroid-dashboard-updater.php:138
+#: ../admin/includes/class-monstroid-dashboard-updater.php:137
 msgid "Every minute"
 msgstr ""
 
-#: ../admin/includes/class-monstroid-dashboard-updater.php:143
+#: ../admin/includes/class-monstroid-dashboard-updater.php:142
 msgid "Every week"
 msgstr ""
 
@@ -317,16 +317,16 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: ../admin/views/main-theme-item.php:35
+#: ../admin/views/main-theme-item.php:32
 #, php-format
 msgid "Update to v%s"
 msgstr ""
 
-#: ../admin/views/main-theme-item.php:44
+#: ../admin/views/main-theme-item.php:41
 msgid "Please, set up filesystem credentials to allow automatic update"
 msgstr ""
 
-#: ../admin/views/main-theme-item.php:49
+#: ../admin/views/main-theme-item.php:46
 msgid "We will perform full backup prior updating your data"
 msgstr ""
 
@@ -361,14 +361,22 @@ msgstr ""
 msgid "Tutorial"
 msgstr ""
 
-#: ../monstroid-dashboard.php:226
+#: ../monstroid-dashboard.php:227
 msgid "Please, provide license key"
 msgstr ""
 
-#: ../monstroid-dashboard.php:227
+#: ../monstroid-dashboard.php:228
 msgid "Internal error. Please, contact support team"
 msgstr ""
 
-#: ../monstroid-dashboard.php:228
-msgid "Are you sure?"
+#: ../monstroid-dashboard.php:229
+msgid ""
+"Please, note that the update process will replace changes performed within "
+"theme core files with the Monstroid ones."
+msgstr ""
+
+#: ../monstroid-dashboard.php:230
+msgid ""
+"Are you sure you would like to remove a backup?\n"
+"Please note that the available backup will be removed per your request."
 msgstr ""

@@ -87,6 +87,9 @@
 
 		$(document).on('click', '.run-theme-update', function(event) {
 			event.preventDefault();
+			if ( ! confirm( monstroid_dashboard.confirm_update ) ) {
+				return !1;
+			}
 			md_ajax_update( $(this), false );
 		});
 
@@ -189,7 +192,7 @@
 
 		// confirm backup delete
 		$(document).on('click', '.md-updates-list_delete_link', function(event) {
-			if ( ! confirm( monstroid_dashboard.confirm_alert ) ) {
+			if ( ! confirm( monstroid_dashboard.confirm_delete ) ) {
 				event.preventDefault();
 			}
 		});
