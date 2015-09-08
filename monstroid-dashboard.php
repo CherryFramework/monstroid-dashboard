@@ -8,7 +8,7 @@
  * Plugin Name:       Monstroid Dashboard
  * Plugin URI:        http://www.templatemonster.com/
  * Description:       Dashboard for Monstroid theme
- * Version:           1.0.0
+ * Version:           1.1.0
  * Author:            TemplateMonster
  * Author URI:        http://www.templatemonster.com/
  * Text Domain:       monstroid-dashboard
@@ -46,7 +46,7 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 		 * @since 1.0.0
 		 * @var string
 		 */
-		public $version = '1.0.0';
+		public $version = '1.1.0';
 
 		/**
 		 * Plugin folder URL
@@ -105,6 +105,7 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 			include_once $this->plugin_dir( 'admin/includes/class-monstroid-dashboard-notices.php' );
 			include_once $this->plugin_dir( 'admin/includes/class-monstroid-dashboard-ui-handlers.php' );
 			include_once $this->plugin_dir( 'admin/includes/class-monstroid-dashboard-filesystem.php' );
+			include_once $this->plugin_dir( 'admin/includes/class-monstroid-dashboard-themes-list.php' );
 
 		}
 
@@ -261,6 +262,21 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 		public function is_monstroid_installed() {
 			$theme = wp_get_theme('monstroid');
 			return $theme->exists();
+		}
+
+		/**
+		 * Check if Monstroid Plugin is active
+		 *
+		 * @since  1.1.0
+		 * @return boolean
+		 */
+		public function is_wizard_active() {
+
+			return in_array(
+				'monstroid-wizard/monstroid-wizard.php',
+				apply_filters( 'active_plugins', get_option( 'active_plugins' ) )
+			);
+
 		}
 
 		/**

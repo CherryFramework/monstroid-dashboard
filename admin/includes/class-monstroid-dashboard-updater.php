@@ -32,7 +32,8 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		 * @since 1.0.0
 		 * @var   string
 		 */
-		public $api = 'https://cloud.cherryframework.com/';
+		//public $api = 'https://cloud.cherryframework.com/';
+		public $api = 'http://192.168.9.40/local-cloud-live/';
 
 		/**
 		 * Current theme version
