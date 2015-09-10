@@ -18,12 +18,22 @@ class MD_Wizard_Gateway {
 	/**
 	 * A reference to an instance of this class.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 * @var   object
 	 */
 	private static $instance = null;
 
+	/**
+	 * Path to Monstroid Wizard base directory
+	 *
+	 * @since 1.1.0
+	 * @var   string
+	 */
 	private $wizard_path = null;
+
+	function __construct() {
+		add_filter( 'wp_ajax_monstroid_dashboard_theme_install', array( $this, 'theme_install' ) );
+	}
 
 	/**
 	 * Get path to specific wizard files
@@ -43,6 +53,10 @@ class MD_Wizard_Gateway {
 				return $this->wizard_path . 'includes/class-monstroid-wizard-themes-list.php';
 				break;
 
+			case 'helper':
+				return $this->wizard_path . 'class-monstroid-wizard-helper.php';
+				break;
+
 			default:
 				return $this->wizard_path;
 				break;
@@ -51,47 +65,62 @@ class MD_Wizard_Gateway {
 	}
 
 	/**
-	 * Wrapper for "get_themes" method from wizard
+	 * Ajax callback for theme installation processing
 	 *
-	 * @since  1.1.0
-	 * @param  int $page     page number to show
-	 * @param  int $per_page themes count per page
-	 * @return string|bool
+	 * @since  1.0.0
+	 * @return void
 	 */
-	public function get_themes_list( $page = 1, $per_page = 4 ) {
+	public function theme_install() {
 
-		/*if ( ! $this->has_access_to_themes_method() ) {
-			return false;
+		if ( ! isset( $_REQUEST['nonce'] ) ) {
+			die();
 		}
 
-		$themes_api = Monstroid_Wizard_Themes_List::get_instance();
-
-		return $themes_api->get_themes( $page, $per_page );*/
-
-	}
-
-	/**
-	 * Check if we call valid method
-	 *
-	 * @since  1.1.0
-	 * @param  string  $method  method name
-	 * @return boolean
-	 */
-	public function has_access_to_themes_method( $method ) {
-
-		if ( ! $method ) {
-			return false;
+		if ( ! wp_verify_nonce( esc_attr( $_REQUEST['nonce'] ), 'monstroid-dashboard' ) ) {
+			die();
 		}
 
-		if ( ! class_exists( 'Monstroid_Wizard_Themes_List' ) ) {
-			return false;
+		global $monstroid_wizard;
+
+		if ( ! $monstroid_wizard || ! isset( $monstroid_wizard->helper ) ) {
+			include_once $this->get_path( 'helper' );
+			$helper = new monstroid_wizard_helper();
+		} else {
+			$helper = $monstroid_wizard->helper;
 		}
 
-		if ( ! method_exists( 'Monstroid_Wizard_Themes_List', $method ) ) {
-			return false;
+		ob_start();
+		$helper->get_child_links();
+		$response = ob_get_contents();
+		$response = json_decode( $response, true );
+
+		if ( empty( $response ) ) {
+			wp_send_json_error(
+				array(
+					'message' => __( 'Something went wrong. Please, contact support team', 'monstroid-dashboard' )
+				)
+			);
 		}
 
-		return true;
+		if ( 'error' == $response['type'] ) {
+			wp_send_json_error(
+				array(
+					'message' => $response['message']
+				)
+			);
+		}
+
+		wp_send_json_success(
+			array(
+				'url' => add_query_arg(
+					array(
+						'step' => 'theme-install',
+						'type' => 'premium',
+					),
+					menu_page_url( 'monstroid-wizard', false )
+				)
+			)
+		);
 
 	}
 

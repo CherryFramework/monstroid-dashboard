@@ -97,6 +97,9 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 
 		/**
 		 * Include required core files
+		 *
+		 * @since  1.0.0
+		 * @return void
 		 */
 		public function includes() {
 
@@ -106,6 +109,7 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 			include_once $this->plugin_dir( 'admin/includes/class-monstroid-dashboard-ui-handlers.php' );
 			include_once $this->plugin_dir( 'admin/includes/class-monstroid-dashboard-filesystem.php' );
 			include_once $this->plugin_dir( 'admin/includes/class-monstroid-dashboard-themes-list.php' );
+			include_once $this->plugin_dir( 'admin/includes/gateways/class-md-wizard-gateway.php' );
 
 		}
 

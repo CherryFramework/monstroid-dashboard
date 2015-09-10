@@ -13,13 +13,13 @@
 			<?php printf( __( 'Theme %s', 'monstroid-dashboard' ), $theme['template_id'] ); ?>
 		</h4>
 		<div class="wizard-theme-item-thumb">
-			<img src="<?php echo $theme['screen_md']; ?>" alt="">
+			<img src="<?php echo esc_url( $theme['screen_md'] ); ?>" alt="">
 		</div>
 		<div class="wizard-theme-item-actions">
-			<a href="<?php $theme['livedemo']; ?>" class="button-default_ live-demo" target="_blank">
+			<a href="<?php echo esc_url( $theme['livedemo'] ); ?>" class="md-button md-success" target="_blank">
 				<span class="dashicons dashicons-desktop"></span><?php _e( 'Live Demo', 'monstroid-dashboard' ); ?>
 			</a>
-			<a href="#" data-template="<?php echo $theme['template_id']; ?>" class="button-primary_ install">
+			<a href="#" data-template="<?php echo $theme['template_id']; ?>" class="md-button install-child">
 				<span class="dashicons dashicons-download"></span><?php _e( 'Install', 'monstroid-dashboard' ); ?>
 			</a>
 		</div>
