@@ -69,9 +69,6 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 			add_filter( 'cherry_menu_item_args', array( $this, 'replace_cherry' ) );
 			$this->replace_related_post_types();
 
-			add_filter( 'cherry_admin_pages_list', array( $this, 'replace_support_page' ) );
-			add_filter( 'cherry_support_page_url', array( $this, 'replace_support_page_iframe' ) );
-
 		}
 
 		/**
@@ -222,10 +219,10 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 						'page-title' => __( 'Data manager', 'monstroid-dashboard' ),
 						'menu-title' => sprintf( __( 'Data manager %s', 'monstroid-dashboard' ), $this->get_menu_badge() )
 					),
-					'monstroid-themes' => array(
+					/*'monstroid-themes' => array(
 						'page-title' => __( 'Monstroid Themes', 'monstroid-dashboard' ),
 						'menu-title' => __( 'Themes', 'monstroid-dashboard' )
-					)
+					)*/
 				)
 			);
 
@@ -398,43 +395,6 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 				break;
 			}
 
-		}
-
-		/**
-		 * Move cherry support page into monstroid dashboard and rename it
-		 *
-		 * @since  1.1.0
-		 * @param  array $pages registered admin pages
-		 * @return array
-		 */
-		public function replace_support_page( $pages ) {
-
-			if ( ! isset( $pages['cherry-support'] ) ) {
-				return $pages;
-			}
-
-			$pages['cherry-support'] = array_merge(
-				$pages['cherry-support'],
-				array(
-					'parent_slug' => 'monstroid-dashboard',
-					'page_title'  => __( 'Monstroid Support', 'monstroid-dashboard' ),
-					'menu_title'  => __( 'Support', 'monstroid-dashboard' )
-				)
-			);
-
-			return $pages;
-
-		}
-
-		/**
-		 * Repalace iframe scr for Cherry/Monstroid support page
-		 *
-		 * @since  1.0.0
-		 * @param  string $url
-		 * @return string
-		 */
-		public function replace_support_page_iframe( $url ) {
-			return 'http://updates.cherry.template-help.com/monstroid-support/index.html';
 		}
 
 		/**

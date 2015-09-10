@@ -197,43 +197,6 @@
 			}
 		});
 
-		// process
-		$(document).on('click', '.install-child', function(event) {
-			event.preventDefault();
-
-			var $this    = $(this),
-				template = $this.data('template');
-
-			if ( $this.hasClass('in-progress') ) {
-				return !1;
-			}
-
-			$this.addClass('in-progress');
-			md_spinner( $this, 'default' );
-
-			$.ajax({
-				url: ajaxurl,
-				type: "post",
-				dataType: "json",
-				data: {
-					action:      'monstroid_dashboard_theme_install',
-					template_id: template,
-					nonce:       monstroid_dashboard.nonce
-				},
-				error: function(response) {
-					$this.removeClass('in-progress').addClass('md-error-icon');
-					md_remove_spinner($this);
-				}
-			}).done(function(response) {
-				$this.removeClass('in-progress');
-				md_remove_spinner($this);
-
-				if ( response.status == 'success' ) {
-					// redirect to next step on success
-					window.location = response.data.url;
-				}
-			});
-		});
 
 	})
 
