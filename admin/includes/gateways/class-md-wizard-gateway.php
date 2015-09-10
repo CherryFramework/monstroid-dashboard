@@ -89,38 +89,7 @@ class MD_Wizard_Gateway {
 			$helper = $monstroid_wizard->helper;
 		}
 
-		ob_start();
 		$helper->get_child_links();
-		$response = ob_get_contents();
-		$response = json_decode( $response, true );
-
-		if ( empty( $response ) ) {
-			wp_send_json_error(
-				array(
-					'message' => __( 'Something went wrong. Please, contact support team', 'monstroid-dashboard' )
-				)
-			);
-		}
-
-		if ( 'error' == $response['type'] ) {
-			wp_send_json_error(
-				array(
-					'message' => $response['message']
-				)
-			);
-		}
-
-		wp_send_json_success(
-			array(
-				'url' => add_query_arg(
-					array(
-						'step' => 'theme-install',
-						'type' => 'premium',
-					),
-					menu_page_url( 'monstroid-wizard', false )
-				)
-			)
-		);
 
 	}
 

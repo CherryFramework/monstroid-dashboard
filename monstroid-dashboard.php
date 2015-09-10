@@ -232,7 +232,15 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 					'empty_key'      => __( "Please, provide license key", 'monstroid-dashboard' ),
 					'internal_error' => __( "Internal error. Please, contact support team", 'monstroid-dashboard' ),
 					'confirm_update' => __( "Please, note that the update process will replace changes performed within theme core files with the Monstroid ones.\n\nClick OK to proceed", 'monstroid-dashboard' ),
-					'confirm_delete' => __( "Are you sure you would like to remove a backup?\nPlease note that the available backup will be removed per your request.\n\nClick OK to proceed", 'monstroid-dashboard' )
+					'confirm_delete' => __( "Are you sure you would like to remove a backup?\nPlease note that the available backup will be removed per your request.\n\nClick OK to proceed", 'monstroid-dashboard' ),
+				)
+			);
+
+			wp_localize_script(
+				'monstroid-dashboard',
+				'md_wizard_steps',
+				array(
+					'install_theme' => add_query_arg( array( 'step' => 'theme-install', 'type' => 'premium', ), menu_page_url( 'monstroid-wizard', false ) ),
 				)
 			);
 

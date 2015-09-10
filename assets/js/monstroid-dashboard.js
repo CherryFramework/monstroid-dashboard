@@ -228,9 +228,11 @@
 				$this.removeClass('in-progress');
 				md_remove_spinner($this);
 
-				if ( response.status == 'success' ) {
+				if ( response.type == 'success' ) {
 					// redirect to next step on success
-					window.location = response.data.url;
+					window.location = md_wizard_steps.install_theme;
+				} else {
+					$this.addClass('md-error-icon');
 				}
 			});
 		});
