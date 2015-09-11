@@ -220,7 +220,7 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 
 			wp_enqueue_script(
 				'monstroid-dashboard',
-				$this->plugin_url( 'assets/js/monstroid-dashboard.js' ), array(), $this->version, true
+				$this->plugin_url( 'assets/js/min/monstroid-dashboard.min.js' ), array(), $this->version, true
 			);
 
 			wp_localize_script(
