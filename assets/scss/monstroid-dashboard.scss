@@ -70,157 +70,250 @@ $border:  #dfdfdf;
 			padding: 10px 0 20px;
 		}
 	}
-}
 
-.md-hidden {
-	display: none !important;
-}
+	.md-hidden {
+		display: none !important;
+	}
 
-a.md-button,
-input.md-button,
-button.md-button {
-	-moz-user-select: none;
-	border:none;
-	border-radius: 5px;
-	cursor: pointer;
-	display: inline-block;
-	font-size: 18px;
-	line-height: 20px;
-	text-decoration: none !important;
-	color: #fff;
-	padding: 14px 20px;
-	text-align: center;
-	min-width: 120px;
-	vertical-align: middle;
-	transition: all 200ms linear;
-	white-space: nowrap;
-	box-shadow: 1px 1px 2px rgba(0,0,0,.3);
-	font-weight: 500;
-	box-sizing: border-box;
-	background: $primary;
-	&:hover {
-		background: darken( $primary, 5% );
-	}
-	&.md-success {
-		background: $success;
-		&:hover {
-			background: darken( $success, 5% );
-		}
-	}
-	&.md-warning {
-		background: $warning;
-		&:hover {
-			background: darken( $warning, 5% );
-		}
-	}
-	&.md-small {
-		padding: 5px 15px;
-		font-size: 14px;
+	a.md-button,
+	input.md-button,
+	button.md-button {
+		-moz-user-select: none;
+		border:none;
+		border-radius: 5px;
+		cursor: pointer;
+		display: inline-block;
+		font-size: 18px;
 		line-height: 20px;
-	}
-	&.disabled {
-		background: lighten( $text, 20% ) !important;
-		cursor: default;
-	}
-	&.md-link {
-		background: none;
-		padding: 0;
-		color: $primary;
-		box-shadow: none;
-		font-size: 16px;
-		font-weight: normal;
+		text-decoration: none !important;
+		color: #fff;
+		padding: 14px 20px;
+		text-align: center;
+		min-width: 120px;
+		vertical-align: middle;
+		transition: all 200ms linear;
+		white-space: nowrap;
+		box-shadow: 1px 1px 2px rgba(0,0,0,.3);
+		font-weight: 500;
+		box-sizing: border-box;
+		background: $primary;
 		&:hover {
-			color: darken( $primary, 5% );
+			background: darken( $primary, 5% );
 		}
 		&.md-success {
-			color: $success;
+			background: $success;
 			&:hover {
-				color: darken( $success, 5% );
+				background: darken( $success, 5% );
 			}
 		}
 		&.md-warning {
-			color: $warning;
+			background: $warning;
 			&:hover {
-				color: darken( $warning, 5% );
+				background: darken( $warning, 5% );
+			}
+		}
+		&.md-small {
+			padding: 5px 15px;
+			font-size: 14px;
+			line-height: 20px;
+		}
+		&.disabled {
+			background: lighten( $text, 20% ) !important;
+			cursor: default;
+		}
+		&.md-link {
+			background: none;
+			padding: 0;
+			color: $primary;
+			box-shadow: none;
+			font-size: 16px;
+			font-weight: normal;
+			&:hover {
+				color: darken( $primary, 5% );
+			}
+			&.md-success {
+				color: $success;
+				&:hover {
+					color: darken( $success, 5% );
+				}
+			}
+			&.md-warning {
+				color: $warning;
+				&:hover {
+					color: darken( $warning, 5% );
+				}
+			}
+		}
+		.dashicons-image-rotate {
+			font-size: 16px;
+			line-height: 20px;
+		}
+	}
+
+	.md-message {
+		padding: 5px 0 10px;
+		&.md-update {
+			color: $warning;
+		}
+		&.md-success {
+			color: $success;
+		}
+		.md-updater-items & {
+			font-size: 13px;
+			line-height: 20px;
+		}
+		a {
+			color: inherit;
+			text-decoration: none;
+			box-shadow: none;
+		}
+	}
+	.md-update-messages,
+	.md-misc-messages,
+	.md-form-message,
+	.md-download-message {
+		font-size: 13px;
+		line-height: 20px;
+		padding: 0 0 10px 0;
+		&.md-error {
+			color: $warning;
+		}
+		&.md-success {
+			color: $success;
+		}
+	}
+	.md-form-message,
+	.md-download-message {
+		padding: 10px 0 0 0;
+	}
+
+	.md-description {
+		&_content {
+			padding: 0 0 30px 0;
+			border-bottom: 1px solid $border;
+			margin: 0 0 30px 0;
+
+			&:after {
+				clear: both;
+				width: 100%;
+				display: block;
+				content: "";
+			}
+		}
+		&_image {
+			float: left;
+			margin: 0 35px 0 10px;
+		}
+		&_text {
+			overflow: hidden;
+			padding: 40px 0 0 0;
+			color: $text;
+		}
+		&_ver {
+			color: $heading;
+			.md-message {
+				display: inline;
+				padding: 0;
+				b:before {
+					display: inline-block;
+					width: 20px;
+					height: 20px;
+					margin: 0 5px;
+					font-size: 20px;
+					line-height: 1;
+					font-family: "dashicons";
+					text-decoration: inherit;
+					font-weight: normal;
+					font-style: normal;
+					vertical-align: top;
+					text-align: center;
+					vertical-align: middle;
+					-webkit-transition: color .1s ease-in 0;
+					transition: color .1s ease-in 0;
+					-webkit-font-smoothing: antialiased;
+					-moz-osx-font-smoothing: grayscale;
+				}
+				&.md-update {
+					color: $warning;
+					b:before {
+						content: "\f463";
+					}
+				}
+				&.md-success {
+					color: $success;
+					b:before {
+						content: "\f147";
+					}
+				}
+			}
+		}
+		&_author {
+			color: $heading;
+		}
+		&_about {
+			padding: 15px 0 0 0;
+			font-weight: 300;
+		}
+	}
+
+	.md-updater-service-actions {
+		float: right;
+	}
+
+	.md-updater-items {
+		clear: both;
+		padding: 30px 0 0 0;
+		&:after {
+			clear: both;
+			content: "";
+			width: 100%;
+			display: block;
+		}
+	}
+
+	.md-items-list {
+		text-align: center;
+		float: left;
+		width: 20%;
+		.md-button {
+			margin: 0 0 10px 0;
+		}
+	}
+
+	.md-update-log {
+		text-align: left;
+		p {
+			margin: 0;
+			padding: 0 0 5px 15px;
+			font-size: 14px;
+			line-height: 20px;
+			position: relative;
+			&:before {
+				content: "- ";
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			.code {
+				font-size: 13px;
 			}
 		}
 	}
-	.dashicons-image-rotate {
-		font-size: 16px;
-		line-height: 20px;
-	}
-}
 
-.md-message {
-	padding: 5px 0 10px;
-	&.md-update {
-		color: $warning;
-	}
-	&.md-success {
-		color: $success;
-	}
-	.md-updater-items & {
-		font-size: 13px;
-		line-height: 20px;
-	}
-	a {
-		color: inherit;
-		text-decoration: none;
-		box-shadow: none;
-	}
-}
-.md-update-messages,
-.md-misc-messages,
-.md-form-message,
-.md-download-message {
-	font-size: 13px;
-	line-height: 20px;
-	padding: 0 0 10px 0;
-	&.md-error {
-		color: $warning;
-	}
-	&.md-success {
-		color: $success;
-	}
-}
-.md-form-message,
-.md-download-message {
-	padding: 10px 0 0 0;
-}
-
-.md-description {
-	&_content {
-		padding: 0 0 30px 0;
-		border-bottom: 1px solid $border;
-		margin: 0 0 30px 0;
-
-		&:after {
-			clear: both;
-			width: 100%;
-			display: block;
-			content: "";
-		}
-	}
-	&_image {
-		float: left;
-		margin: 0 35px 0 10px;
-	}
-	&_text {
-		overflow: hidden;
-		padding: 40px 0 0 0;
-		color: $text;
-	}
-	&_ver {
-		color: $heading;
-		.md-message {
-			display: inline;
-			padding: 0;
-			b:before {
+	.md-links {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		&_item {
+			padding: 0 0 20px 20px;
+			position: relative;
+			&:before {
+				content: "\f345";
+				left: 0;
+				top: 7px;
+				position: absolute;
 				display: inline-block;
-				width: 20px;
-				height: 20px;
-				margin: 0 5px;
-				font-size: 20px;
+				font-size: 18px;
 				line-height: 1;
 				font-family: "dashicons";
 				text-decoration: inherit;
@@ -233,269 +326,235 @@ button.md-button {
 				transition: color .1s ease-in 0;
 				-webkit-font-smoothing: antialiased;
 				-moz-osx-font-smoothing: grayscale;
+				color: $primary;
 			}
-			&.md-update {
-				color: $warning;
-				b:before {
-					content: "\f463";
-				}
-			}
-			&.md-success {
-				color: $success;
-				b:before {
-					content: "\f147";
+			a {
+				text-decoration: none;
+				box-shadow: none;
+				outline: none;
+				&:hover {
+					color: darken( $primary, 10% );
 				}
 			}
 		}
 	}
-	&_author {
-		color: $heading;
-	}
-	&_about {
-		padding: 15px 0 0 0;
-		font-weight: 300;
-	}
-}
 
-.md-updater-service-actions {
-	float: right;
-}
-
-.md-updater-items {
-	clear: both;
-	padding: 30px 0 0 0;
-	&:after {
-		clear: both;
-		content: "";
-		width: 100%;
-		display: block;
-	}
-}
-
-.md-items-list {
-	text-align: center;
-	float: left;
-	width: 20%;
-	.md-button {
-		margin: 0 0 10px 0;
-	}
-}
-
-.md-update-log {
-	text-align: left;
-	p {
-		margin: 0;
-		padding: 0 0 5px 15px;
-		font-size: 14px;
-		line-height: 20px;
-		position: relative;
-		&:before {
-			content: "- ";
-			position: absolute;
-			top: 0;
-			left: 0;
+	.md-updates-list {
+		&_item {
+			border-top: 1px solid $border;
+			&.heading_item {
+				border-top: none;
+				font-size: 14px;
+				color: lighten( $text, 10% );
+			}
+			&:after {
+				clear: both;
+				content: "";
+				width: 100%;
+				display: block;
+			}
+			&_name,
+			&_date,
+			&_download {
+				float: left;
+				width: 33.33333%;
+				padding: 5px 0;
+				box-sizing: border-box;
+			}
 		}
-		.code {
-			font-size: 13px;
-		}
-	}
-}
-
-.md-links {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-	&_item {
-		padding: 0 0 20px 20px;
-		position: relative;
-		&:before {
-			content: "\f345";
-			left: 0;
-			top: 7px;
-			position: absolute;
-			display: inline-block;
-			font-size: 18px;
-			line-height: 1;
-			font-family: "dashicons";
-			text-decoration: inherit;
-			font-weight: normal;
-			font-style: normal;
-			vertical-align: top;
-			text-align: center;
-			vertical-align: middle;
-			-webkit-transition: color .1s ease-in 0;
-			transition: color .1s ease-in 0;
-			-webkit-font-smoothing: antialiased;
-			-moz-osx-font-smoothing: grayscale;
-			color: $primary;
-		}
-		a {
+		&_download_link,
+		&_delete_link {
+			box-shadow: none !important;
 			text-decoration: none;
-			box-shadow: none;
-			outline: none;
+			display: inline-block;
+			font-size: 16px;
+			line-height: 20px;
+			.dashicons {
+				vertical-align: middle;
+				margin: -3px 0 0 0;
+			}
 			&:hover {
 				color: darken( $primary, 10% );
 			}
 		}
-	}
-}
-
-.md-updates-list {
-	&_item {
-		border-top: 1px solid $border;
-		&.heading_item {
-			border-top: none;
-			font-size: 14px;
-			color: lighten( $text, 10% );
+		&_delete_link {
+			.md-updates-list & {
+				margin: 0 0 0 10px;
+				color: $warning;
+				&:hover {
+					color: darken( $warning, 10% );
+				}
+			}
 		}
+
+	}
+
+	.md-updater-footer {
+		padding: 35px 0 0 0;
+		border-top: 1px solid $border;
+		margin: 30px 0 0 0;
+		text-align: right;
+	}
+
+	input[type="text"].md-input,
+	input[type="email"].md-input,
+	input[type="password"].md-input,
+	input[type="url"].md-input {
+		width: 300px;
+		margin: 0 15px 0 0;
+		border: none;
+		box-shadow: none;
+		border-bottom: 1px solid $border;
+		font-size: 16px;
+		padding: 10px 0;
+		transition: all 200ms linear;
+		background: none;
+		&.error {
+			border-color: $warning;
+		}
+		&:focus {
+			border-color: $primary;
+		}
+	}
+
+	.md-row {
 		&:after {
 			clear: both;
 			content: "";
 			width: 100%;
 			display: block;
 		}
-		&_name,
-		&_date,
-		&_download {
+	}
+
+	.md-col {
+		&_1, &_2, &_3, &_4, &_5, &_6, &_7, &_8 {
 			float: left;
-			width: 33.33333%;
-			padding: 5px 0;
-			box-sizing: border-box;
+		}
+		&_1 {
+			width: 12.5%;
+		}
+		&_2 {
+			width: 25%;
+		}
+		&_3 {
+			width: 37.5%;
+		}
+		&_4 {
+			width: 50%;
+		}
+		&_5 {
+			width: 62.5%;
+		}
+		&_6 {
+			width: 75%;
+		}
+		&_7 {
+			width: 87.5%;
+		}
+		&_8 {
+			width: 100%;
 		}
 	}
-	&_download_link,
-	&_delete_link {
-		box-shadow: none !important;
-		text-decoration: none;
+
+	.md-spinner {
 		display: inline-block;
-		font-size: 16px;
-		line-height: 20px;
-		.dashicons {
-			vertical-align: middle;
-			margin: -3px 0 0 0;
+		width: 20px;
+		height: 20px;
+		font-size: 0;
+		line-height: 0;
+		margin: -1px 2px -4px -2px;
+		background: #fff;
+		border-radius: 11px;
+		-webkit-animation: wizardInnerCircle 1s linear infinite;
+				animation: wizardInnerCircle 1s linear infinite;
+		.md-spinner-circle {
+			display: block;
+			background-color: $primary;
+			width: 6px;
+			height: 6px;
+			position: absolute;
+			border-radius: 3px;
+			top: 3px;
+			left: 3px;
 		}
-		&:hover {
-			color: darken( $primary, 10% );
+		&.md-success {
+			.md-spinner-circle {
+				background-color: $success;
+			}
+		}
+		&.md-dark {
+			background: $primary;
+			.md-spinner-circle {
+				background-color: #fff;
+			}
+		}
+		+ .dashicons {
+			display: none;
+		}
+		.save-license-key & {
+			margin-right: 10px;
+			margin-left: -10px;
 		}
 	}
-	&_delete_link {
-		.md-updates-list & {
-			margin: 0 0 0 10px;
-			color: $warning;
-			&:hover {
-				color: darken( $warning, 10% );
+
+	.md-themes {
+		&_list {
+			display: block;
+			width: 100%;
+			&:after {
+				clear: both;
+				content: "";
+				width: 100%;
+				display: block;
+			}
+			margin: 0 -15px;
+			&_item {
+				float: left;
+				box-sizing: border-box;
+				padding: 0 15px 20px;
+				width: 25%;
+				text-align: center;
+				&_actions {
+					padding: 15px 0 0 0;
+					a {
+						margin: 0 5px 5px;
+					}
+				}
+			}
+		}
+
+		&_pager {
+			text-align: center;
+			padding: 10px 0 0 0;
+			&_item {
+				display: inline-block;
+				margin: 0 5px 5px;
+			}
+			&_link {
+				font-size: 22px;
+				line-height: 30px;
+				text-decoration: none;
+				color: $primary;
+				.dashicons {
+					vertical-align: middle;
+				}
+				.prev-page {
+					margin-right: 15px;
+				}
+				.next-page {
+					margin-left: 15px;
+				}
+				&:hover,
+				&.current-page {
+					color: $heading;
+				}
+				&.disabled {
+					color: lighten( $heading, 40% );
+				}
 			}
 		}
 	}
 
-}
-
-.md-updater-footer {
-	padding: 35px 0 0 0;
-	border-top: 1px solid $border;
-	margin: 30px 0 0 0;
-	text-align: right;
-}
-
-input[type="text"].md-input,
-input[type="email"].md-input,
-input[type="password"].md-input,
-input[type="url"].md-input {
-	width: 300px;
-	margin: 0 15px 0 0;
-	border: none;
-	box-shadow: none;
-	border-bottom: 1px solid $border;
-	font-size: 16px;
-	padding: 10px 0;
-	transition: all 200ms linear;
-	background: none;
-	&.error {
-		border-color: $warning;
-	}
-	&:focus {
-		border-color: $primary;
-	}
-}
-
-.md-row {
-	&:after {
-		clear: both;
-		content: "";
-		width: 100%;
-		display: block;
-	}
-}
-
-.md-col {
-	&_1, &_2, &_3, &_4, &_5, &_6, &_7, &_8 {
-		float: left;
-	}
-	&_1 {
-		width: 12.5%;
-	}
-	&_2 {
-		width: 25%;
-	}
-	&_3 {
-		width: 37.5%;
-	}
-	&_4 {
-		width: 50%;
-	}
-	&_5 {
-		width: 62.5%;
-	}
-	&_6 {
-		width: 75%;
-	}
-	&_7 {
-		width: 87.5%;
-	}
-	&_8 {
-		width: 100%;
-	}
-}
-
-.md-spinner {
-	display: inline-block;
-	width: 20px;
-	height: 20px;
-	font-size: 0;
-	line-height: 0;
-	margin: -1px 2px -4px -2px;
-	background: #fff;
-	border-radius: 11px;
-	-webkit-animation: wizardInnerCircle 1s linear infinite;
-			animation: wizardInnerCircle 1s linear infinite;
-	.md-spinner-circle {
-		display: block;
-		background-color: $primary;
-		width: 6px;
-		height: 6px;
-		position: absolute;
-		border-radius: 3px;
-		top: 3px;
-		left: 3px;
-	}
-	&.md-success {
-		.md-spinner-circle {
-			background-color: $success;
-		}
-	}
-	&.md-dark {
-		background: $primary;
-		.md-spinner-circle {
-			background-color: #fff;
-		}
-	}
-	+ .dashicons {
-		display: none;
-	}
-	.save-license-key & {
-		margin-right: 10px;
-		margin-left: -10px;
-	}
 }
 
 @-webkit-keyframes wizardInnerCircle {

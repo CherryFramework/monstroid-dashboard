@@ -26,10 +26,58 @@ if ( ! class_exists( 'Monstroid_Dashboard_UI_Handlers' ) ) {
 		private static $instance = null;
 
 		function __construct() {
+
 			add_action( 'wp_ajax_monstroid_dashboard_download_latest', array( $this, 'download_latest' ) );
 			add_action( 'wp_ajax_monstroid_dashboard_save_key', array( $this, 'save_key' ) );
 			add_action( 'wp_ajax_monstroid_dashboard_get_backup', array( $this, 'get_backup' ) );
 			add_action( 'wp_ajax_monstroid_dashboard_delete_backup', array( $this, 'delete_backup' ) );
+
+			$this->add_specific_handlers();
+
+		}
+
+		/**
+		 * Add specific AJAX handlers
+		 *
+		 * @since  1.1.0
+		 * @return void
+		 */
+		public function add_specific_handlers() {
+
+			if ( $this->is_ajax_action( 'monstroid_dashboard_get_themes_page' ) ) {
+				include_once monstroid_dashboard()->plugin_dir( 'admin/includes/class-monstroid-dashboard-themes-list.php' );
+				$themes_api = Monstroid_Dashboard_Themes_List::get_instance();
+				add_action( 'wp_ajax_monstroid_dashboard_get_themes_page', array( $themes_api, 'pager_callbak' ) );
+			}
+
+		}
+
+		/**
+		 * Check if is specific AJAX action
+		 *
+		 * @since  1.0.0
+		 * @param  string  $action action name
+		 * @return boolean
+		 */
+		public function is_ajax_action( $action = null ) {
+
+			// false if not is AJAX request
+			if ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) {
+				return false;
+			}
+
+			// true if is AJAX and action not provided
+			if ( null == $action ) {
+				return true;
+			}
+
+			// true if is provided action doing right now
+			if ( isset( $_REQUEST['action'] ) && $action == $_REQUEST['action'] ) {
+				return true;
+			}
+
+			return false;
+
 		}
 
 		/**

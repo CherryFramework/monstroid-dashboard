@@ -224,7 +224,10 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 					),
 					'monstroid-themes' => array(
 						'page-title' => __( 'Monstroid Themes', 'monstroid-dashboard' ),
-						'menu-title' => __( 'Themes', 'monstroid-dashboard' )
+						'menu-title' => __( 'Themes', 'monstroid-dashboard' ),
+						'depends'    => array(
+							monstroid_dashboard()->plugin_dir( 'admin/includes/class-monstroid-dashboard-themes-list.php' )
+						)
 					)
 				)
 			);

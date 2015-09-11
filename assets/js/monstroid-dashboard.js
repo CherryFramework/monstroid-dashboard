@@ -197,7 +197,7 @@
 			}
 		});
 
-		// process
+		// process child theme installation start
 		$(document).on('click', '.install-child', function(event) {
 			event.preventDefault();
 
@@ -234,6 +234,34 @@
 				} else {
 					$this.addClass('md-error-icon');
 				}
+			});
+		});
+
+		// themes list pager
+		$(document).on('click', '.md-themes_pager_link', function(event) {
+			event.preventDefault();
+
+			var $this   = $(this),
+				$result = $('.md-themes_content'),
+				page    = $this.data('page');
+
+			if ( $this.hasClass('disabled') || $this.hasClass('current-page') || $this.hasClass('in-progress') ) {
+				return !1;
+			}
+
+			$this.addClass('in-progress');
+
+			$.ajax({
+				url: ajaxurl,
+				type: "post",
+				dataType: "html",
+				data: {
+					action: 'monstroid_dashboard_get_themes_page',
+					page: page
+				}
+			}).done(function(response) {
+				$this.removeClass('in-progress');
+				$result.html(response)
 			});
 		});
 

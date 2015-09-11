@@ -116,19 +116,17 @@ class Monstroid_Dashboard_Themes_List {
 	 * @since  1.1.0
 	 * @return string
 	 */
-	public function get_pager() {
+	public function build_pager() {
 
 		if ( empty( $this->query_data ) ) {
 			return;
 		}
 
-		global $monstroid_wizard;
-
-		$page_format = '<div class="wizard-pager-item">
-			<a href="#" data-page="%1$s" class="wizard-pager-item-link page-item%2$s">%3$s</a>
+		$page_format = '<div class="md-themes_pager_item">
+			<a href="#" data-page="%1$s" class="md-themes_pager_link page-item%2$s">%1$s</a>
 		</div>';
-		$direct_format = '<div class="wizard-pager-item">
-			<a href="#" data-page="%1$s" class="wizard-pager-item-link%2$s %4$s">%3$s</a>
+		$direct_format = '<div class="md-themes_pager_item">
+			<a href="#" data-page="%1$s" class="md-themes_pager_link%2$s %4$s">%3$s</a>
 		</div>';
 
 		$pages = '';
@@ -139,7 +137,7 @@ class Monstroid_Dashboard_Themes_List {
 
 			$pages .= sprintf(
 				$page_format,
-				$i, $current, __( 'page', $monstroid_wizard->slug ) . ' ' . $i
+				$i, $current
 			);
 		}
 
@@ -161,15 +159,15 @@ class Monstroid_Dashboard_Themes_List {
 
 		$prev = sprintf(
 			$direct_format,
-			$prev_num, $prev_disabled, __( 'prev', $monstroid_wizard->slug ), 'prev-page'
+			$prev_num, $prev_disabled, '<span class="dashicons dashicons-arrow-left-alt2"></span>', 'prev-page'
 		);
 
 		$next = sprintf(
 			$direct_format,
-			$next_num, $next_disabled, __( 'next', $monstroid_wizard->slug ), 'next-page'
+			$next_num, $next_disabled, '<span class="dashicons dashicons-arrow-right-alt2"></span>', 'next-page'
 		);
 
-		return sprintf( '<div class="wizard-pager">%s</div>', $prev . $pages . $next );
+		printf( '<div class="md-themes_pager">%s</div>', $prev . $pages . $next );
 
 	}
 
@@ -191,13 +189,13 @@ class Monstroid_Dashboard_Themes_List {
 			die();
 		}
 		?>
-		<div class="wizard-row">
+		<ul class="md-themes_list">
 		<?php
-			echo $this->get_themes( $page, 4 );
+			$this->build_themes_list( $page, 4 );
 		?>
-		</div>
+		</ul>
 		<?php
-			echo $this->get_pager();
+			$this->build_pager();
 
 		die();
 
