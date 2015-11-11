@@ -130,7 +130,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Notices' ) ) {
 				array(
 					'need_update' => array(
 						'message'        => sprintf(
-							__( 'New Monstroid version is avaliable - %s.', 'monstroid-dashboard' ),
+							__( 'New Monstroid version is available - %s.', 'monstroid-dashboard' ),
 							monstroid_dashboard_updater()->get_update_data( 'new_version' )
 						),
 						'type'           => 'updated',

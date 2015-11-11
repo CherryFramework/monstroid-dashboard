@@ -536,7 +536,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 			if ( $this->force_has_update() ) {
 				return sprintf(
 					'<div class="md-message md-update">%2$s%1$s%3$s</div>',
-					__( 'New Monstroid version is avaliable', 'monstroid-dashboard' ),
+					__( 'New Monstroid version is available', 'monstroid-dashboard' ),
 					$before,
 					$after
 				);

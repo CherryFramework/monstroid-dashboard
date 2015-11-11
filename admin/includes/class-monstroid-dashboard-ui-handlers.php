@@ -218,7 +218,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_UI_Handlers' ) ) {
 			// Can't send request
 			if ( is_wp_error( $key_request ) || ! isset($key_request['response']) ) {
 				wp_send_json_error( array(
-					'message' => __( 'Can not send activation request. ' . $key_request->get_error_message(), 'monstroid-dashboard' )
+					'message' => __( 'Can`t send activation request. ' . $key_request->get_error_message(), 'monstroid-dashboard' )
 				) );
 			}
 
@@ -295,7 +295,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_UI_Handlers' ) ) {
 			);
 
 			wp_send_json_success( array(
-				'message' => __( 'Key succesfully activated and saved', 'monstroid-dashboard' )
+				'message' => __( 'Key successfully activated and saved', 'monstroid-dashboard' )
 			) );
 
 		}

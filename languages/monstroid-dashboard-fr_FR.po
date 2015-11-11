@@ -1,0 +1,722 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: monstroid-dashboard\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-11-09 17:57+0200\n"
+"PO-Revision-Date: 2015-11-09 17:57+0200\n"
+"Last-Translator: J.L.Dokter <jldokter@gmail.com>\n"
+"Language-Team: Cherry Team <support@cherryframework.com>\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: _e;__;_n:1,2;_n_noop:1,2;_x:1,2c;_nx:1,2,4c;"
+"_nx_noop:1,2,3c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;"
+"esc_html_x:1,2c\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: admin/includes/class-monstroid-dashboard-backup-manager.php:237
+#: admin/includes/class-monstroid-dashboard-backup-manager.php:279
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:89
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:139
+msgid "Permission denied"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-backup-manager.php:247
+#: admin/includes/class-monstroid-dashboard-backup-manager.php:289
+msgid "File not exists"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-backup-manager.php:296
+msgid "Can't delete selected backup"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-interface.php:127
+#: admin/includes/class-monstroid-dashboard-interface.php:212
+msgid "Monstroid Dashboard"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-interface.php:128
+#, php-format
+msgid "Monstroid %s"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-interface.php:213
+msgid "Dashboard"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-interface.php:219
+msgid "Data manager"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-interface.php:220
+#, php-format
+msgid "Data manager %s"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-interface.php:276
+msgid "Monstroid theme not installed on this site"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-notices.php:133
+#, php-format
+msgid "New Monstroid version is available - %s."
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-notices.php:139
+msgid "Update"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-notices.php:144
+msgid "Skip"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-notices.php:149
+msgid "Please, set up filesystem credentials to allow automatic updates."
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-notices.php:154
+msgid "Dismiss"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-tips.php:41
+msgid "Start customize"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-tips.php:42
+msgid "Go to Theme options manager"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-tips.php:44
+#: admin/includes/class-monstroid-dashboard-tips.php:52
+#: admin/includes/class-monstroid-dashboard-tips.php:93
+msgid "Start"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-tips.php:49
+#: admin/includes/class-monstroid-dashboard-tips.php:50
+msgid "Write your first post"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-tips.php:70
+msgid "Monstroid documentation"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-tips.php:74
+msgid "Quick Start Guide"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-tips.php:78
+msgid "Monstroid Video Tutorials"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-elements.php:31
+msgid "Check if updates are available"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-elements.php:56
+msgid "Disable automatic updates"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-elements.php:71
+msgid "Enable automatic updates"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-elements.php:87
+msgid "Download the latest Monstroid .ZIP version"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-elements.php:100
+msgid "Monstroid"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-elements.php:146
+msgid "Monstroid theme backups"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-elements.php:150
+msgid "File name"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-elements.php:153
+msgid "Created"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-elements.php:156
+msgid "Actions"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:75
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:125
+msgid "Nonce key not provided"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:76
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:83
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:90
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:99
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:111
+msgid "Downloading Error"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:82
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:132
+msgid "Incorrect nonce key"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:98
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:148
+msgid "Backup file not provided"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:126
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:133
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:140
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:149
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:156
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:168
+msgid "Deleting Error"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:155
+msgid "This action is not allowed directly"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:199
+msgid "Please, enter valid key"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:221
+msgid "Can`t send activation request. "
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:227
+msgid "Activation request error. "
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:236
+msgid "Bad request."
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:243
+msgid "Wrong license key. Make sure activation key is correct."
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:250
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:255
+msgid ""
+"Sorry, the license key you are trying to use exceeded the maximum amount of "
+"activations was applied for 3 domains"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:269
+msgid ""
+"License key is invalid or evaluation expired. Please, contact Support Live "
+"Chat: <a href=\"http://chat.template-help.com/\">http://chat.template-help."
+"com/</a>"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:276
+msgid "Theme is not available yet. Please try again in 10 minutes."
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:283
+msgid "Theme is not available. Please contact support team for help."
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:298
+msgid "Key successfully activated and saved"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:316
+msgid "Monstroid key not provided"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:320
+msgid "Can't send download request. Please, try again later"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:324
+msgid "Empty result returned. Please, try again later"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-ui-handlers.php:328
+msgid "Your license key are invalid. Please, contact our support team."
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-updater.php:137
+msgid "Every minute"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-updater.php:142
+msgid "Every week"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-updater.php:463
+msgid "Update Monstroid theme"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-updater.php:475
+msgid ""
+"Great news! Monstroid Dashboard successfully updated your theme to the "
+"latest available version"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-updater.php:496
+#, php-format
+msgid "Update failed. %s"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-updater.php:506
+msgid ""
+"Update failed. <a href=\"#\" class=\"show-update-log\">Show update log</a>"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-updater.php:516
+msgid "Unknown error, please try again later or contact our support"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-updater.php:539
+msgid "New Monstroid version is available"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-updater.php:546
+msgid "Your Monstroid is up to date"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-updater.php:572
+msgid ""
+"Can't create current theme backup. <a href='#' class='force-run-theme-"
+"update'>Update anyway</a>"
+msgstr ""
+
+#: admin/includes/class-monstroid-dashboard-upgrader-skin.php:11
+msgid "Doing it wrong"
+msgstr ""
+
+#: admin/views/backup-list-item.php:25
+msgid "Download"
+msgstr ""
+
+#: admin/views/backup-list-item.php:29
+msgid "Delete"
+msgstr ""
+
+#: admin/views/enter-key-form.php:17
+msgid ""
+"Please enter your license key. We suggest to visit your Monstroid deliver "
+"page in order to locate the license key and paste it here."
+msgstr ""
+
+#: admin/views/enter-key-form.php:19
+msgid "Enter theme activation key"
+msgstr ""
+
+#: admin/views/enter-key-form.php:20
+msgid "Save"
+msgstr ""
+
+#: admin/views/main-theme-item.php:32
+#, php-format
+msgid "Update to v%s"
+msgstr ""
+
+#: admin/views/main-theme-item.php:41
+msgid "Please, set up filesystem credentials to allow automatic update"
+msgstr ""
+
+#: admin/views/main-theme-item.php:46
+msgid "We will perform full backup prior updating your data"
+msgstr ""
+
+#: admin/views/monstroid-dashboard.php:18
+msgid "Welcome to Monstroid Dashboard"
+msgstr ""
+
+#: admin/views/monstroid-dashboard.php:26
+#, php-format
+msgid "Monstroid Version: %1$s %2$s"
+msgstr ""
+
+#: admin/views/monstroid-dashboard.php:35
+#, php-format
+msgid "By %s"
+msgstr ""
+
+#: admin/views/monstroid-dashboard.php:44
+#, php-format
+msgid ""
+"Monstroid is powered by the latest %s that ensures easy and worry-free "
+"installation and customization. With over 30 inbuilt premium extensions, you "
+"can get any kind of functionality required for a specific project. Thanks to "
+"the brand new backup options, you can restore the theme any time you need."
+msgstr ""
+
+#: admin/views/monstroid-updater.php:28
+msgid "Monstroid Updater"
+msgstr ""
+
+#: admin/views/single-tip.php:29
+msgid "Tutorial"
+msgstr ""
+
+#: monstroid-dashboard.php:227
+msgid "Please, provide license key"
+msgstr ""
+
+#: monstroid-dashboard.php:228
+msgid "Internal error. Please, contact support team"
+msgstr ""
+
+#: monstroid-dashboard.php:229
+msgid ""
+"Please, note that the update process will replace changes performed within "
+"theme core files with the Monstroid ones.\n"
+"\n"
+"Click OK to proceed"
+msgstr ""
+
+#: monstroid-dashboard.php:230
+msgid ""
+"Are you sure you would like to remove a backup?\n"
+"Please note that the available backup will be removed per your request.\n"
+"\n"
+"Click OK to proceed"
+msgstr ""
+
+#~ msgid "Title"
+#~ msgstr "Titre"
+
+#~ msgid "Author"
+#~ msgstr "Auteur"
+
+#~ msgid "Date"
+#~ msgstr "Date"
+
+#~ msgid "Thumbnail"
+#~ msgstr "Vignette "
+
+#~ msgid "Testimonial Options"
+#~ msgstr "Options de Témoignages"
+
+#~ msgid "Name:"
+#~ msgstr "Nom:"
+
+#~ msgid "Enter author's name."
+#~ msgstr "Entrez le nom de l'auteur."
+
+#~ msgid "E-mail:"
+#~ msgstr "Adresse électronique:"
+
+#~ msgid "Enter an e-mail address."
+#~ msgstr "Entrez une Adresse électronique."
+
+#~ msgid "URL:"
+#~ msgstr "URL:"
+
+#~ msgid "Enter the URL."
+#~ msgstr "Saisir l'URL."
+
+#~ msgid "Title:"
+#~ msgstr "Titre:"
+
+#~ msgid "Limit:"
+#~ msgstr "Limite:"
+
+#~ msgid "Image Size (in pixels):"
+#~ msgstr "Taille de l'Image (en pixels):"
+
+#~ msgid "Display Author"
+#~ msgstr "Afficher l’Auteur"
+
+#~ msgid "Display Avatar"
+#~ msgstr "Afficher l'Avatar"
+
+#~ msgid "Specific ID:"
+#~ msgstr "ID spécifique:"
+
+#~ msgid "Testimonials Post IDs, separated by commas."
+#~ msgstr "IDs d'articles Témoignages, séparées par des virgules."
+
+#~ msgid "Order By:"
+#~ msgstr "Trier par:"
+
+#~ msgid "Order Direction:"
+#~ msgstr "Direction de l'Ordre"
+
+#~ msgid "Post content:"
+#~ msgstr "Contenu de l'article"
+
+#~ msgid "Content Length:"
+#~ msgstr "Longueur du Contenu:"
+
+#~ msgid "Template:"
+#~ msgstr "Modèle:"
+
+#~ msgid "Custom CSS Class:"
+#~ msgstr "Classe CSS Personalisée:"
+
+#~ msgid "Testimonials posts"
+#~ msgstr "Articles témoignages"
+
+#~ msgid ""
+#~ "You can choose if you want to display sidebars and how you want to "
+#~ "display them."
+#~ msgstr ""
+#~ "Vous pouvez choisir si vous voulez afficher des barres latérales et la "
+#~ "façon dont vous souhaitez les afficher."
+
+#~ msgid "Left sidebar"
+#~ msgstr "Barre latérale gauche"
+
+#~ msgid "Right sidebar"
+#~ msgstr "Barre latérale droite"
+
+#~ msgid "Left and right sidebar"
+#~ msgstr "Barre latérale gauche et droite"
+
+#~ msgid "Two sidebars on the left"
+#~ msgstr "Deux barres latérales sur le côté gauche"
+
+#~ msgid "Two sidebars on the right"
+#~ msgstr "Deux barres latérales sur le côté droit"
+
+#~ msgid "No sidebar"
+#~ msgstr "Sans barre latérale"
+
+#~ msgid "Testimonials"
+#~ msgstr "Témoignages"
+
+#~ msgid "Testimonial"
+#~ msgstr "Témoignage"
+
+#~ msgid "Add New"
+#~ msgstr "Ajouter "
+
+#~ msgid "Add New Testimonial"
+#~ msgstr "Ajouter un Nouveau Témoignage"
+
+#~ msgid "Edit Testimonial"
+#~ msgstr "Modifier le Témoignage"
+
+#~ msgid "New Testimonial"
+#~ msgstr "Nouveau Témoignage"
+
+#~ msgid "View Testimonial"
+#~ msgstr "Voir le Témoignage"
+
+#~ msgid "Search Testimonials"
+#~ msgstr "Recherche  des Témoignages"
+
+#~ msgid "No testimonials found"
+#~ msgstr "Aucun témoignage trouvé"
+
+#~ msgid "No testimonials found in trash"
+#~ msgstr "Aucun témoignage trouvé dans la corbeille"
+
+#~ msgid "Testimonials Categories"
+#~ msgstr "Catégories de Témoignages "
+
+#~ msgid "Edit Category"
+#~ msgstr "Modifier une Catégorie"
+
+#~ msgid "Search Categories"
+#~ msgstr "Recherche des Catégories"
+
+#~ msgid "Popular Categories"
+#~ msgstr "Catégories Populaires"
+
+#~ msgid "All Categories"
+#~ msgstr "Toutes les catégories"
+
+#~ msgid "Update Category"
+#~ msgstr "Mise à jour de Catégorie"
+
+#~ msgid "Add New Category"
+#~ msgstr "Ajouter une Nouvelle Catégorie "
+
+#~ msgid "New Category Name"
+#~ msgstr "Nom de la Nouvelle Catégorie"
+
+#~ msgid "Separate categories with commas"
+#~ msgstr "Catégories séparées par des virgules"
+
+#~ msgid "Add or remove categories"
+#~ msgstr "Ajouter ou supprimer des catégories"
+
+#~ msgid "Choose from the most used categories"
+#~ msgstr "Choisissez parmi les catégories les plus utilisées"
+
+#~ msgid "No categories found."
+#~ msgstr "Aucune catégorie trouvée."
+
+#~ msgid "Categories"
+#~ msgstr "Catégories"
+
+#~ msgid "Limit"
+#~ msgstr "Limite"
+
+#~ msgid "Maximum number of posts."
+#~ msgstr "Nombre maximal d'articles."
+
+#~ msgid "Descending"
+#~ msgstr "Descendant"
+
+#~ msgid "Ascending"
+#~ msgstr "Ascendant "
+
+#~ msgid "Order"
+#~ msgstr "Ordre"
+
+#~ msgid "Posts order"
+#~ msgstr "Ordre des articles"
+
+#~ msgid "None"
+#~ msgstr "Aucun"
+
+#~ msgid "Post ID"
+#~ msgstr "ID de l'article"
+
+#~ msgid "Post author"
+#~ msgstr "Auteur de l'article"
+
+#~ msgid "Post title"
+#~ msgstr "Titre de l'article"
+
+#~ msgid "Post slug"
+#~ msgstr "Identifiant de l'article"
+
+#~ msgid "Last modified date"
+#~ msgstr "Dernière date de modification"
+
+#~ msgid "Post parent"
+#~ msgstr "Article Parent"
+
+#~ msgid "Random"
+#~ msgstr "Aléatoire"
+
+#~ msgid "Comments number"
+#~ msgstr "Nombre de commentaires"
+
+#~ msgid "Menu order"
+#~ msgstr "Ordre du menu"
+
+#~ msgid "Meta key values"
+#~ msgstr "Meta key values"
+
+#~ msgid "Order by"
+#~ msgstr "Trier par"
+
+#~ msgid "Order posts by"
+#~ msgstr "Trier des articles par"
+
+#~ msgid "Category"
+#~ msgstr "Catégorie"
+
+#~ msgid "Select category to show testimonials from"
+#~ msgstr "Sélectionnez la catégorie des témoignages à afficher"
+
+#~ msgid "Post ID's"
+#~ msgstr "IDs d'article"
+
+#~ msgid "Enter comma separated ID's of the posts that you want to show"
+#~ msgstr "Entrez ID's d'articles à afficher séparés par des virgules "
+
+#~ msgid "Display author?"
+#~ msgstr "Afficher l’Auteur"
+
+#~ msgid "Display avatar?"
+#~ msgstr "Afficher l'avatar?"
+
+#~ msgid "Avatar size"
+#~ msgstr "Taille de l'avatar"
+
+#~ msgid "Avatar size (in pixels)"
+#~ msgstr "Taille de l'avatar (en pixels)"
+
+#~ msgid "Part of content"
+#~ msgstr "Partie du contenu"
+
+#~ msgid "Full content"
+#~ msgstr "Contenu complet"
+
+#~ msgid "Post content"
+#~ msgstr "Contenu de l'article"
+
+#~ msgid "Choose to display a part or full content"
+#~ msgstr ""
+#~ "Choisissez si vous voulez afficher une partie du contenu ou le contenu "
+#~ "complet"
+
+#~ msgid "Content Length"
+#~ msgstr "Longueur du Contenu:"
+
+#~ msgid "Insert the number of words you want to show in the post content."
+#~ msgstr ""
+#~ "Insérez le nombre de mots que vous voulez afficher dans le contenu "
+#~ "d'articles."
+
+#~ msgid "Template"
+#~ msgstr "Modèle"
+
+#~ msgid "Shortcode template"
+#~ msgstr "Modèle de shortcode"
+
+#~ msgid "Class"
+#~ msgstr "Classe"
+
+#~ msgid "Extra CSS class"
+#~ msgstr "Сlasse CSS Extra"
+
+#~ msgid "Author's name"
+#~ msgstr "Nom de l'auteur"
+
+#~ msgid "Author's avatar"
+#~ msgstr "Avatar de l'auteur"
+
+#~ msgid "Author's email"
+#~ msgstr "Email de l'auteur"
+
+#~ msgid "Author's URL"
+#~ msgstr "URL de l'auteur"
+
+#~ msgid "Content"
+#~ msgstr "Contenu"
+
+#~ msgid "Author's name (Testimonials only)"
+#~ msgstr "Nom de l'auteur (Témoignages seulement)"
+
+#~ msgid "Author's email (Testimonials only)"
+#~ msgstr "Email de l'auteur (Témoignages seulement)"
+
+#~ msgid "Author's URL (Testimonials only)"
+#~ msgstr "URL de l'auteur (Témoignages seulement)"
+
+#~ msgid "Cherry Testimonials"
+#~ msgstr "Témoignages Cherry"
+
+#~ msgid "Your site's most recent Testimonials."
+#~ msgstr "Témoignages les plus récents de votre site."
+
+#~ msgid "No Order"
+#~ msgstr "No Order"
+
+#~ msgid "Entry ID"
+#~ msgstr "ID d'entrée"
+
+#~ msgid "Date Added"
+#~ msgstr "Date Ajoutée"
+
+#~ msgid "Attributes Order"
+#~ msgstr "Attributes Order"
+
+#~ msgid "Random Order"
+#~ msgstr "Ordre Aléatoire"
+
+#~ msgid "Author's avatar (Testimonials only)"
+#~ msgstr "Avatar de l'auteur (Témoignages seulement)"

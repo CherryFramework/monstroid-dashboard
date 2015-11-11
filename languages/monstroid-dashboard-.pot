@@ -1,0 +1,320 @@
+# Copyright (C) 2013 TODO
+# This file is distributed under the same license as the TODO package.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: TODO 1.0.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/plugins/plugin-name\n"
+"POT-Creation-Date: 2015-10-28 15:38+0200\n"
+"PO-Revision-Date: 2013-05-10 10:37-0500\n"
+"Last-Translator: FULL NAME <email@example.com>\n"
+"Language-Team: LANGUAGE <translations@example.com >\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-KeywordsList: __;_e;_n;_x;esc_html_e;esc_html__;esc_attr_e;"
+"esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_x:1,2c;_n:1,2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: cherry-wizard.php:149
+msgid "Theme installation complete. Redirecting to the next step..."
+msgstr ""
+
+#: cherry-wizard.php:329
+msgid "Please select installation type"
+msgstr ""
+
+#: cherry-wizard.php:329 cherry-wizard.php:334 cherry-wizard.php:339
+#: cherry-wizard.php:344 includes/views/cherry-wizard-step-1.php:89
+msgid "Retry"
+msgstr ""
+
+#: cherry-wizard.php:334
+msgid "Please provide your email before installation"
+msgstr ""
+
+#: cherry-wizard.php:339 cherry-wizard.php:344
+msgid "Activate your license before installation"
+msgstr ""
+
+#: includes/cherry-wizard-service-hooks.php:164
+msgid "complete"
+msgstr ""
+
+#: includes/class-cherry-wizard-helper.php:73
+msgid "Please, fill required fields"
+msgstr ""
+
+#: includes/class-cherry-wizard-helper.php:85
+msgid "Can not send activation request. "
+msgstr ""
+
+#: includes/class-cherry-wizard-helper.php:92
+msgid "Activation request error. "
+msgstr ""
+
+#: includes/class-cherry-wizard-helper.php:102
+msgid "Bad request."
+msgstr ""
+
+#: includes/class-cherry-wizard-helper.php:112
+msgid "Wrong license key. Make sure activation key is correct."
+msgstr ""
+
+#: includes/class-cherry-wizard-helper.php:122
+msgid "Invalid theme name. Make sure theme name is correct."
+msgstr ""
+
+#: includes/class-cherry-wizard-helper.php:142
+msgid "Something is wrong. Please contact support team for help."
+msgstr ""
+
+#: includes/class-cherry-wizard-helper.php:152
+msgid "Theme is not available yet. Please try again in 10 minutes."
+msgstr ""
+
+#: includes/class-cherry-wizard-helper.php:162
+msgid "Theme is not available. Please contact support team for help."
+msgstr ""
+
+#: includes/class-cherry-wizard-helper.php:181
+msgid "Everything is ready. Starting theme installation..."
+msgstr ""
+
+#: includes/class-cherry-wizard-helper.php:208
+msgid "Unknown error. Please try again or contact support for help."
+msgstr ""
+
+#: includes/class-cherry-wizard-helper.php:212
+msgid "Please enter your email address"
+msgstr ""
+
+#: includes/class-cherry-wizard-helper.php:217
+msgid "Please enter valid email address"
+msgstr ""
+
+#: includes/class-cherry-wizard-helper.php:231
+msgid "Thank you. Starting installation..."
+msgstr ""
+
+#: includes/class-cherry-wizard-install-handlers.php:372
+msgid "Can't download CherryFramework"
+msgstr ""
+
+#: includes/class-cherry-wizard-install-handlers.php:388
+msgid "Installing child theme"
+msgstr ""
+
+#: includes/class-cherry-wizard-install-handlers.php:416
+msgid "Theme license not activated"
+msgstr ""
+
+#: includes/class-cherry-wizard-install-handlers.php:422
+msgid "Can't find theme link"
+msgstr ""
+
+#: includes/class-cherry-wizard-install-handlers.php:444
+msgid "Activating child theme"
+msgstr ""
+
+#: includes/class-cherry-wizard-install-handlers.php:476
+msgid "Theme name was not provided. Please activate your theme agian"
+msgstr ""
+
+#: includes/class-cherry-wizard-install-handlers.php:486
+msgid "This theme already active"
+msgstr ""
+
+#: includes/class-cherry-wizard-install-handlers.php:487
+#: includes/class-cherry-wizard-install-handlers.php:496
+msgid "Installing Live Chat"
+msgstr ""
+
+#: includes/class-cherry-wizard-install-handlers.php:495
+msgid "Theme successfully activated"
+msgstr ""
+
+#: includes/class-cherry-wizard-install-handlers.php:524
+msgid "Can not download Plugin Manager"
+msgstr ""
+
+#: includes/class-cherry-wizard-install-handlers.php:558
+#: includes/class-cherry-wizard-install-handlers.php:634
+#: includes/class-cherry-wizard-install-handlers.php:899
+msgid "Plugin activated"
+msgstr ""
+
+#: includes/class-cherry-wizard-install-handlers.php:565
+msgid "Installing Data Manager"
+msgstr ""
+
+#: includes/class-cherry-wizard-install-handlers.php:600
+msgid "Can not download Data Manager"
+msgstr ""
+
+#: includes/class-cherry-wizard-install-handlers.php:651
+msgid "Installing required plugins"
+msgstr ""
+
+#: includes/class-cherry-wizard-install-handlers.php:653
+msgid "Preparing required plugins"
+msgstr ""
+
+#: includes/class-cherry-wizard-install-handlers.php:697
+msgid "All done"
+msgstr ""
+
+#: includes/class-cherry-wizard-install-handlers.php:727
+#: includes/class-cherry-wizard-install-handlers.php:763
+#, php-format
+msgid "Installing %s"
+msgstr ""
+
+#: includes/class-cherry-wizard-install-handlers.php:730
+msgid "Plugins prepared"
+msgstr ""
+
+#: includes/class-cherry-wizard-install-handlers.php:796
+msgid "Plugin not exist"
+msgstr ""
+
+#: includes/class-cherry-wizard-install-handlers.php:837
+msgid "Can not download "
+msgstr ""
+
+#: includes/class-cherry-wizard-install-handlers.php:949
+msgid "Next step"
+msgstr ""
+
+#: includes/class-cherry-wizard-install-handlers.php:953
+msgid "Details"
+msgstr ""
+
+#: includes/class-cherry-wizard-interface.php:37
+#: includes/class-cherry-wizard-interface.php:38
+msgid "Cherry Wizard"
+msgstr ""
+
+#: includes/class-cherry-wizard-notices.php:119
+msgid "Wizard will help you to install your Cherry Framework theme."
+msgstr ""
+
+#: includes/class-cherry-wizard-notices.php:120
+msgid "Install theme"
+msgstr ""
+
+#: includes/class-cherry-wizard-notices.php:120
+msgid "Dismiss"
+msgstr ""
+
+#: includes/class-cherry-wizard-notices.php:152
+msgid "Plugins directory not writable"
+msgstr ""
+
+#: includes/class-cherry-wizard-notices.php:160
+msgid "Themes directory not writable"
+msgstr ""
+
+#: includes/class-cherry-wizard-notices.php:168
+msgid "Uploads directory not writable"
+msgstr ""
+
+#: includes/class-cherry-wizard-notices.php:304
+msgid "I understand, start installation"
+msgstr ""
+
+#: includes/class-cherry-wizard-notices.php:311
+msgid "Change required settings and try again"
+msgstr ""
+
+#: includes/class-cherry-wizard-notices.php:312
+msgid "Try again"
+msgstr ""
+
+#: includes/views/cherry-wizard-step-1.php:29
+msgid "Premium"
+msgstr ""
+
+#: includes/views/cherry-wizard-step-1.php:33
+msgid "Demo"
+msgstr ""
+
+#: includes/views/cherry-wizard-step-1.php:37
+msgid "Undefined"
+msgstr ""
+
+#: includes/views/cherry-wizard-step-1.php:44
+#, php-format
+msgid "<b>%s</b> theme installation"
+msgstr ""
+
+#: includes/views/cherry-wizard-step-1.php:93
+msgid "Installing Cherry framework"
+msgstr ""
+
+#: includes/views/cherry-wizard-step-3.php:32
+msgid "Congratulations"
+msgstr ""
+
+#: includes/views/cherry-wizard-step-3.php:34
+msgid "Theme and content has been successfully installed"
+msgstr ""
+
+#: includes/views/cherry-wizard-step-3.php:37
+msgid "View your site"
+msgstr ""
+
+#: includes/views/cherry-wizard-step-3.php:38
+msgid "Go to Cherry Options"
+msgstr ""
+
+#: includes/views/cherry-wizard.php:26
+msgid ""
+"Please make sure your WordPress is upgraded to version <b>4.2.2</b> "
+"or later. This version contains vital security and stability "
+"updates required for the correct work of Cherry Framework."
+msgstr ""
+
+#: includes/views/cherry-wizard.php:37
+msgid "Theme ID"
+msgstr ""
+
+#: includes/views/cherry-wizard.php:40
+msgid "Enter your theme ID"
+msgstr ""
+
+#: includes/views/cherry-wizard.php:45
+msgid "Activation Key"
+msgstr ""
+
+#: includes/views/cherry-wizard.php:48
+msgid "Enter theme activation key"
+msgstr ""
+
+#: includes/views/cherry-wizard.php:53
+#: includes/views/cherry-wizard.php:74
+msgid "Start"
+msgstr ""
+
+#: includes/views/cherry-wizard.php:66
+msgid "Email"
+msgstr ""
+
+#: includes/views/cherry-wizard.php:69
+msgid "Enter your email address"
+msgstr ""
+
+#: includes/views/cherry-wizard.php:87
+msgid "Get theme key"
+msgstr ""
+
+#: includes/views/cherry-wizard.php:88
+msgid "Order ID"
+msgstr ""
+
+#: includes/views/cherry-wizard.php:89
+msgid "Request"
+msgstr ""

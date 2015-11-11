@@ -90,7 +90,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Tips' ) ) {
 		 */
 		public function get_tips() {
 
-			$default_label = __( 'Strat', 'monstroid-dashboard' );
+			$default_label = __( 'Start', 'monstroid-dashboard' );
 
 			foreach ( $this->get_tips_list() as $tip ) {
 				include monstroid_dashboard()->plugin_dir( 'admin/views/single-tip.php' );
