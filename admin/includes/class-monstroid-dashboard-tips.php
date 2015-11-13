@@ -68,18 +68,39 @@ if ( ! class_exists( 'Monstroid_Dashboard_Tips' ) ) {
 				array(
 					array(
 						'label' => __( 'Monstroid documentation', 'monstroid-dashboard' ),
-						'url'   => 'http://www.templatemonster.com/help/quick-start-guide/wordpress-themes/monstroid/'
+						'url'   => $this->get_documentation_url(),
 					),
 					array(
 						'label' => __( 'Quick Start Guide', 'monstroid-dashboard' ),
-						'url'   => 'http://www.templatemonster.com/help/quick-start-guide/wordpress-themes/monstroid/quick_guide/index_en.html'
+						'url'   => 'http://www.templatemonster.com/help/quick-start-guide/wordpress-themes/monstroid/quick_guide/index_en.html',
 					),
 					array(
 						'label' => __( 'Monstroid Video Tutorials', 'monstroid-dashboard' ),
-						'url'   => 'http://www.templatemonster.com/help/cms-blog-templates/monstroid/monstroid-tutorials/'
-					)
+						'url'   => 'http://www.templatemonster.com/help/cms-blog-templates/monstroid/monstroid-tutorials/',
+					),
 				)
 			);
+		}
+
+		/**
+		 * Get Monstroid documentation URL
+		 *
+		 * @since  1.0.1
+		 * @return string
+		 */
+		public function get_documentation_url() {
+
+			if ( ! function_exists( 'cherry_get_documentation_link_attr' ) ) {
+				return false;
+			}
+
+			$link_attr = cherry_get_documentation_link_attr();
+
+			if ( ! isset( $link_attr['href'] ) ) {
+				return false;
+			}
+
+			return esc_url( $link_attr['href'] );
 		}
 
 		/**
