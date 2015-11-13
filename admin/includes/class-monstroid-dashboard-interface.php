@@ -60,15 +60,15 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 			// add menu pages
 			add_action( 'admin_menu', array( $this, 'register_new_pages' ) );
 			// Replace mailchimp, woocommerce, etc.
-			add_action( 'admin_menu', array( $this, 'replace_misc' ), 99 );
+			add_action( 'admin_menu', array( $this, 'replace_misc' ), 110 );
 			// replace YIT plugins
 			add_filter( 'yit_plugins_menu_item_position', array( $this, 'replace_yit' ) );
 			// Duplicate YIT items hack
 			do_action( 'yit_after_add_settings_page', array( $this, 'remove_duplicate_yit_pages' ) );
 			// replace Cherry menu item
 			add_filter( 'cherry_menu_item_args', array( $this, 'replace_cherry' ) );
-			$this->replace_related_post_types();
 
+			$this->replace_related_post_types();
 		}
 
 		/**
@@ -79,8 +79,6 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 		 * @return string
 		 */
 		function replace_yit( $position ) {
-			//$this->iter++;
-			//$position = $this->start_position + $this->iter;
 			remove_menu_page( 'yit_plugin_panel' );
 			return $position;
 		}
@@ -102,13 +100,18 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 		function add_separators() {
 			global $menu;
 
-			foreach ( array( $this->start_position, $this->start_position + $this->iter + 1 ) as $position ) {
+			$positions = array(
+				$this->validate_position( $this->start_position ),
+				$this->validate_position( $this->start_position + $this->iter + 1 ),
+			);
+
+			foreach ( $positions as $position ) {
 				$menu[ $position ] = array(
 					0 => '',
 					1 => 'read',
 					2 => 'separator' . $position,
 					3 => '',
-					4 => 'wp-menu-separator'
+					4 => 'wp-menu-separator',
 				);
 			}
 
@@ -130,12 +133,19 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 				'monstroid-dashboard',
 				array( $this, 'build_page' ),
 				monstroid_dashboard()->plugin_url( 'assets/images/icon.png' ),
-				$this->start_position + 1
+				$this->validate_position( $this->start_position + 1 )
 			);
 
-			// register subitems
+			// Register subitems
 			foreach ( $this->subpages() as $slug => $data ) {
-				add_submenu_page( 'monstroid-dashboard', $data['page-title'], $data['menu-title'], 'manage_options', $slug, array( $this, 'build_page' ) );
+				add_submenu_page(
+					'monstroid-dashboard',
+					$data['page-title'],
+					$data['menu-title'],
+					'manage_options',
+					$slug,
+					array( $this, 'build_page' )
+				);
 			}
 		}
 
@@ -145,9 +155,9 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 		 * @since  1.0.0
 		 * @return void
 		 */
-		function replace_cherry( $args ) {
+		public function replace_cherry( $args ) {
 			$this->iter++;
-			$args['position'] = $this->start_position + 2;
+			$args['position'] = $this->validate_position( $this->start_position + 2 );
 			return $args;
 		}
 
@@ -189,8 +199,27 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 		 */
 		public function change_position( $args ) {
 			$this->iter++;
-			$args['menu_position'] = $this->start_position + $this->iter;
+			$args['menu_position'] = $this->validate_position( $this->start_position + $this->iter );
 			return $args;
+		}
+
+		/**
+		 * Validate menu position to prevent erasing existing menu items.
+		 *
+		 * @since  1.0.1
+		 * @param  int $postition position to set into it.
+		 * @return int
+		 */
+		public function validate_position( $postition ) {
+
+			global $menu;
+
+			while ( ! empty( $menu[ $postition ] ) ) {
+				$postition++;
+			}
+
+			return $postition;
+
 		}
 
 		/**
@@ -267,7 +296,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 				wp_die( 'Page not exists' );
 			}
 
-			$depends = isset( $subpages[$current]['depends'] ) ? $subpages[$current]['depends'] : false;
+			$depends = isset( $subpages[$current]['depends'] ) ? $subpages[ $current ]['depends'] : false;
 
 			if ( ! monstroid_dashboard()->is_monstroid_installed() ) {
 				$this->open_page_wrap();
@@ -345,6 +374,9 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 		 * @return void
 		 */
 		function replace_misc() {
+
+			global $menu;
+
 			$replace_by_slug = apply_filters(
 				'monstroid_dashboard_replace_by_slug',
 				array(
@@ -383,15 +415,15 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 				}
 
 				$this->iter++;
-				$new_index = $this->start_position + $this->iter;
+				$new_index = $this->validate_position( $this->start_position + $this->iter );
 
 				do {
 					$this->iter++;
-					$new_index = $this->start_position + $this->iter;
-				} while ( isset( $menu[$new_index] ) );
+					$new_index = $this->validate_position( $this->start_position + $this->iter );
+				} while ( isset( $menu[ $new_index ] ) );
 
-				unset( $menu[$position] );
-				$menu[$new_index] = $item;
+				unset( $menu[ $position ] );
+				$menu[ $new_index ] = $item;
 				break;
 			}
 
