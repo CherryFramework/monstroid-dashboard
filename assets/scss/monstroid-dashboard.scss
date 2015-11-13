@@ -19,6 +19,7 @@ $border:  #dfdfdf;
 	position: relative;
 	font-size: 18px;
 	line-height: 30px;
+
 	h2 {
 		margin: 0 0 20px 0;
 		padding: 0;
@@ -41,7 +42,8 @@ $border:  #dfdfdf;
 		color: $primary;
 	}
 
-	.monstroid-notice {
+	.monstroid-notice,
+	.notice {
 		display: block;
 		background: #f9f9f9;
 		box-shadow: none;
@@ -50,13 +52,21 @@ $border:  #dfdfdf;
 		p {
 			font-size: 14px;
 			line-height: 20px;
+			strong {
+				font-weight: normal;
+			}
+			em {
+				font-style: normal;
+			}
 		}
 		a {
 			box-shadow: none;
-			margin: 0 10px 0 0;
 			text-decoration: none;
 			&.dismiss {
 				color: $warning;
+			}
+			&.primary {
+				margin: 0 10px 0 0;
 			}
 		}
 		&.error {
