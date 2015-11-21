@@ -35,6 +35,9 @@ class Monstroid_Dashboard_Backup_Manager {
 	 */
 	private static $instance = null;
 
+	/**
+	 * Constructor for the class
+	 */
 	function __construct() {
 
 		// connect filesystem
@@ -100,7 +103,15 @@ class Monstroid_Dashboard_Backup_Manager {
 		return $this->files;
 	}
 
+	/**
+	 * Recursive function, that parse passed directory and add found files into 'file' property.
+	 *
+	 * @since  1.0.0
+	 * @param  string $dir path to directory to search files in.
+	 * @return void|bool false
+	 */
 	public function parse_dir( $dir ) {
+
 		global $wp_filesystem;
 
 		$files = $wp_filesystem->dirlist( $dir );
@@ -165,7 +176,7 @@ class Monstroid_Dashboard_Backup_Manager {
 	 * Prepeare path for using with filesystem API
 	 *
 	 * @since  1.0.0
-	 * @param  string $path
+	 * @param  string $path path to prepare.
 	 * @return string
 	 */
 	public function prepare_path( $path ) {
@@ -214,8 +225,9 @@ class Monstroid_Dashboard_Backup_Manager {
 	/**
 	 * Compare backups by date
 	 *
-	 * @param  array $a 1st value
-	 * @param  array $b 2nd value
+	 * @since  1.0.0
+	 * @param  array $a 1st value.
+	 * @param  array $b 2nd value.
 	 * @return bool
 	 */
 	public function date_compare( $a, $b ) {
@@ -228,7 +240,7 @@ class Monstroid_Dashboard_Backup_Manager {
 	 * Download backup by filename
 	 *
 	 * @since  1.0.0
-	 * @param  string $file backup filename
+	 * @param  string $file backup filename.
 	 * @return void
 	 */
 	public function download_backup( $file ) {
@@ -270,7 +282,7 @@ class Monstroid_Dashboard_Backup_Manager {
 	 * Delete existing backup by filename
 	 *
 	 * @since  1.0.0
-	 * @param  string $file backup filename
+	 * @param  string $file backup filename.
 	 * @return void
 	 */
 	public function delete_backup( $file ) {
@@ -304,8 +316,8 @@ class Monstroid_Dashboard_Backup_Manager {
 	 * Chunked file reading
 	 *
 	 * @since  1.0.0
-	 * @param  string  $file     fileptah
-	 * @param  boolean $retbytes return bytes number or not
+	 * @param  string  $file     fileptah.
+	 * @param  boolean $retbytes return bytes number or not.
 	 * @return bool|int
 	 */
 	function readfile_chunked( $file, $retbytes = true ) {
@@ -352,7 +364,6 @@ class Monstroid_Dashboard_Backup_Manager {
 		return (string) $this->message;
 	}
 
-
 	/**
 	 * Connect to the filesystem.
 	 *
@@ -390,28 +401,28 @@ class Monstroid_Dashboard_Backup_Manager {
 		}
 
 		if ( ! is_object($wp_filesystem) )
-			return new WP_Error('fs_unavailable', $this->strings['fs_unavailable'] );
+			return new WP_Error( 'fs_unavailable', $this->strings['fs_unavailable'] );
 
-		if ( is_wp_error($wp_filesystem->errors) && $wp_filesystem->errors->get_error_code() )
-			return new WP_Error('fs_error', $this->strings['fs_error'], $wp_filesystem->errors);
+		if ( is_wp_error( $wp_filesystem->errors ) && $wp_filesystem->errors->get_error_code() )
+			return new WP_Error( 'fs_error', $this->strings['fs_error'], $wp_filesystem->errors );
 
 		foreach ( (array)$directories as $dir ) {
 			switch ( $dir ) {
 				case ABSPATH:
 					if ( ! $wp_filesystem->abspath() )
-						return new WP_Error('fs_no_root_dir', $this->strings['fs_no_root_dir']);
+						return new WP_Error( 'fs_no_root_dir', $this->strings['fs_no_root_dir'] );
 					break;
 				case WP_CONTENT_DIR:
 					if ( ! $wp_filesystem->wp_content_dir() )
-						return new WP_Error('fs_no_content_dir', $this->strings['fs_no_content_dir']);
+						return new WP_Error( 'fs_no_content_dir', $this->strings['fs_no_content_dir'] );
 					break;
 				case WP_PLUGIN_DIR:
 					if ( ! $wp_filesystem->wp_plugins_dir() )
-						return new WP_Error('fs_no_plugins_dir', $this->strings['fs_no_plugins_dir']);
+						return new WP_Error( 'fs_no_plugins_dir', $this->strings['fs_no_plugins_dir'] );
 					break;
 				case get_theme_root():
 					if ( ! $wp_filesystem->wp_themes_dir() )
-						return new WP_Error('fs_no_themes_dir', $this->strings['fs_no_themes_dir']);
+						return new WP_Error( 'fs_no_themes_dir', $this->strings['fs_no_themes_dir'] );
 					break;
 				default:
 					if ( ! $wp_filesystem->find_folder($dir) )
@@ -431,9 +442,9 @@ class Monstroid_Dashboard_Backup_Manager {
 	 */
 	public static function get_instance() {
 		// If the single instance hasn't been set, set it now.
-		if ( null == self::$instance )
+		if ( null == self::$instance ) {
 			self::$instance = new self;
+		}
 		return self::$instance;
 	}
-
 }

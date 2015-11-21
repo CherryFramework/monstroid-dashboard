@@ -16,6 +16,9 @@ if ( ! defined( 'WPINC' ) ) {
 // If class 'Monstroid_Dashboard_Tips' not exists.
 if ( ! class_exists( 'Monstroid_Dashboard_Tips' ) ) {
 
+	/**
+	 * Pipsa management class
+	 */
 	final class Monstroid_Dashboard_Tips {
 
 		/**
@@ -42,7 +45,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Tips' ) ) {
 						'desc'       => __( 'Go to Theme options manager', 'monstroid-dashboard' ),
 						'link'       => '#',
 						'link_label' => __( 'Start', 'monstroid-dashboard' ),
-						'tutorial'   => '#'
+						'tutorial'   => '#',
 					),
 					array(
 						'id'         => 'write-post',
@@ -50,8 +53,8 @@ if ( ! class_exists( 'Monstroid_Dashboard_Tips' ) ) {
 						'desc'       => __( 'Write your first post', 'monstroid-dashboard' ),
 						'link'       => '#',
 						'link_label' => __( 'Start', 'monstroid-dashboard' ),
-						'tutorial'   => '#'
-					)
+						'tutorial'   => '#',
+					),
 				)
 			);
 		}
@@ -86,7 +89,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Tips' ) ) {
 		 * Get Monstroid documentation URL
 		 *
 		 * @since  1.0.1
-		 * @return string
+		 * @return string|bool false
 		 */
 		public function get_documentation_url() {
 
@@ -123,7 +126,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Tips' ) ) {
 		 * Get useful links list
 		 *
 		 * @since  1.0.0
-		 * @return void
+		 * @return void|null
 		 */
 		public function get_links() {
 

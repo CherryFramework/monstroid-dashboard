@@ -8,7 +8,7 @@
  * Plugin Name:       Monstroid Dashboard
  * Plugin URI:        http://www.templatemonster.com/
  * Description:       Dashboard for Monstroid theme
- * Version:           1.0.1
+ * Version:           1.0.2
  * Author:            TemplateMonster
  * Author URI:        http://www.templatemonster.com/
  * Text Domain:       monstroid-dashboard
@@ -108,6 +108,12 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 
 		}
 
+		/**
+		 * Include files only on dashboard pages
+		 *
+		 * @since  1.0.0
+		 * @return void|bool false
+		 */
 		public function local_includes() {
 			if ( ! $this->is_dashboard_page() ) {
 				return false;
@@ -120,7 +126,7 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 		 * Get plugin URL (or some plugin dir/file URL)
 		 *
 		 * @since  1.0.0
-		 * @param  string $path dir or file inside plugin dir
+		 * @param  string $path dir or file inside plugin dir.
 		 * @return string
 		 */
 		public function plugin_url( $path = null ) {
@@ -141,7 +147,7 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 		 * Get plugin dir path (or some plugin dir/file path)
 		 *
 		 * @since  1.0.0
-		 * @param  string $path dir or file inside plugin dir
+		 * @param  string $path dir or file inside plugin dir.
 		 * @return string
 		 */
 		public function plugin_dir( $path ) {
@@ -162,8 +168,8 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 		 * Get dashboard inner links
 		 *
 		 * @since  1.0.0
-		 * @param  string $page page slug to get URL for
-		 * @param  array  $args additional query arguments array
+		 * @param  string $page page slug to get URL for.
+		 * @param  array  $args additional query arguments array.
 		 * @return string
 		 */
 		public function get_link( $page = null, $args = array() ) {
@@ -244,7 +250,7 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 		 * Add update backups folder to excluded from export directories
 		 *
 		 * @since  1.0.0
-		 * @param  array  $dirs  excluded directories list
+		 * @param  array $dirs excluded directories list.
 		 * @return array
 		 */
 		public function do_not_export_backups( $dirs ) {
@@ -310,8 +316,9 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 		 */
 		public static function get_instance() {
 			// If the single instance hasn't been set, set it now.
-			if ( null == self::$instance )
+			if ( null == self::$instance ) {
 				self::$instance = new self;
+			}
 			return self::$instance;
 		}
 	}
@@ -339,7 +346,8 @@ function monstroid_dashboard_updater() {
 	return Monstroid_Dashboard_Updater::get_instance();
 }
 
-// create default plugin instance
+// Create default plugin instance
 monstroid_dashboard();
-// create base updater instance
+
+// Create base updater instance
 monstroid_dashboard_updater();

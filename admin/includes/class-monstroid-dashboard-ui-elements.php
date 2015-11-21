@@ -13,14 +13,17 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+/**
+ * Define UI elements
+ */
 class Monstroid_Dashboard_UI {
 
 	/**
 	 * Get force check updates button HTML
 	 *
 	 * @since  1.0.0
-	 * @param  String $label button label
-	 * @param  string $class additional button CSS class
+	 * @param  String $label button label.
+	 * @param  string $class additional button CSS class.
 	 * @return string
 	 */
 	public static function check_update_button( $label = null, $class = '' ) {
@@ -127,7 +130,8 @@ class Monstroid_Dashboard_UI {
 	/**
 	 * Show avaliable backups list
 	 *
-	 * @since 1.0.0
+	 * @since  1.0.0
+	 * @return string|null
 	 */
 	public static function backups_list() {
 
@@ -162,7 +166,7 @@ class Monstroid_Dashboard_UI {
 					$download_url = add_query_arg(
 						array(
 							'action' => 'monstroid_dashboard_get_backup',
-							'file'   => $data['name']
+							'file'   => $data['name'],
 						),
 						admin_url( 'admin-ajax.php' )
 					);
@@ -173,7 +177,7 @@ class Monstroid_Dashboard_UI {
 					$delete_url = add_query_arg(
 						array(
 							'action' => 'monstroid_dashboard_delete_backup',
-							'file'   => $data['name']
+							'file'   => $data['name'],
 						),
 						admin_url( 'admin-ajax.php' )
 					);
@@ -188,7 +192,5 @@ class Monstroid_Dashboard_UI {
 		</div>
 		<?php
 		return ob_get_clean();
-
 	}
-
 }

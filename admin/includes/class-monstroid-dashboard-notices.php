@@ -16,6 +16,9 @@ if ( ! defined( 'WPINC' ) ) {
 // If class 'Monstroid_Dashboard_Notices' not exists.
 if ( ! class_exists( 'Monstroid_Dashboard_Notices' ) ) {
 
+	/**
+	 * Admin notices manager class
+	 */
 	final class Monstroid_Dashboard_Notices {
 
 		/**
@@ -34,6 +37,9 @@ if ( ! class_exists( 'Monstroid_Dashboard_Notices' ) ) {
 		 */
 		public $show_notices = false;
 
+		/**
+		 * Constructor for the class
+		 */
 		function __construct() {
 			add_action( 'admin_init', array( $this, 'remove_notices' ), 1 );
 			add_action( 'admin_init', array( $this, 'check_notices' ) );
@@ -63,8 +69,8 @@ if ( ! class_exists( 'Monstroid_Dashboard_Notices' ) ) {
 		 * Build single notice output
 		 *
 		 * @since  1.0.0
-		 * @param  string $id   notice slug(id)
-		 * @param  array  $data notice data
+		 * @param  string $id   notice slug(id).
+		 * @param  array  $data notice data.
 		 * @return string
 		 */
 		public function build_notice( $id, $data ) {
@@ -100,7 +106,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Notices' ) ) {
 		 * Get specific notices CSS
 		 *
 		 * @since  1.0.0
-		 * @return string
+		 * @return void|bool false
 		 */
 		public function notices_css() {
 
@@ -137,13 +143,13 @@ if ( ! class_exists( 'Monstroid_Dashboard_Notices' ) ) {
 						'accept_action'  => array(
 							'url'   => monstroid_dashboard()->get_link( 'monstroid-updater', array( 'md_hide_notice' => 'need_update' ) ),
 							'label' => __( 'Update', 'monstroid-dashboard' ),
-							'class' => ''
+							'class' => '',
 						),
 						'dismiss_action' => array(
 							'url'   => esc_url( add_query_arg( array( 'mu_skip_update' => 'yes' ) ) ),
 							'label' => __( 'Skip', 'monstroid-dashboard' ),
-							'class' => ''
-						)
+							'class' => '',
+						),
 					),
 					'set_creds' => array(
 						'message'        => __( 'Please, set up filesystem credentials to allow automatic updates.', 'monstroid-dashboard' ),
@@ -152,9 +158,9 @@ if ( ! class_exists( 'Monstroid_Dashboard_Notices' ) ) {
 						'dismiss_action' => array(
 							'url'   => esc_url( add_query_arg( array( 'md_dismiss_creds' => 'yes' ) ) ),
 							'label' => __( 'Dismiss', 'monstroid-dashboard' ),
-							'class' => ''
-						)
-					)
+							'class' => '',
+						),
+					),
 				)
 			);
 
@@ -167,7 +173,8 @@ if ( ! class_exists( 'Monstroid_Dashboard_Notices' ) ) {
 		 * Check update notice visibility and add it into shown notices array
 		 *
 		 * @since  1.0.0
-		 * @param  array  $notice_data  notice data
+		 * @param  array  $notice_data  notice data.
+		 * @return void|bool false
 		 */
 		public function check_update_notice( $notice_data ) {
 
@@ -190,7 +197,8 @@ if ( ! class_exists( 'Monstroid_Dashboard_Notices' ) ) {
 		 * Check creds notice visibility
 		 *
 		 * @since  1.0.0
-		 * @param  array  $notice_data  notice data
+		 * @param  array $notice_data notice data.
+		 * @return void|bool false
 		 */
 		public function check_creds_notice( $notice_data ) {
 
@@ -227,6 +235,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Notices' ) ) {
 		 * Skip update notice
 		 *
 		 * @since  1.0.0
+		 * @return void|bool false
 		 */
 		public function skip_update() {
 
@@ -251,6 +260,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Notices' ) ) {
 		 * Dismiss creds
 		 *
 		 * @since  1.0.0
+		 * @return void|bool false
 		 */
 		public function dismiss_creds() {
 

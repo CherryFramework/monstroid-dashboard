@@ -16,6 +16,9 @@ if ( ! defined( 'WPINC' ) ) {
 // If class 'Monstroid_Dashboard_Interface' not exists.
 if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 
+	/**
+	 * Inaterface management class
+	 */
 	final class Monstroid_Dashboard_Interface {
 
 		/**
@@ -75,7 +78,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 		 * Move YIT-related menu items below
 		 *
 		 * @since  1.0.0
-		 * @param  string $position default position
+		 * @param  string $position default position.
 		 * @return string
 		 */
 		function replace_yit( $position ) {
@@ -153,6 +156,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 		 * Replace Cherry menu item into monstroid group
 		 *
 		 * @since  1.0.0
+		 * @param  array $args post type arguments array.
 		 * @return void
 		 */
 		public function replace_cherry( $args ) {
@@ -194,7 +198,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 		 * Change position custom post types position
 		 *
 		 * @since  1.0.0
-		 * @param  array  $args  default post type arguments
+		 * @param  array $args default post type arguments.
 		 * @return array
 		 */
 		public function change_position( $args ) {
@@ -242,11 +246,11 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 						'menu-title' => __( 'Dashboard', 'monstroid-dashboard' ),
 						'depends'    => array(
 							monstroid_dashboard()->plugin_dir( 'admin/includes/class-monstroid-dashboard-tips.php' )
-						)
+						),
 					),
 					'monstroid-updater' => array(
 						'page-title' => __( 'Data manager', 'monstroid-dashboard' ),
-						'menu-title' => sprintf( __( 'Data manager %s', 'monstroid-dashboard' ), $this->get_menu_badge() )
+						'menu-title' => sprintf( __( 'Data manager %s', 'monstroid-dashboard' ), $this->get_menu_badge() ),
 					),
 					/*'monstroid-themes' => array(
 						'page-title' => __( 'Monstroid Themes', 'monstroid-dashboard' ),

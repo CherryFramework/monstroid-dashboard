@@ -15,6 +15,9 @@ if ( ! defined( 'WPINC' ) ) {
 // If class 'Monstroid_Dashboard_UI_Handlers' not exists.
 if ( ! class_exists( 'Monstroid_Dashboard_UI_Handlers' ) ) {
 
+	/**
+	 * Backend handlers for UI elements
+	 */
 	final class Monstroid_Dashboard_UI_Handlers {
 
 		/**
@@ -25,6 +28,9 @@ if ( ! class_exists( 'Monstroid_Dashboard_UI_Handlers' ) ) {
 		 */
 		private static $instance = null;
 
+		/**
+		 * Attach callbacks to related hooks
+		 */
 		function __construct() {
 			add_action( 'wp_ajax_monstroid_dashboard_download_latest', array( $this, 'download_latest' ) );
 			add_action( 'wp_ajax_monstroid_dashboard_save_key', array( $this, 'save_key' ) );
@@ -36,6 +42,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_UI_Handlers' ) ) {
 		 * Process download latest monstroid version
 		 *
 		 * @since  1.0.0
+		 * @return void
 		 */
 		public function download_latest() {
 
@@ -57,7 +64,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_UI_Handlers' ) ) {
 
 			wp_send_json_success(
 				array(
-					'url' => $url
+					'url' => $url,
 				)
 			);
 
@@ -196,7 +203,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_UI_Handlers' ) ) {
 
 			if ( ! $key ) {
 				wp_send_json_error( array(
-					'message' => __( 'Please, enter valid key', 'monstroid-dashboard' )
+					'message' => __( 'Please, enter valid key', 'monstroid-dashboard' ),
 				) );
 			}
 
@@ -204,7 +211,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_UI_Handlers' ) ) {
 				array(
 					'edd_action' => 'activate_license',
 					'item_name'  => urlencode( monstroid_dashboard_updater()->monstroid_id ),
-					'license'    => $key
+					'license'    => $key,
 				),
 				monstroid_dashboard_updater()->api
 			);
@@ -218,13 +225,13 @@ if ( ! class_exists( 'Monstroid_Dashboard_UI_Handlers' ) ) {
 			// Can't send request
 			if ( is_wp_error( $key_request ) || ! isset($key_request['response']) ) {
 				wp_send_json_error( array(
-					'message' => __( 'Can`t send activation request. ' . $key_request->get_error_message(), 'monstroid-dashboard' )
+					'message' => __( 'Can`t send activation request. ' . $key_request->get_error_message(), 'monstroid-dashboard' ),
 				) );
 			}
 
 			if ( 200 != $key_request['response']['code'] ) {
 				wp_send_json_error( array(
-					'message' => __( 'Activation request error. ' . $key_request['response']['code'] . ' - ' . $key_request['response']['message'] . '. Please, try again later', 'monstroid-dashboard' )
+					'message' => __( 'Activation request error. ' . $key_request['response']['code'] . ' - ' . $key_request['response']['message'] . '. Please, try again later', 'monstroid-dashboard' ),
 				) );
 			}
 
@@ -233,33 +240,33 @@ if ( ! class_exists( 'Monstroid_Dashboard_UI_Handlers' ) ) {
 			// Request generate unexpected result
 			if ( ! is_object( $response ) || !isset( $response->success ) ) {
 				wp_send_json_error( array(
-					'message' => __( 'Bad request.', 'monstroid-dashboard' )
+					'message' => __( 'Bad request.', 'monstroid-dashboard' ),
 				) );
 			}
 
 			// Requested license key is missing
 			if ( ! $response->success && 'missing' == $response->error ) {
 				wp_send_json_error( array(
-					'message'   => __( 'Wrong license key. Make sure activation key is correct.', 'monstroid-dashboard' )
+					'message'   => __( 'Wrong license key. Make sure activation key is correct.', 'monstroid-dashboard' ),
 				) );
 			}
 
 			// Hosts limit reached
 			if ( ! $response->success && 'limit_reached' == $response->error ) {
 				wp_send_json_error( array(
-					'message'   => __( 'Sorry, the license key you are trying to use exceeded the maximum amount of activations was applied for 3 domains', 'monstroid-dashboard' )
+					'message'   => __( 'Sorry, the license key you are trying to use exceeded the maximum amount of activations was applied for 3 domains', 'monstroid-dashboard' ),
 				) );
 			}
 			if ( ! $response->success && 'no_activations_left' == $response->error ) {
 				wp_send_json_error( array(
-					'message'   => __( 'Sorry, the license key you are trying to use exceeded the maximum amount of activations was applied for 3 domains', 'monstroid-dashboard' )
+					'message'   => __( 'Sorry, the license key you are trying to use exceeded the maximum amount of activations was applied for 3 domains', 'monstroid-dashboard' ),
 				) );
 			}
 
 			// Unknown error
 			if ( ! $response->success && $response->error ) {
 				wp_send_json_error( array(
-					'message'   => $response->error
+					'message'   => $response->error,
 				) );
 			}
 
@@ -273,14 +280,14 @@ if ( ! class_exists( 'Monstroid_Dashboard_UI_Handlers' ) ) {
 			// Theme currently in queue
 			if ( 'queue' == $response->tm_data->status ) {
 				wp_send_json_error( array(
-					'message'   => __( 'Theme is not available yet. Please try again in 10 minutes.', 'monstroid-dashboard' )
+					'message'   => __( 'Theme is not available yet. Please try again in 10 minutes.', 'monstroid-dashboard' ),
 				) );
 			}
 
 			// Theme currently removed from cloud
 			if ( 'failed' == $response->tm_data->status ) {
 				wp_send_json_error( array(
-					'message'   => __( 'Theme is not available. Please contact support team for help.', 'monstroid-dashboard' )
+					'message'   => __( 'Theme is not available. Please contact support team for help.', 'monstroid-dashboard' ),
 				) );
 			}
 
@@ -295,7 +302,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_UI_Handlers' ) ) {
 			);
 
 			wp_send_json_success( array(
-				'message' => __( 'Key successfully activated and saved', 'monstroid-dashboard' )
+				'message' => __( 'Key successfully activated and saved', 'monstroid-dashboard' ),
 			) );
 
 		}
@@ -344,8 +351,9 @@ if ( ! class_exists( 'Monstroid_Dashboard_UI_Handlers' ) ) {
 		 */
 		public static function get_instance() {
 			// If the single instance hasn't been set, set it now.
-			if ( null == self::$instance )
+			if ( null == self::$instance ) {
 				self::$instance = new self;
+			}
 			return self::$instance;
 		}
 

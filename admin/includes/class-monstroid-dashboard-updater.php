@@ -16,6 +16,9 @@ if ( ! defined( 'WPINC' ) ) {
 // If class 'Monstroid_Dashboard_Updater' not exists.
 if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 
+	/**
+	 * Main theme updatr class
+	 */
 	final class Monstroid_Dashboard_Updater {
 
 		/**
@@ -74,6 +77,9 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		 */
 		private $options = array();
 
+		/**
+		 * Constructor for the class
+		 */
 		function __construct() {
 
 			add_filter( 'cron_schedules', array( $this, 'add_shedules' ) );
@@ -91,6 +97,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		 * Get current Monstroid version
 		 *
 		 * @since  1.0.0
+		 * @return string
 		 */
 		public function get_current_version() {
 			if ( null == $this->current_version ) {
@@ -106,7 +113,8 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		/**
 		 * Setup updater options
 		 *
-		 * @since 1.0.0
+		 * @since  1.0.0
+		 * @return array
 		 */
 		public function get_options() {
 
@@ -128,7 +136,9 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		/**
 		 * Add dashboard-specific intervals for scheduled events
 		 *
-		 * @param array $schedules registered inervals
+		 * @since  1.0.0
+		 * @param  array $schedules registered inervals.
+		 * @return array
 		 */
 		public function add_shedules( $schedules ) {
 
@@ -156,7 +166,8 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		/**
 		 * Schedule automatic updates
 		 *
-		 * @since 1.0.0
+		 * @since  1.0.0
+		 * @return void|bool true
 		 */
 		public function shedule_updates() {
 
@@ -177,7 +188,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		 * force check update
 		 *
 		 * @since  1.0.0
-		 * @return void
+		 * @return string
 		 */
 		public function check_updates() {
 
@@ -205,7 +216,8 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		/**
 		 * run scheduled update
 		 *
-		 * @since 1.0.0
+		 * @since  1.0.0
+		 * @return void|bool false
 		 */
 		public function scheduled_update() {
 
@@ -250,7 +262,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		 * Prepare theme update transients for Monstroid update
 		 *
 		 * @since  1.0.0
-		 * @param  object $data themes update data
+		 * @param  object $data themes update data.
 		 * @return object
 		 */
 		public function add_monstroid_data( $data ) {
@@ -271,7 +283,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 				'theme'       => 'monstroid',
 				'new_version' => $update_data['new_version'],
 				'url'         => 'http://www.templatemonster.com/wordpress-themes/monstroid/',
-				'package'     => $package
+				'package'     => $package,
 			);
 
 			return $data;
@@ -281,7 +293,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		 * Get monstroid update package
 		 *
 		 * @since  1.0.0
-		 * @return void
+		 * @return string
 		 */
 		public function get_update_package() {
 
@@ -295,7 +307,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 				array(
 					'mu_request' => true,
 					'mu_action'  => 'get_link',
-					'key'        => $key
+					'key'        => $key,
 				),
 				$this->api
 			);
@@ -338,6 +350,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		 * Get update data
 		 *
 		 * @since  1.0.0
+		 * @param  string $key optional, key name to get it from update data.
 		 * @return array|bool|string
 		 */
 		public function get_update_data( $key = false ) {
@@ -345,8 +358,8 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 				$this->update_data = get_option( 'monstroid_dahboard_update_data' );
 			}
 
-			if ( false !== $key && is_array( $this->update_data ) && isset( $this->update_data[$key] ) ) {
-				return $this->update_data[$key];
+			if ( false !== $key && is_array( $this->update_data ) && isset( $this->update_data[ $key ] ) ) {
+				return $this->update_data[ $key ];
 			}
 
 			return $this->update_data;
@@ -379,7 +392,8 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		/**
 		 * Force check monstroid updates
 		 *
-		 * @since 1.0.0
+		 * @since  1.0.0
+		 * @return void
 		 */
 		public function force_check_updates() {
 
@@ -395,6 +409,8 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		 * Check if we need enable or disable auto updates and process
 		 *
 		 * @since  1.0.0
+		 * @return void|null
+		 *
 		 */
 		public function check_auto_updates() {
 			if ( isset( $_REQUEST['md_disable_auto_updates'] ) ) {
@@ -410,7 +426,8 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		/**
 		 * Disable automatic updates checking
 		 *
-		 * @since 1.0.0
+		 * @since  1.0.0
+		 * @return void
 		 */
 		public function disable_auto_updates() {
 
@@ -424,7 +441,8 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		/**
 		 * Enable automatic updates checking
 		 *
-		 * @since 1.0.0
+		 * @since  1.0.0
+		 * @return void
 		 */
 		public function enable_auto_updates() {
 
@@ -463,7 +481,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 			$title = __( 'Update Monstroid theme', 'monstroid-dashboard' );
 			$theme = 'monstroid';
 
-			$upgrader = new Theme_Upgrader( new Monstroid_Dashboard_Upgrader_Skin( compact('title', 'theme') ) );
+			$upgrader = new Theme_Upgrader( new Monstroid_Dashboard_Upgrader_Skin( compact( 'title', 'theme' ) ) );
 
 			ini_set( 'max_execution_time', -1 );
 			set_time_limit( 0 );
@@ -494,7 +512,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 				wp_send_json_error(
 					array(
 						'message'    => sprintf( __( 'Update failed. %s', 'monstroid-dashboard' ), $update->get_error_message() ),
-						'update_log' => $log
+						'update_log' => $log,
 					)
 				);
 			}
@@ -506,7 +524,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 							'Update failed. <a href="#" class="show-update-log">Show update log</a>',
 							'monstroid-dashboard'
 						),
-						'update_log' => $log
+						'update_log' => $log,
 					)
 				);
 			}
@@ -514,7 +532,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 			wp_send_json_error(
 				array(
 					'message'    => __( 'Unknown error, please try again later or contact our support', 'monstroid-dashboard' ),
-					'update_log' => $log
+					'update_log' => $log,
 				)
 			);
 
@@ -591,8 +609,9 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		 */
 		public static function get_instance() {
 			// If the single instance hasn't been set, set it now.
-			if ( null == self::$instance )
+			if ( null == self::$instance ) {
 				self::$instance = new self;
+			}
 			return self::$instance;
 		}
 

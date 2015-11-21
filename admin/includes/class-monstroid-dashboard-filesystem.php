@@ -16,6 +16,9 @@ if ( ! defined( 'WPINC' ) ) {
 // If class 'Monstroid_Dashboard_Filesystem' not exists.
 if ( ! class_exists( 'Monstroid_Dashboard_Filesystem' ) ) {
 
+	/**
+	 * Filesystem management class
+	 */
 	final class Monstroid_Dashboard_Filesystem {
 
 		/**
@@ -57,26 +60,27 @@ if ( ! class_exists( 'Monstroid_Dashboard_Filesystem' ) ) {
 				return $credentials;
 			}
 
-			$credentials = get_option('ftp_credentials', array( 'hostname' => '', 'username' => ''));
+			$credentials = get_option( 'ftp_credentials', array( 'hostname' => '', 'username' => '' ) );
 
 			// If defined, set it to that, Else, If POST'd, set it to that, If not, Set it to whatever it previously was(saved details in option)
-			$credentials['hostname'] = defined('FTP_HOST') ? FTP_HOST : (!empty($_POST['hostname']) ? wp_unslash( $_POST['hostname'] ) : $credentials['hostname']);
-			$credentials['username'] = defined('FTP_USER') ? FTP_USER : (!empty($_POST['username']) ? wp_unslash( $_POST['username'] ) : $credentials['username']);
-			$credentials['password'] = defined('FTP_PASS') ? FTP_PASS : (!empty($_POST['password']) ? wp_unslash( $_POST['password'] ) : '');
+			$credentials['hostname'] = defined( 'FTP_HOST' ) ? FTP_HOST : ( ! empty( $_POST['hostname'] ) ? wp_unslash( $_POST['hostname'] ) : $credentials['hostname'] );
+			$credentials['username'] = defined( 'FTP_USER' ) ? FTP_USER : ( ! empty( $_POST['username'] ) ? wp_unslash( $_POST['username'] ) : $credentials['username'] );
+			$credentials['password'] = defined( 'FTP_PASS' ) ? FTP_PASS : ( ! empty($_POST['password'] ) ? wp_unslash( $_POST['password'] ) : '' );
 
 			// Check to see if we are setting the public/private keys for ssh
-			$credentials['public_key'] = defined('FTP_PUBKEY') ? FTP_PUBKEY : (!empty($_POST['public_key']) ? wp_unslash( $_POST['public_key'] ) : '');
-			$credentials['private_key'] = defined('FTP_PRIKEY') ? FTP_PRIKEY : (!empty($_POST['private_key']) ? wp_unslash( $_POST['private_key'] ) : '');
+			$credentials['public_key'] = defined( 'FTP_PUBKEY' ) ? FTP_PUBKEY : ( ! empty( $_POST['public_key'] ) ? wp_unslash( $_POST['public_key'] ) : '' );
+			$credentials['private_key'] = defined( 'FTP_PRIKEY' ) ? FTP_PRIKEY : ( ! empty( $_POST['private_key'] ) ? wp_unslash( $_POST['private_key'] ) : '' );
 
 			// Sanitize the hostname, Some people might pass in odd-data:
-			$credentials['hostname'] = preg_replace('|\w+://|', '', $credentials['hostname']); //Strip any schemes off
+			$credentials['hostname'] = preg_replace( '|\w+://|', '', $credentials['hostname'] );
 
-			if ( strpos($credentials['hostname'], ':') ) {
-				list( $credentials['hostname'], $credentials['port'] ) = explode(':', $credentials['hostname'], 2);
-				if ( ! is_numeric($credentials['port']) )
-					unset($credentials['port']);
+			if ( strpos( $credentials['hostname'], ':' ) ) {
+				list( $credentials['hostname'], $credentials['port'] ) = explode( ':', $credentials['hostname'], 2 );
+				if ( ! is_numeric( $credentials['port'] ) ) {
+					unset( $credentials['port'] );
+				}
 			} else {
-				unset($credentials['port']);
+				unset( $credentials['port'] );
 			}
 
 			if ( ( defined( 'FTP_SSH' ) && FTP_SSH ) || ( defined( 'FS_METHOD' ) && 'ssh2' == FS_METHOD ) ) {
@@ -143,11 +147,11 @@ if ( ! class_exists( 'Monstroid_Dashboard_Filesystem' ) ) {
 		 */
 		public static function get_instance() {
 			// If the single instance hasn't been set, set it now.
-			if ( null == self::$instance )
+			if ( null == self::$instance ) {
 				self::$instance = new self;
+			}
 			return self::$instance;
 		}
-
 	}
 
 }
