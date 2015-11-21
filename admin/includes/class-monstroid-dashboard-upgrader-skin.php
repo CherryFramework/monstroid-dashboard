@@ -26,7 +26,7 @@ class Monstroid_Dashboard_Upgrader_Skin extends Theme_Upgrader_Skin {
 	/**
 	 * Constructor for the class
 	 *
-	 * @param array $args upgrader arguments array
+	 * @param array $args upgrader arguments array.
 	 */
 	public function __construct( $args = array() ) {
 		parent::__construct( $args );

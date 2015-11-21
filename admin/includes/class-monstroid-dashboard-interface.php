@@ -252,6 +252,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 						'page-title' => __( 'Data manager', 'monstroid-dashboard' ),
 						'menu-title' => sprintf( __( 'Data manager %s', 'monstroid-dashboard' ), $this->get_menu_badge() ),
 					),
+
 					/*
 					Temporary comment out themes page
 
