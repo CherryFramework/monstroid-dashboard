@@ -1,10 +1,5 @@
 <?php
 /**
- * @package   monstroid_dashboard
- * @author    Cherry Team
- * @license   GPL-2.0+
- *
- * @wordpress-plugin
  * Plugin Name:       Monstroid Dashboard
  * Plugin URI:        http://www.templatemonster.com/
  * Description:       Dashboard for Monstroid theme
@@ -17,6 +12,10 @@
  * Domain Path:       /languages
  *
  * Dashboard for Monstroid theme
+ *
+ * @package   monstroid_dashboard
+ * @author    Cherry Team
+ * @license   GPL-2.0+
  */
 
 // If this file is called directly, abort.
@@ -230,10 +229,10 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 				'monstroid_dashboard',
 				array(
 					'nonce'          => wp_create_nonce( 'monstroid-dashboard' ),
-					'empty_key'      => __( "Please, provide license key", 'monstroid-dashboard' ),
-					'internal_error' => __( "Internal error. Please, contact support team", 'monstroid-dashboard' ),
+					'empty_key'      => __( 'Please, provide license key', 'monstroid-dashboard' ),
+					'internal_error' => __( 'Internal error. Please, contact support team', 'monstroid-dashboard' ),
 					'confirm_update' => __( "Please, note that the update process will replace changes performed within theme core files with the Monstroid ones.\n\nClick OK to proceed", 'monstroid-dashboard' ),
-					'confirm_delete' => __( "Are you sure you would like to remove a backup?\nPlease note that the available backup will be removed per your request.\n\nClick OK to proceed", 'monstroid-dashboard' )
+					'confirm_delete' => __( "Are you sure you would like to remove a backup?\nPlease note that the available backup will be removed per your request.\n\nClick OK to proceed", 'monstroid-dashboard' ),
 				)
 			);
 
@@ -265,7 +264,7 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 		 * @return boolean
 		 */
 		public function is_monstroid_installed() {
-			$theme = wp_get_theme('monstroid');
+			$theme = wp_get_theme( 'monstroid' );
 			return $theme->exists();
 		}
 

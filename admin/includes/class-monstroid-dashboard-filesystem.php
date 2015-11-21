@@ -48,8 +48,8 @@ if ( ! class_exists( 'Monstroid_Dashboard_Filesystem' ) ) {
 		 *                             Default false.
 		 * @param  string $context      Full path to the directory that is tested for
 		 *                             being writable.
-		 * @param  bool   $allow_relaxed_file_ownership Whether to allow Group/World writable.
-		 * @param  array  $extra_fields Extra POST fields.
+		 * @param  bool   $extra_fields Whether to allow Group/World writable.
+		 * @param  array  $allow_relaxed_file_ownership Extra POST fields.
 		 * @return mixed
 		 */
 		public function maybe_set_cred( $credentials, $form_post, $type, $error, $context, $extra_fields, $allow_relaxed_file_ownership ) {
@@ -65,7 +65,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Filesystem' ) ) {
 			// If defined, set it to that, Else, If POST'd, set it to that, If not, Set it to whatever it previously was(saved details in option)
 			$credentials['hostname'] = defined( 'FTP_HOST' ) ? FTP_HOST : ( ! empty( $_POST['hostname'] ) ? wp_unslash( $_POST['hostname'] ) : $credentials['hostname'] );
 			$credentials['username'] = defined( 'FTP_USER' ) ? FTP_USER : ( ! empty( $_POST['username'] ) ? wp_unslash( $_POST['username'] ) : $credentials['username'] );
-			$credentials['password'] = defined( 'FTP_PASS' ) ? FTP_PASS : ( ! empty($_POST['password'] ) ? wp_unslash( $_POST['password'] ) : '' );
+			$credentials['password'] = defined( 'FTP_PASS' ) ? FTP_PASS : ( ! empty( $_POST['password'] ) ? wp_unslash( $_POST['password'] ) : '' );
 
 			// Check to see if we are setting the public/private keys for ssh
 			$credentials['public_key'] = defined( 'FTP_PUBKEY' ) ? FTP_PUBKEY : ( ! empty( $_POST['public_key'] ) ? wp_unslash( $_POST['public_key'] ) : '' );
@@ -86,12 +86,12 @@ if ( ! class_exists( 'Monstroid_Dashboard_Filesystem' ) ) {
 			if ( ( defined( 'FTP_SSH' ) && FTP_SSH ) || ( defined( 'FS_METHOD' ) && 'ssh2' == FS_METHOD ) ) {
 				$credentials['connection_type'] = 'ssh';
 			} elseif ( ( defined( 'FTP_SSL' ) && FTP_SSL ) && 'ftpext' == $type ) {
-				//Only the FTP Extension understands SSL
+				// Only the FTP Extension understands SSL
 				$credentials['connection_type'] = 'ftps';
 			} elseif ( ! empty( $_POST['connection_type'] ) ) {
 				$credentials['connection_type'] = wp_unslash( $_POST['connection_type'] );
 			} elseif ( ! isset( $credentials['connection_type'] ) ) {
-				//All else fails (And it's not defaulted to something else saved), Default to FTP
+				// All else fails (And it's not defaulted to something else saved), Default to FTP
 				$credentials['connection_type'] = 'ftp';
 			}
 
@@ -122,7 +122,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Filesystem' ) ) {
 		 * Check, if user provide credentials via constants
 		 *
 		 * @since  1.0.0
-		 * @param  string  $method  filesystem method
+		 * @param  string $method filesystem method.
 		 * @return bool|string
 		 */
 		public function check_creds( $method ) {

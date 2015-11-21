@@ -219,11 +219,11 @@ if ( ! class_exists( 'Monstroid_Dashboard_UI_Handlers' ) ) {
 			global $wp_version;
 			$key_request = wp_remote_get(
 				$request_uri,
-				array( 'user-agent'  => 'WordPress/' . $wp_version . '; ' . get_bloginfo( 'url' ) )
+				array( 'user-agent' => 'WordPress/' . $wp_version . '; ' . get_bloginfo( 'url' ) )
 			);
 
 			// Can't send request
-			if ( is_wp_error( $key_request ) || ! isset($key_request['response']) ) {
+			if ( is_wp_error( $key_request ) || ! isset( $key_request['response'] ) ) {
 				wp_send_json_error( array(
 					'message' => __( 'Can`t send activation request. ' . $key_request->get_error_message(), 'monstroid-dashboard' ),
 				) );
@@ -238,7 +238,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_UI_Handlers' ) ) {
 			$response = json_decode( $key_request['body'] );
 
 			// Request generate unexpected result
-			if ( ! is_object( $response ) || !isset( $response->success ) ) {
+			if ( ! is_object( $response ) || ! isset( $response->success ) ) {
 				wp_send_json_error( array(
 					'message' => __( 'Bad request.', 'monstroid-dashboard' ),
 				) );
@@ -273,7 +273,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_UI_Handlers' ) ) {
 			// Can not get the,e information from TM
 			if ( empty( $response->tm_data->status ) || 'request failed' == $response->tm_data->status ) {
 				wp_send_json_error( array(
-					'message'   => __( 'License key is invalid or evaluation expired. Please, contact Support Live Chat: <a href="http://chat.template-help.com/">http://chat.template-help.com/</a>', 'monstroid-dashboard' )
+					'message' => __( 'License key is invalid or evaluation expired. Please, contact Support Live Chat: <a href="http://chat.template-help.com/">http://chat.template-help.com/</a>', 'monstroid-dashboard' ),
 				) );
 			}
 
@@ -311,7 +311,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_UI_Handlers' ) ) {
 		 * Check received packgae URL and throw JSON errors if it invalid
 		 *
 		 * @since  1.0.0
-		 * @param  string $url received URL
+		 * @param  string $url received URL.
 		 * @return void
 		 */
 		public function throw_download_errors( $url ) {
@@ -356,7 +356,6 @@ if ( ! class_exists( 'Monstroid_Dashboard_UI_Handlers' ) ) {
 			}
 			return self::$instance;
 		}
-
 	}
 
 }

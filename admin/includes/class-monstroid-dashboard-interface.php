@@ -157,7 +157,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 		 *
 		 * @since  1.0.0
 		 * @param  array $args post type arguments array.
-		 * @return void
+		 * @return array
 		 */
 		public function replace_cherry( $args ) {
 			$this->iter++;
@@ -252,10 +252,14 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 						'page-title' => __( 'Data manager', 'monstroid-dashboard' ),
 						'menu-title' => sprintf( __( 'Data manager %s', 'monstroid-dashboard' ), $this->get_menu_badge() ),
 					),
-					/*'monstroid-themes' => array(
+					/*
+					Temporary comment out themes page
+
+					'monstroid-themes' => array(
 						'page-title' => __( 'Monstroid Themes', 'monstroid-dashboard' ),
 						'menu-title' => __( 'Themes', 'monstroid-dashboard' )
-					)*/
+					)
+					*/
 				)
 			);
 
@@ -300,13 +304,13 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 				wp_die( 'Page not exists' );
 			}
 
-			$depends = isset( $subpages[$current]['depends'] ) ? $subpages[ $current ]['depends'] : false;
+			$depends = isset( $subpages[ $current ]['depends'] ) ? $subpages[ $current ]['depends'] : false;
 
 			if ( ! monstroid_dashboard()->is_monstroid_installed() ) {
 				$this->open_page_wrap();
 				printf(
-					('<div class="md-content">%s</div>'),
-					__('Monstroid theme not installed on this site', 'monstroid-dashboard' )
+					'<div class="md-content">%s</div>',
+					__( 'Monstroid theme not installed on this site', 'monstroid-dashboard' )
 				);
 				$this->close_page_wrap();
 				return;
@@ -342,9 +346,9 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 		 * Load selecte page view
 		 *
 		 * @since  1.0.0
-		 * @param  string     $view    get specific page output
-		 * @param  bool|array $depends view dependencies array
-		 * @return void
+		 * @param  string     $view    get specific page output.
+		 * @param  bool|array $depends view dependencies array.
+		 * @return void|bool false
 		 */
 		public function load_view( $view = null, $depends = false ) {
 
@@ -388,7 +392,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 					'yit_plugin_panel',
 					'wpcf7',
 					'cherry-white-label-settings',
-					'mailchimp-for-wp'
+					'mailchimp-for-wp',
 				)
 			);
 
@@ -441,8 +445,9 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 		 */
 		public static function get_instance() {
 			// If the single instance hasn't been set, set it now.
-			if ( null == self::$instance )
+			if ( null == self::$instance ) {
 				self::$instance = new self;
+			}
 			return self::$instance;
 		}
 	}

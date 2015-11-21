@@ -62,7 +62,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		public $update_data = false;
 
 		/**
-		 * moinstroid theme ID
+		 * Moinstroid theme ID
 		 *
 		 * @since 1.0.0
 		 * @var   integer
@@ -125,7 +125,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 			$this->options = apply_filters(
 				'monstroid_dashboard_updater_options',
 				array(
-					'disable_auto_check' => get_option( 'monstroid_dashboard_disable_auto_updates', false )
+					'disable_auto_check' => get_option( 'monstroid_dashboard_disable_auto_updates', false ),
 				)
 			);
 
@@ -185,7 +185,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		}
 
 		/**
-		 * force check update
+		 * Force check update
 		 *
 		 * @since  1.0.0
 		 * @return string
@@ -196,7 +196,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 				array(
 					'mu_request' => true,
 					'mu_action'  => 'check_updates',
-					'user_ver'   => $this->get_current_version()
+					'user_ver'   => $this->get_current_version(),
 				),
 				$this->api
 			);
@@ -214,7 +214,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		}
 
 		/**
-		 * run scheduled update
+		 * Run scheduled update
 		 *
 		 * @since  1.0.0
 		 * @return void|bool false
@@ -229,7 +229,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 
 			$skip_update = get_option( 'monstroid_skip_update' );
 
-			if ( $skip_update && isset( $update['new_version'] ) && version_compare( $skip_update, $update['new_version'], "==" ) ) {
+			if ( $skip_update && isset( $update['new_version'] ) && version_compare( $skip_update, $update['new_version'], '==' ) ) {
 				delete_option( 'monstroid_dahboard_need_update' );
 				return false;
 			}
@@ -385,7 +385,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 
 			$curren_ver = $this->get_current_version();
 
-			return version_compare( $data['new_version'], $curren_ver, ">" );
+			return version_compare( $data['new_version'], $curren_ver, '>' );
 
 		}
 
@@ -393,7 +393,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		 * Force check monstroid updates
 		 *
 		 * @since  1.0.0
-		 * @return void
+		 * @return void|null
 		 */
 		public function force_check_updates() {
 
@@ -410,7 +410,6 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		 *
 		 * @since  1.0.0
 		 * @return void|null
-		 *
 		 */
 		public function check_auto_updates() {
 			if ( isset( $_REQUEST['md_disable_auto_updates'] ) ) {
@@ -494,14 +493,13 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 				'monstroid-dashboard'
 			);
 
-
 			if ( true == $update ) {
 				$this->clear_update_data();
 				wp_send_json_success(
 					array(
 						'message'     => $success,
 						'new_version' => $this->get_update_data( 'new_version' ),
-						'update_log'  => $log
+						'update_log'  => $log,
 					)
 				);
 			}
@@ -542,7 +540,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		 * Show messages after force update checking
 		 *
 		 * @since  1.0.0
-		 * @return void
+		 * @return string
 		 */
 		public function check_update_messages( $before = '', $after = '', $url = false ) {
 
@@ -572,7 +570,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		 * Try to make backup before updating
 		 *
 		 * @since  1.0.0
-		 * @return void
+		 * @return void|bool
 		 */
 		public function try_make_backup() {
 
@@ -587,13 +585,13 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 
 			if ( false === $backup_done ) {
 				$message = __(
-					"Can't create current theme backup. <a href='#' class='force-run-theme-update'>Update anyway</a>",
-					"monstroid-dashboard"
+					'Can`t create current theme backup. <a href="#" class="force-run-theme-update">Update anyway</a>',
+					'monstroid-dashboard'
 				);
 				wp_send_json_error(
 					array(
 						'type'    => 'backup_failed',
-						'message' => $message
+						'message' => $message,
 					)
 				);
 			}
@@ -614,6 +612,5 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 			}
 			return self::$instance;
 		}
-
 	}
 }

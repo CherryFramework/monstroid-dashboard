@@ -173,7 +173,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Notices' ) ) {
 		 * Check update notice visibility and add it into shown notices array
 		 *
 		 * @since  1.0.0
-		 * @param  array  $notice_data  notice data.
+		 * @param  array $notice_data notice data.
 		 * @return void|bool false
 		 */
 		public function check_update_notice( $notice_data ) {
@@ -284,11 +284,11 @@ if ( ! class_exists( 'Monstroid_Dashboard_Notices' ) ) {
 		 */
 		public static function get_instance() {
 			// If the single instance hasn't been set, set it now.
-			if ( null == self::$instance )
+			if ( null == self::$instance ) {
 				self::$instance = new self;
+			}
 			return self::$instance;
 		}
-
 	}
 
 	Monstroid_Dashboard_Notices::get_instance();

@@ -7,6 +7,9 @@
  * @license   GPL-2.0+
  */
 
+/**
+ * Define backup manager control class
+ */
 class Monstroid_Dashboard_Backup_Manager {
 
 	/**
@@ -155,7 +158,7 @@ class Monstroid_Dashboard_Backup_Manager {
 	 * Create .htaccess file in updates backup dir to protect it from direct access
 	 *
 	 * @since  1.0.0
-	 * @return void
+	 * @return void|bool
 	 */
 	public function protect_path() {
 
@@ -212,7 +215,7 @@ class Monstroid_Dashboard_Backup_Manager {
 
 			$result[] = array(
 				'name' => $file,
-				'date' => date( 'M d Y, H:i', $data['lastmodunix'] )
+				'date' => date( 'M d Y, H:i', $data['lastmodunix'] ),
 			);
 		}
 
@@ -241,7 +244,7 @@ class Monstroid_Dashboard_Backup_Manager {
 	 *
 	 * @since  1.0.0
 	 * @param  string $file backup filename.
-	 * @return void
+	 * @return void|bool false
 	 */
 	public function download_backup( $file ) {
 
@@ -262,15 +265,15 @@ class Monstroid_Dashboard_Backup_Manager {
 
 		session_write_close();
 
-		header( "Pragma: public" );
-		header( "Expires: 0" );
-		header( "Cache-Control: must-revalidate, post-check=0, pre-check=0" );
-		header( "Cache-Control: public" );
-		header( "Content-Description: File Transfer" );
-		header( "Content-type: application/octet-stream" );
-		header( "Content-Disposition: attachment; filename=\"" . $file . "\"" );
-		header( "Content-Transfer-Encoding: binary" );
-		header( "Content-Length: " . @filesize( $filepath ) );
+		header( 'Pragma: public' );
+		header( 'Expires: 0' );
+		header( 'Cache-Control: must-revalidate, post-check=0, pre-check=0' );
+		header( 'Cache-Control: public' );
+		header( 'Content-Description: File Transfer' );
+		header( 'Content-type: application/octet-stream' );
+		header( 'Content-Disposition: attachment; filename="' . $file . '"' );
+		header( 'Content-Transfer-Encoding: binary' );
+		header( 'Content-Length: ' . @filesize( $filepath ) );
 
 		$this->readfile_chunked( $filepath ) or header( 'Location: ' . $filepath );
 
@@ -283,7 +286,7 @@ class Monstroid_Dashboard_Backup_Manager {
 	 *
 	 * @since  1.0.0
 	 * @param  string $file backup filename.
-	 * @return void
+	 * @return bool
 	 */
 	public function delete_backup( $file ) {
 
@@ -328,7 +331,7 @@ class Monstroid_Dashboard_Backup_Manager {
 		$handle    = @fopen( $file, 'r' );
 
 		if ( $size = @filesize( $file ) ) {
-			header("Content-Length: " . $size );
+			header( 'Content-Length: ' . $size );
 		}
 
 		if ( false === $handle ) {
@@ -394,39 +397,46 @@ class Monstroid_Dashboard_Backup_Manager {
 
 		if ( ! WP_Filesystem( $credentials, $dirs, $allow_relaxed_file_ownership ) ) {
 			$error = true;
-			if ( is_object($wp_filesystem) && $wp_filesystem->errors->get_error_code() ) {
+			if ( is_object( $wp_filesystem ) && $wp_filesystem->errors->get_error_code() ) {
 				$error = $wp_filesystem->errors;
 			}
 			return false;
 		}
 
-		if ( ! is_object($wp_filesystem) )
+		if ( ! is_object( $wp_filesystem ) ) {
 			return new WP_Error( 'fs_unavailable', $this->strings['fs_unavailable'] );
+		}
 
-		if ( is_wp_error( $wp_filesystem->errors ) && $wp_filesystem->errors->get_error_code() )
+		if ( is_wp_error( $wp_filesystem->errors ) && $wp_filesystem->errors->get_error_code() ) {
 			return new WP_Error( 'fs_error', $this->strings['fs_error'], $wp_filesystem->errors );
+		}
 
-		foreach ( (array)$directories as $dir ) {
+		foreach ( (array) $directories as $dir ) {
 			switch ( $dir ) {
 				case ABSPATH:
-					if ( ! $wp_filesystem->abspath() )
+					if ( ! $wp_filesystem->abspath() ) {
 						return new WP_Error( 'fs_no_root_dir', $this->strings['fs_no_root_dir'] );
+					}
 					break;
 				case WP_CONTENT_DIR:
-					if ( ! $wp_filesystem->wp_content_dir() )
+					if ( ! $wp_filesystem->wp_content_dir() ) {
 						return new WP_Error( 'fs_no_content_dir', $this->strings['fs_no_content_dir'] );
+					}
 					break;
 				case WP_PLUGIN_DIR:
-					if ( ! $wp_filesystem->wp_plugins_dir() )
+					if ( ! $wp_filesystem->wp_plugins_dir() ) {
 						return new WP_Error( 'fs_no_plugins_dir', $this->strings['fs_no_plugins_dir'] );
+					}
 					break;
 				case get_theme_root():
-					if ( ! $wp_filesystem->wp_themes_dir() )
+					if ( ! $wp_filesystem->wp_themes_dir() ) {
 						return new WP_Error( 'fs_no_themes_dir', $this->strings['fs_no_themes_dir'] );
+					}
 					break;
 				default:
-					if ( ! $wp_filesystem->find_folder($dir) )
+					if ( ! $wp_filesystem->find_folder( $dir ) ) {
 						return new WP_Error( 'fs_no_folder', sprintf( $this->strings['fs_no_folder'], esc_html( basename( $dir ) ) ) );
+					}
 					break;
 			}
 		}

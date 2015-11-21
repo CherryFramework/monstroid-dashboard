@@ -1,7 +1,7 @@
 <?php
 /**
  * Monstroid dashboard single quick start tip temlater
- * 
+ *
  * @package   monstroid_dashboard
  * @author    Cherry Team
  * @license   GPL-2.0+

@@ -152,11 +152,11 @@ if ( ! class_exists( 'Monstroid_Dashboard_Tips' ) ) {
 		 */
 		public static function get_instance() {
 			// If the single instance hasn't been set, set it now.
-			if ( null == self::$instance )
+			if ( null == self::$instance ) {
 				self::$instance = new self;
+			}
 			return self::$instance;
 		}
-
 	}
 
 	$monstroid_dashboard_tips = Monstroid_Dashboard_Tips::get_instance();
