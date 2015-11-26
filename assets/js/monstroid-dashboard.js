@@ -1,5 +1,5 @@
-(function ( $ ) {
-	"use strict";
+(function( $ ) {
+	'use strict';
 
 	$( function() {
 
@@ -12,7 +12,7 @@
 				};
 
 			if ( $this.hasClass( 'in-progress' ) || $this.hasClass( 'disabled' ) ) {
-				return !1;
+				return ! 1;
 			}
 
 			$this.addClass( 'in-progress' );
@@ -53,10 +53,10 @@
 					}
 
 					mdUpdateMessage( response.data.message, 'success' );
-					mdUpdateLog ( response.data.updateLog );
+					mdUpdateLog( response.data.updateLog );
 
-					$('.md-new-version').text( response.data.newVersion );
-					$('.md-badge').remove();
+					$( '.md-new-version' ).text( response.data.newVersion );
+					$( '.md-badge' ).remove();
 
 					return 1;
 				}
@@ -65,7 +65,7 @@
 					mdUpdateMessage( response.data.message );
 					mdUpdateLog( response.data.updateLog );
 					$this.addClass( 'md-hidden' );
-					return !1;
+					return ! 1;
 				}
 
 				mdUpdateMessage( response.data.message );
@@ -74,12 +74,12 @@
 		}
 
 		function mdUpdateMessage( message, type ) {
-			type = typeof type !== 'undefined' ? type : 'default';
-			$( '.md-update-messages' ).addClass( 'md-'+type ).html( message );
+			type = 'undefined' !== typeof type ? type : 'default';
+			$( '.md-update-messages' ).addClass( 'md-' + type ).html( message );
 		}
 
 		function mdUpdateLog( log ) {
-			$( '.md-update-log' ).html(log);
+			$( '.md-update-log' ).html( log );
 		}
 
 		function mdClearUpdateMessage() {
@@ -91,30 +91,30 @@
 			parent.prepend( '<span class="md-spinner md-' + type + '"><span class="md-spinner-circle"></span></span>' );
 		}
 
-		function mdRemoveSpinner(button) {
+		function mdRemoveSpinner( button ) {
 			$( '.md-spinner', button ).remove();
 		}
 
 		$( document ).on( 'click', '.run-theme-update', function( event ) {
 			event.preventDefault();
 			if ( ! confirm( window.monstroidDashboard.confirmUpdate ) ) {
-				return !1;
+				return ! 1;
 			}
 			mdAjaxUpdate( $( this ), false );
 		});
 
-		$(document).on('click', '.force-run-theme-update', function( event ) {
+		$( document ).on( 'click', '.force-run-theme-update', function( event ) {
 			event.preventDefault();
 			mdAjaxUpdate( $( this ), true );
 		});
 
-		$(document).on('click', '.show-update-log', function( event ) {
+		$( document ).on( 'click', '.show-update-log', function( event ) {
 			event.preventDefault();
-			$( '.md-update-log' ).removeClass('md-hidden');
+			$( '.md-update-log' ).removeClass( 'md-hidden' );
 		});
 
 		// Process latest monstroid version download
-		$(document).on( 'click', '.download-latest', function( event ) {
+		$( document ).on( 'click', '.download-latest', function( event ) {
 
 			var $this = $( this );
 
@@ -149,11 +149,11 @@
 			});
 		});
 
-		// process license key activation
+		// Process license key activation
 		$( document ).on( 'click', '.save-license-key', function(event) {
 
 			var $this  = $( this ),
-				$input = $( 'input[name="monstroid-key"]'),
+				$input = $( 'input[name="monstroid-key"]' ),
 				key;
 
 			event.preventDefault();
@@ -202,14 +202,13 @@
 
 		});
 
-		// confirm backup delete
-		$(document).on('click', '.md-updates-list_delete_link', function(event) {
+		// Confirm backup delete
+		$( document ).on( 'click', '.md-updates-list_delete_link', function( event ) {
 			if ( ! confirm( window.monstroidDashboard.confirmDelete ) ) {
 				event.preventDefault();
 			}
 		});
 
+	});
 
-	})
-
-}(jQuery));
+}(jQuery) );
