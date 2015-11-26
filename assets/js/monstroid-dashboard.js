@@ -27,11 +27,11 @@
 			}
 
 			$.ajax({
-				url: ajaxurl,
+				url: window.ajaxurl,
 				type: 'post',
 				dataType: 'json',
 				data: data,
-				error: function( response ) {
+				error: function() {
 					$this.removeClass( 'in-progress' );
 					mdRemoveSpinner( $this );
 					mdUpdateMessage( window.monstroidDashboard.internalError );
@@ -97,7 +97,7 @@
 
 		$( document ).on( 'click', '.run-theme-update', function( event ) {
 			event.preventDefault();
-			if ( ! confirm( window.monstroidDashboard.confirmUpdate ) ) {
+			if ( ! window.confirm( window.monstroidDashboard.confirmUpdate ) ) {
 				return ! 1;
 			}
 			mdAjaxUpdate( $( this ), false );
@@ -125,14 +125,14 @@
 			$( '.md-download-message' ).remove();
 
 			$.ajax({
-				url: ajaxurl,
+				url: window.ajaxurl,
 				type: 'post',
 				dataType: 'json',
 				data: {
 					action: 'monstroid_dashboard_download_latest',
 					nonce: window.monstroidDashboard.nonce
 				},
-				error: function( response ) {
+				error: function() {
 					$this.removeClass( 'in-progress' );
 					mdRemoveSpinner( $this );
 					$this.after( '<div class="md-download-message md-error">' + window.monstroidDashboard.internalError + '</div>' );
@@ -150,7 +150,7 @@
 		});
 
 		// Process license key activation
-		$( document ).on( 'click', '.save-license-key', function(event) {
+		$( document ).on( 'click', '.save-license-key', function( event ) {
 
 			var $this  = $( this ),
 				$input = $( 'input[name="monstroid-key"]' ),
@@ -173,11 +173,11 @@
 				$input.addClass( 'error' ).parent().append( '<div class="md-form-message md-error">' + window.monstroidDashboard.emptyKey + '</div>' );
 				$this.removeClass( 'in-progress' );
 				mdRemoveSpinner( $this );
-				return !1;
+				return ! 1;
 			}
 
 			$.ajax({
-				url: ajaxurl,
+				url: window.ajaxurl,
 				type: 'post',
 				dataType: 'json',
 				data: {
@@ -185,7 +185,7 @@
 					key: key,
 					nonce: window.monstroidDashboard.nonce
 				},
-				error: function( response ) {
+				error: function() {
 					$this.removeClass( 'in-progress' );
 					mdRemoveSpinner( $this );
 					$input.parent().append( '<div class="md-form-message md-error">' + window.monstroidDashboard.internalError + '</div>' );
@@ -204,11 +204,11 @@
 
 		// Confirm backup delete
 		$( document ).on( 'click', '.md-updates-list_delete_link', function( event ) {
-			if ( ! confirm( window.monstroidDashboard.confirmDelete ) ) {
+			if ( ! window.confirm( window.monstroidDashboard.confirmDelete ) ) {
 				event.preventDefault();
 			}
 		});
 
 	});
 
-}(jQuery) );
+}( jQuery ) );
