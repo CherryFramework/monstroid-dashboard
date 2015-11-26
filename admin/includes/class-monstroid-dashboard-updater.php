@@ -497,9 +497,9 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 				$this->clear_update_data();
 				wp_send_json_success(
 					array(
-						'message'     => $success,
-						'new_version' => $this->get_update_data( 'new_version' ),
-						'update_log'  => $log,
+						'message'    => $success,
+						'newVersion' => $this->get_update_data( 'new_version' ),
+						'updateLog'  => $log,
 					)
 				);
 			}
@@ -509,8 +509,8 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 			if ( is_wp_error( $update ) ) {
 				wp_send_json_error(
 					array(
-						'message'    => sprintf( __( 'Update failed. %s', 'monstroid-dashboard' ), $update->get_error_message() ),
-						'update_log' => $log,
+						'message'   => sprintf( __( 'Update failed. %s', 'monstroid-dashboard' ), $update->get_error_message() ),
+						'updateLog' => $log,
 					)
 				);
 			}
@@ -518,19 +518,19 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 			if ( ! $update ) {
 				wp_send_json_error(
 					array(
-						'message'    => __(
+						'message'   => __(
 							'Update failed. <a href="#" class="show-update-log">Show update log</a>',
 							'monstroid-dashboard'
 						),
-						'update_log' => $log,
+						'updateLog' => $log,
 					)
 				);
 			}
 
 			wp_send_json_error(
 				array(
-					'message'    => __( 'Unknown error, please try again later or contact our support', 'monstroid-dashboard' ),
-					'update_log' => $log,
+					'message'   => __( 'Unknown error, please try again later or contact our support', 'monstroid-dashboard' ),
+					'updateLog' => $log,
 				)
 			);
 
@@ -574,7 +574,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		 */
 		public function try_make_backup() {
 
-			if ( ! empty( $_REQUEST['ignore_backup'] ) ) {
+			if ( ! empty( $_REQUEST['ignoreBackup'] ) ) {
 				return true;
 			}
 
