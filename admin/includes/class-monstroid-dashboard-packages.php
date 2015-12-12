@@ -127,7 +127,6 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 				update_option( 'monstroid_packages', $installed_packages );
 			}
 
-
 		}
 
 		/**
@@ -330,7 +329,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 		 *
 		 * @since  1.1.0
 		 * @param  string $url default sample data URL.
-		 * @return void
+		 * @return string
 		 */
 		public function set_sample_data_link( $url ) {
 

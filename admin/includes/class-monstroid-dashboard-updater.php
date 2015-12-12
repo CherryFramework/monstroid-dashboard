@@ -32,7 +32,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		/**
 		 * Cloud updater API endpoint
 		 *
-		 * temporary comment out production API url
+		 * Temporary comment out production API url
 		 * public $api = 'https://cloud.cherryframework.com/';
 		 *
 		 * @since 1.0.0
