@@ -32,10 +32,12 @@ if ( ! class_exists( 'Monstroid_Dashboard_Updater' ) ) {
 		/**
 		 * Cloud updater API endpoint
 		 *
+		 * temporary comment out production API url
+		 * public $api = 'https://cloud.cherryframework.com/';
+		 *
 		 * @since 1.0.0
 		 * @var   string
 		 */
-		//public $api = 'https://cloud.cherryframework.com/';
 		public $api = 'http://192.168.9.40/local-cloud-live/';
 
 		/**

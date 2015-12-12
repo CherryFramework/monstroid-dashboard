@@ -40,6 +40,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 		 */
 		function __construct() {
 			$this->prepare_package_installer();
+			add_action( 'cherry_plugin_import_json', array( $this, 'set_package_status' ) );
 		}
 
 		/**
@@ -52,11 +53,11 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 
 			$this->packages = array(
 				'woocommerce' => array(
-					'title'        => __( 'Shop', 'monstroid-dashboard' ),
-					'thumb'        => monstroid_dashboard()->plugin_url( 'assets/images/woocommerce-screen.png' ),
-					'installed_cb' => array( $this, 'is_shop_installed' ),
-					'plugins'      => apply_filters( 'monstroid_dashboard_shop_plugins', array( 'woocommerce' ) ),
-					'sample_data'  => $this->get_sample_data_part_link( 'woocommerce' ),
+					'title'       => __( 'Shop', 'monstroid-dashboard' ),
+					'thumb'       => monstroid_dashboard()->plugin_url( 'assets/images/woocommerce-screen.png' ),
+					'installed'   => $this->is_package_installed( 'woocommerce' ),
+					'plugins'     => apply_filters( 'monstroid_dashboard_shop_plugins', array( 'woocommerce' ) ),
+					'sample_data' => $this->get_sample_data_part_link( 'woocommerce' ),
 				),
 			);
 
@@ -80,7 +81,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 
 			foreach ( $packages as $package_id => $package ) {
 
-				$is_installed = call_user_func( $package['installed_cb'] );
+				$is_installed = $package['installed'];
 				$install_link = apply_filters( 'monstroid_dashboard_package_installation_link', '#', $package );
 				$install_link = add_query_arg( array( 'package' => $package_id ), $install_link );
 
@@ -93,10 +94,40 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 		 * Check if shop package already installed.
 		 *
 		 * @since  1.1.0
+		 * @param  string $package package name to check.
 		 * @return boolean
 		 */
-		public function is_shop_installed() {
-			return false;
+		public function is_package_installed( $package ) {
+			$installed_packages = get_option( 'monstroid_packages', array() );
+			return in_array( $package, $installed_packages );
+		}
+
+		/**
+		 * Set current package installation status
+		 *
+		 * @since  1.1.0
+		 * @return void|bool
+		 */
+		public function set_package_status() {
+
+			$package = $this->get_install_type();
+
+			if ( ! $package ) {
+				return false;
+			}
+
+			$installed_packages = get_option( 'monstroid_packages' );
+
+			if ( ! $installed_packages ) {
+				$installed_packages = array( $package );
+				add_option( 'monstroid_packages', $installed_packages, '', false );
+			}
+
+			if ( ! in_array( $package, $installed_packages ) ) {
+				update_option( 'monstroid_packages', $installed_packages );
+			}
+
+
 		}
 
 		/**
