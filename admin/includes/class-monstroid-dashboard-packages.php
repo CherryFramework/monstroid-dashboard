@@ -50,17 +50,13 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 		 */
 		public function get_packages() {
 
-			if ( null !== $this->packages ) {
-				return $this->packages;
-			}
-
 			$this->packages = array(
 				'woocommerce' => array(
 					'title'        => __( 'Shop', 'monstroid-dashboard' ),
 					'thumb'        => monstroid_dashboard()->plugin_url( 'assets/images/woocommerce-screen.png' ),
 					'installed_cb' => array( $this, 'is_shop_installed' ),
 					'plugins'      => apply_filters( 'monstroid_dashboard_shop_plugins', array( 'woocommerce' ) ),
-					'sample_data'  => $this->get_sample_data_part_link( 'shop' ),
+					'sample_data'  => $this->get_sample_data_part_link( 'woocommerce' ),
 				),
 			);
 
@@ -111,7 +107,52 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 		 * @return string
 		 */
 		public function get_sample_data_part_link( $part ) {
-			return 'link';
+
+			$key        = get_option( 'monstroid_key' );
+			$request_arg = array(
+				'action'  => 'get-montroid-package-content',
+				'key'     => $key,
+				'package' => $part,
+			);
+
+			$request_url = add_query_arg( $request_arg, monstroid_dashboard_updater()->api );
+			$request     = wp_remote_get( $request_url );
+			$data        = wp_remote_retrieve_body( $request );
+
+			if ( empty( $data ) ) {
+				return false;
+			}
+
+			$data = json_decode( $data, true );
+
+			if ( empty( $data['links']['sample_data'] ) ) {
+				return false;
+			}
+
+			return $data['links']['sample_data'];
+		}
+
+		/**
+		 * Get current installation type
+		 *
+		 * @since  1.1.0
+		 * @return string|bool
+		 */
+		public function get_install_type() {
+
+			if ( ! isset( $_SESSION['monstroid_install_type'] ) ) {
+				return false;
+			}
+
+			$type     = esc_attr( $_SESSION['monstroid_install_type'] );
+			$packages = $this->get_packages();
+
+			if ( ! isset( $packages[ $type ] ) ) {
+				return false;
+			}
+
+			return $type;
+
 		}
 
 		/**
@@ -121,10 +162,15 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 		 * @return void
 		 */
 		public function prepare_package_installer() {
+
+			// Installation
 			add_filter( 'monstroid_wizard_installation_steps', array( $this, 'prepare_package_install_steps' ) );
 			add_filter( 'monstroid_wizard_installation_groups', array( $this, 'prepare_package_install_groups' ) );
 			add_filter( 'monstroid_wizard_first_step', array( $this, 'set_first_wizard_step' ) );
 			$this->prepare_package_plugins();
+
+			// Sample data import
+			add_filter( 'cherry_data_manager_cloud_sample_data_url', array( $this, 'set_sample_data_link' ) );
 		}
 
 		/**
@@ -135,6 +181,13 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 		 * @return array
 		 */
 		public function prepare_package_install_steps( $steps ) {
+
+			$type = $this->get_install_type();
+
+			if ( ! $type ) {
+				return $steps;
+			}
+
 			return array( 'install-data-manager', 'install-plugins' );
 		}
 
@@ -146,6 +199,13 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 		 * @return array
 		 */
 		public function prepare_package_install_groups( $groups ) {
+
+			$type = $this->get_install_type();
+
+			if ( ! $type ) {
+				return $groups;
+			}
+
 			return array(
 				'service_plugins'  => array( 'install-data-manager' ),
 				'frontend_plugins' => array( 'install-plugins' ),
@@ -160,6 +220,12 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 		 * @return array
 		 */
 		public function set_first_wizard_step( $step ) {
+
+			$type = $this->get_install_type();
+
+			if ( ! $type ) {
+				return $step;
+			}
 
 			$step = array(
 				'step'      => 'install-data-manager',
@@ -179,12 +245,13 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 		 */
 		public function prepare_package_plugins() {
 
-			if ( empty( $_SESSION['monstroid_install_type'] ) ) {
+			$package = $this->get_install_type();
+
+			if ( ! $package ) {
 				return;
 			}
 
-			$package = esc_attr( $_SESSION['monstroid_install_type'] );
-			$hook    = 'monstroid_wizard_set_' . $package . '_plugins';
+			$hook = 'monstroid_wizard_set_' . $package . '_plugins';
 
 			add_filter( $hook, array( $this, 'set_package_plugins' ), 10, 2 );
 
@@ -200,16 +267,13 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 		 */
 		public function set_package_plugins( $plugins, $all_plugins ) {
 
-			if ( empty( $_SESSION['monstroid_install_type'] ) ) {
+			$package = $this->get_install_type();
+
+			if ( ! $package ) {
 				return $plugins;
 			}
 
 			$packages = $this->get_packages();
-			$package  = esc_attr( $_SESSION['monstroid_install_type'] );
-
-			if ( ! isset( $packages[ $package ] ) ) {
-				return $plugins;
-			}
 
 			if ( ! isset( $packages[ $package ]['plugins'] ) ) {
 				return $plugins;
@@ -227,6 +291,31 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 			}
 
 			return $result;
+
+		}
+
+		/**
+		 * Set package specific sample data installation link
+		 *
+		 * @since  1.1.0
+		 * @param  string $url default sample data URL.
+		 * @return void
+		 */
+		public function set_sample_data_link( $url ) {
+
+			$package = $this->get_install_type();
+
+			if ( ! $package ) {
+				return $url;
+			}
+
+			$packages = $this->get_packages();
+
+			if ( empty( $packages[ $package ]['sample_data'] ) ) {
+				return $url;
+			}
+
+			return $packages[ $package ]['sample_data'];
 
 		}
 
