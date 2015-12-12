@@ -107,7 +107,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 		 * Get partial sample data download link by part name
 		 *
 		 * @since  1.1.0
-		 * @param  string $part part name
+		 * @param  string $part part name.
 		 * @return string
 		 */
 		public function get_sample_data_part_link( $part ) {
@@ -131,7 +131,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 		 * Modify wizard installation steps
 		 *
 		 * @since  1.1.0
-		 * @param  array $steps default installation steps
+		 * @param  array $steps default installation steps.
 		 * @return array
 		 */
 		public function prepare_package_install_steps( $steps ) {
