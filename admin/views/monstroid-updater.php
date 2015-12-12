@@ -29,6 +29,7 @@ if ( ! defined( 'WPINC' ) ) {
 	<?php echo Monstroid_Dashboard_UI::check_license_key(); ?>
 	<div class="md-updater-items">
 		<?php echo Monstroid_Dashboard_UI::main_theme_box(); ?>
+		<?php monstroid_dashboard_packages()->show_packages_list(); ?>
 	</div>
 	<div class="md-updater-footer">
 		<?php echo Monstroid_Dashboard_UI::download_latest(); ?>

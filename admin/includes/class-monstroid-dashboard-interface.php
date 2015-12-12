@@ -251,6 +251,9 @@ if ( ! class_exists( 'Monstroid_Dashboard_Interface' ) ) {
 					'monstroid-updater' => array(
 						'page-title' => __( 'Data manager', 'monstroid-dashboard' ),
 						'menu-title' => sprintf( __( 'Data manager %s', 'monstroid-dashboard' ), $this->get_menu_badge() ),
+						'depends'    => array(
+							monstroid_dashboard()->plugin_dir( 'admin/includes/class-monstroid-dashboard-packages.php' )
+						),
 					),
 
 					/*

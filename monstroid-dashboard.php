@@ -3,7 +3,7 @@
  * Plugin Name:       Monstroid Dashboard
  * Plugin URI:        http://www.templatemonster.com/
  * Description:       Dashboard for Monstroid theme
- * Version:           1.0.2
+ * Version:           1.1.0
  * Author:            TemplateMonster
  * Author URI:        http://www.templatemonster.com/
  * Text Domain:       monstroid-dashboard
@@ -45,7 +45,7 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 		 * @since 1.0.0
 		 * @var string
 		 */
-		public $version = '1.0.1';
+		public $version = '1.1.0';
 
 		/**
 		 * Plugin folder URL
@@ -89,9 +89,24 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 
 			add_action( 'admin_enqueue_scripts', array( $this, 'assets' ) );
 			add_filter( 'cherry_data_manager_exclude_folder_from_export', array( $this, 'do_not_export_backups' ) );
+			add_filter( 'monstroid_wizard_installation_dependencies', array( $this, 'add_wizard_dependencies' ) );
 
 			register_activation_hook( __FILE__, array( __CLASS__, 'activation' ) );
 			register_deactivation_hook( __FILE__, array( __CLASS__, 'deactivation' ) );
+		}
+
+		/**
+		 * Pass dependencies file to include into wizard
+		 *
+		 * @since  1.1.0
+		 * @param  array $depends dependencies array.
+		 * @return array
+		 */
+		public function add_wizard_dependencies( $depends ) {
+
+			$depends[] = monstroid_dashboard()->plugin_dir( 'admin/includes/class-monstroid-dashboard-packages.php' );
+			return $depends;
+
 		}
 
 		/**
