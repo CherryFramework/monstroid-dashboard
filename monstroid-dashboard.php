@@ -164,7 +164,7 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 		 * @param  string $path dir or file inside plugin dir.
 		 * @return string
 		 */
-		public function plugin_dir( $path ) {
+		public function plugin_dir( $path = null ) {
 
 			if ( ! $this->plugin_dir ) {
 				$this->plugin_dir = trailingslashit( plugin_dir_path( __FILE__ ) );

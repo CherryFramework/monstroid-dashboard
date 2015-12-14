@@ -36,9 +36,42 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 		public $packages = null;
 
 		/**
+		 * Required wizard version
+		 *
+		 * @since 1.1.0
+		 * @var   string
+		 */
+		public $required_wizard_version = '1.1.0';
+
+		/**
+		 * Required monstroid version
+		 *
+		 * @since 1.1.0
+		 * @var   string
+		 */
+		public $required_monstroid_version = '1.1.1';
+
+		/**
+		 * Required data manager version
+		 *
+		 * @since 1.1.0
+		 * @var   string
+		 */
+		public $required_data_manager_version = '1.0.9';
+
+		/**
 		 * Constructor for the class
 		 */
 		function __construct() {
+
+			if ( ! $this->is_valid_wizard_version() || ! $this->is_valid_data_manager_version() ) {
+				return;
+			}
+
+			if ( ! $this->is_valid_monstroid_version() ) {
+				return;
+			}
+
 			$this->prepare_package_installer();
 			add_action( 'cherry_plugin_import_json', array( $this, 'set_package_status' ) );
 		}
@@ -76,6 +109,14 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 			$packages = $this->get_packages();
 
 			if ( empty( $packages ) ) {
+				return null;
+			}
+
+			if ( ! $this->is_valid_wizard_version() || ! $this->is_valid_data_manager_version() ) {
+				return null;
+			}
+
+			if ( ! $this->is_valid_monstroid_version() ) {
 				return null;
 			}
 
@@ -348,6 +389,76 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 			return $packages[ $package ]['sample_data'];
 
 		}
+
+		/**
+		 * Check if Monstroid version is compatible with patial installation.
+		 *
+		 * @since  1.1.0
+		 * @return boolean
+		 */
+		public function is_valid_monstroid_version() {
+			$theme = wp_get_theme( 'monstroid' );
+			return version_compare( $theme->get( 'Version' ), $this->required_monstroid_version, '>=' );
+		}
+
+		/**
+		 * Check if is valid wizard version installed. Returns 'false' if wizard not installed
+		 *
+		 * @since  1.1.0
+		 * @return bool
+		 */
+		public function is_valid_wizard_version() {
+			return $this->is_valid_plugin_version( 'monstroid-wizard' );
+		}
+
+		/**
+		 * Check if is valid wizard version installed. Returns 'false' if wizard not installed
+		 *
+		 * @since  1.1.0
+		 * @return bool
+		 */
+		public function is_valid_data_manager_version() {
+			return $this->is_valid_plugin_version( 'cherry-data-manager' );
+		}
+
+		/**
+		 * Check if passed plugin version is valid for packages management
+		 *
+		 * @since  1.1.0
+		 * @param  string  $plugin plugin slug to check.
+		 * @return boolean
+		 */
+		public function is_valid_plugin_version( $plugin = 'monstroid-wizard' ) {
+
+			$path_data   = pathinfo( monstroid_dashboard()->plugin_dir() );
+			$plugins_dir = isset( $path_data['dirname'] ) ? $path_data['dirname'] : false;
+
+			if ( ! $plugins_dir ) {
+				return false;
+			}
+
+			if ( ! file_exists( $plugins_dir . '/' . $plugin . '/' . $plugin . '.php' ) ) {
+				return false;
+			}
+			$plugin_data = get_plugin_data( $plugins_dir . '/' . $plugin . '/' . $plugin . '.php' );
+
+			if ( ! $plugin_data ) {
+				return false;
+			}
+
+			$versions = array(
+				'monstroid-wizard'    => $this->required_wizard_version,
+				'cherry-data-manager' => $this->required_data_manager_version,
+			);
+
+			if ( ! isset( $versions[ $plugin ] ) ) {
+				return false;
+			}
+
+			return version_compare( $plugin_data['Version'], $versions[ $plugin ], '>=' );
+
+		}
+
 
 		/**
 		 * Returns the instance.
