@@ -425,7 +425,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 		 * Check if passed plugin version is valid for packages management
 		 *
 		 * @since  1.1.0
-		 * @param  string  $plugin plugin slug to check.
+		 * @param  string $plugin plugin slug to check.
 		 * @return boolean
 		 */
 		public function is_valid_plugin_version( $plugin = 'monstroid-wizard' ) {
