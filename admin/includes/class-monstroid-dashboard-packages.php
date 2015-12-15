@@ -41,7 +41,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 		 * @since 1.1.0
 		 * @var   string
 		 */
-		public $required_wizard_version = '1.1.0';
+		public $required_wizard_version = '1.2.0';
 
 		/**
 		 * Required monstroid version
