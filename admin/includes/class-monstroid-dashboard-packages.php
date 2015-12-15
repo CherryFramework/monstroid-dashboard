@@ -57,7 +57,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 		 * @since 1.1.0
 		 * @var   string
 		 */
-		public $required_data_manager_version = '1.0.9';
+		public $required_data_manager_version = '1.0.8';
 
 		/**
 		 * Constructor for the class
