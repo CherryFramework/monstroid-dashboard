@@ -186,8 +186,36 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 				return true;
 			}
 
-			return false;
+			$require = array(
+				'monstroid-wizard' => array(
+					'name' => 'Monstroid Wizard',
+					'url'  => 'https://cloud.cherryframework.com/downloads/wizard/monstroid-wizard.zip',
+				),
+				'cherry-data-manager' => array(
+					'name' => 'Cherry Data Manager',
+					'url'  => 'https://cloud.cherryframework.com/downloads/free-plugins/cherry-data-manager.zip',
+				),
+			);
 
+			foreach ( $require as $slug => $plugin ) {
+
+				if ( is_plugin_active( $slug . '/' . $slug . '.php' ) ) {
+					continue;
+				}
+
+				$download_link = sprintf(
+					'<a href="%s">%s</a>',
+					$plugin['url'],
+					__( 'download', 'monstroid-dashboard' )
+				);
+
+				$message = sprintf( __( 'This feature requires %1$s plugin to work properly. Please, %2$s and install %1$s', 'monstroid-dashboard' ), $plugin['name'], $download_link );
+				$this->add_error( $package, $message );
+
+				return true;
+			}
+
+			return false;
 		}
 
 		/**
@@ -558,7 +586,6 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 			return version_compare( $plugin_data['Version'], $versions[ $plugin ], '>=' );
 
 		}
-
 
 		/**
 		 * Returns the instance.
