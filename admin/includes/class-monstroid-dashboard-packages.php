@@ -568,7 +568,24 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 			if ( ! file_exists( $plugins_dir . '/' . $plugin . '/' . $plugin . '.php' ) ) {
 				return false;
 			}
-			$plugin_data = get_plugin_data( $plugins_dir . '/' . $plugin . '/' . $plugin . '.php' );
+			$default_headers = array(
+				'Name'        => 'Plugin Name',
+				'PluginURI'   => 'Plugin URI',
+				'Version'     => 'Version',
+				'Description' => 'Description',
+				'Author'      => 'Author',
+				'AuthorURI'   => 'Author URI',
+				'TextDomain'  => 'Text Domain',
+				'DomainPath'  => 'Domain Path',
+				'Network'     => 'Network',
+				'_sitewide'   => 'Site Wide Only',
+			);
+
+			$plugin_data = get_file_data(
+				$plugins_dir . '/' . $plugin . '/' . $plugin . '.php',
+				$default_headers,
+				'plugin'
+			);
 
 			if ( ! $plugin_data ) {
 				return false;
