@@ -284,6 +284,20 @@ if ( ! class_exists( 'Monstroid_Dashboard' ) ) {
 		}
 
 		/**
+		 * Check if Monstroid theme is currently active
+		 *
+		 * @since  1.1.0
+		 * @return boolean
+		 */
+		public function is_monstroid_active() {
+
+			$current_theme      = wp_get_theme();
+			$current_theme_name = $current_theme->get( 'Name' );
+
+			return ( 'monstroid' === strtolower( $current_theme_name ) );
+		}
+
+		/**
 		 * Init plugin self-updater
 		 *
 		 * @since  1.0.0

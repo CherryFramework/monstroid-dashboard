@@ -60,6 +60,14 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 		public $required_data_manager_version = '1.0.8';
 
 		/**
+		 * Holder for packages errors
+		 *
+		 * @since 1.1.0
+		 * @var   array
+		 */
+		public $package_errors = array();
+
+		/**
 		 * Constructor for the class
 		 */
 		function __construct() {
@@ -74,6 +82,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 
 			$this->prepare_package_installer();
 			add_action( 'cherry_plugin_import_json', array( $this, 'set_package_status' ) );
+
 		}
 
 		/**
@@ -89,7 +98,16 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 					'title'       => __( 'Shop', 'monstroid-dashboard' ),
 					'thumb'       => monstroid_dashboard()->plugin_url( 'assets/images/woocommerce-screen.png' ),
 					'installed'   => $this->is_package_installed( 'woocommerce' ),
-					'plugins'     => apply_filters( 'monstroid_dashboard_shop_plugins', array( 'woocommerce' ) ),
+					'plugins'     => apply_filters(
+						'monstroid_dashboard_shop_plugins',
+						array(
+							'woocommerce',
+							'yith-woocommerce-compare',
+							'yith-woocommerce-wishlist',
+							'yith-woocommerce-quick-view',
+							'yith-woocommerce-zoom-magnifier',
+						)
+					),
 					'sample_data' => $this->get_sample_data_part_link( 'woocommerce' ),
 				),
 			);
@@ -122,13 +140,95 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 
 			foreach ( $packages as $package_id => $package ) {
 
-				$is_installed = $package['installed'];
+				$has_errors   = $this->check_package_errors( $package_id, $package );
 				$install_link = apply_filters( 'monstroid_dashboard_package_installation_link', '#', $package );
 				$install_link = add_query_arg( array( 'package' => $package_id ), $install_link );
 
 				include monstroid_dashboard()->plugin_dir( 'admin/views/package-item.php' );
 			}
 
+		}
+
+		/**
+		 * Check if is current package is available to installation
+		 *
+		 * @since  1.1.0
+		 * @param  string $package package ID.
+		 * @param  array  $data    package data array.
+		 * @return bool
+		 */
+		public function check_package_errors( $package, $data ) {
+
+			$is_installed = $data['installed'];
+
+			if ( $is_installed ) {
+				$message = __( 'This package already installed', 'monstroid-dashboard' );
+				$this->add_error( $package, $message );
+				return true;
+			}
+
+			if ( ! monstroid_dashboard()->is_monstroid_active() ) {
+
+				$message = __( 'This package is available only for Monstroid theme.', 'monstroid-dashboard' );
+
+				$activate_link = sprintf(
+					'<a href="%s">%s</a>',
+					admin_url( 'themes.php' ),
+					__( 'activate', 'monstroid-dashboard' )
+				);
+
+				$message .= ' ';
+				$message .= sprintf(
+					__( 'You need %s Monstroid theme to get it', 'monstroid-dashboard' ),
+					$activate_link
+				);
+				$this->add_error( $package, $message );
+				return true;
+			}
+
+			return false;
+
+		}
+
+		/**
+		 * Add error message for current package
+		 *
+		 * @since  1.1.0
+		 * @param  string $package package name.
+		 * @param  string $message error message to add.
+		 * @return void
+		 */
+		public function add_error( $package, $message ) {
+
+			if ( ! isset( $this->package_errors[ $package ] ) ) {
+				$this->package_errors[ $package ]   = array();
+			}
+
+			$this->package_errors[ $package ][] = $message;
+		}
+
+		/**
+		 * Get package error messages
+		 *
+		 * @since  1.1.0
+		 * @param  string $package package ID.
+		 * @return string
+		 */
+		public function get_error_message( $package ) {
+
+			if ( ! isset( $this->package_errors[ $package ] ) ) {
+				return '';
+			}
+
+			$result = '';
+			$before = '';
+
+			foreach ( $this->package_errors[ $package ] as $message ) {
+				$result .= $before . $message;
+				$before = '<br>';
+			}
+
+			return $result;
 		}
 
 		/**
