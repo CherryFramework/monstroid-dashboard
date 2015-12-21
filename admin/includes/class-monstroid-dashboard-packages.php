@@ -282,6 +282,7 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 			$package = $this->get_install_type();
 
 			if ( ! $package ) {
+				$this->maybe_set_all_packages();
 				return false;
 			}
 
@@ -295,6 +296,33 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 			if ( ! in_array( $package, $installed_packages ) ) {
 				update_option( 'monstroid_packages', $installed_packages );
 			}
+
+		}
+
+		/**
+		 * Maybe save all packages statuses on full Monstroid installation
+		 *
+		 * @since  1.1.0
+		 * @return bool
+		 */
+		public function maybe_set_all_packages() {
+
+			if ( ! monstroid_dashboard()->is_monstroid_active() ) {
+				return false;
+			}
+
+			$type = $this->get_install_type();
+
+			if ( ! $type || 'full' !== $type ) {
+				return false;
+			}
+
+			$packages    = $this->get_packages();
+			$package_ids = array_keys( $packages );
+			$installed   = get_option( 'monstroid_packages' );
+			$installed   = $package_ids + $installed;
+
+			update_option( 'monstroid_packages', $installed );
 
 		}
 
@@ -339,19 +367,30 @@ if ( ! class_exists( 'Monstroid_Dashboard_Packages' ) ) {
 		 */
 		public function get_install_type() {
 
-			if ( ! isset( $_SESSION['monstroid_install_type'] ) ) {
-				return false;
-			}
-
-			$type     = esc_attr( $_SESSION['monstroid_install_type'] );
+			$type     = $this->get_base_install_type();
 			$packages = $this->get_packages();
 
-			if ( ! isset( $packages[ $type ] ) ) {
+			if ( ! $type || ! isset( $packages[ $type ] ) ) {
 				return false;
 			}
 
 			return $type;
 
+		}
+
+		/**
+		 * Get base installation type, without checkin package name
+		 *
+		 * @since  1.1.0
+		 * @return string|bool
+		 */
+		public function get_base_install_type() {
+
+			if ( ! isset( $_SESSION['monstroid_install_type'] ) ) {
+				return false;
+			}
+
+			return esc_attr( $_SESSION['monstroid_install_type'] );
 		}
 
 		/**
